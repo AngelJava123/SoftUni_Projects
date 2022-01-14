@@ -1,0 +1,17 @@
+CREATE TABLE people(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`name` VARCHAR(50) NOT NULL,
+`picture` BLOB,
+`height` DOUBLE,
+`weight` DOUBLE,
+`gender` CHAR(1) NOT NULL,
+`birthdate` DATE NOT NULL,
+`biography` TEXT
+);
+
+INSERT INTO people(`name`, `picture`, `height`, `weight`, `gender`, `birthdate`, `biography`)
+VALUES ('Angel', NULL, 97.34, 190.23, 'm', '1993-02-10', 'Michael Jordan is a former American basketball player who led the Chicago Bulls to six NBA championships and won the Most Valuable Player Award five times.'),
+('Sasy', NULL, 167.23, 65.54, 'f', '1996-10-24', 'Fred Rogers was the much-loved host of the public television show Mister Rogers Neighborhood, which ran on PBS from 1968 to 2001.'),
+('Tomcat', NULL, 21.34, 12.43, 'm', '2005-12-15', 'Maya Angelou was a civil rights activist, poet and award-winning author known for her acclaimed 1969 memoir, I Know Why the Caged Bird Sings, and her numerous poetry and essay collections.'),
+('Valentin', NULL, 179.34, 100.34, 'm', '1961-08-30', 'Marie Antoinette helped provoke the popular unrest that led to the French Revolution and to the overthrow of the monarchy in August 1792.'),
+('Jordan', NULL, 200.24, 105.34, 'f', '1967-05-19', 'Singer and actress Diana Ross was part of the 1960s pop/soul trio the Supremes before embarking on a successful solo career');
