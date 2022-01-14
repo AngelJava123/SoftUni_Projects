@@ -1,0 +1,15 @@
+CREATE TABLE users(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`username` VARCHAR(30) NOT NULL,
+`password` VARCHAR(26) NOT NULL,
+`profile_picture` BLOB,
+`last_login_time` TIME,
+`is_deleted` BOOLEAN
+);
+
+INSERT INTO users(`username`, `password`, `profile_picture`, `last_login_time`,`is_deleted`)
+VALUES ('AngelVTashev', '480355830', NULL, now(), TRUE),
+('Pesho', 'fnri3948', NULL, now(), FALSE),
+('Ginka', 'fmog0-3405', NULL, now(), TRUE),
+('Petar', 'djhgb3884', NULL, now(), FALSE),
+('Stoqn', '5545fff', NULL, now(), TRUE);
