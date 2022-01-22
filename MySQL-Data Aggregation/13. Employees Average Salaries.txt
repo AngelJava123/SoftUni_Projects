@@ -1,0 +1,21 @@
+CREATE TABLE `Employees Average Salaries` AS SELECT * FROM
+    employees
+WHERE
+    salary > 30000;
+    
+DELETE FROM `Employees Average Salaries` 
+WHERE
+    manager_id = 42;
+    
+UPDATE `Employees Average Salaries` 
+SET 
+    salary = salary + 5000
+WHERE
+    department_id = 1;
+    
+SELECT 
+    department_id, AVG(salary) AS avg_salary
+FROM
+    `Employees Average Salaries`
+GROUP BY department_id
+ORDER BY department_id;
