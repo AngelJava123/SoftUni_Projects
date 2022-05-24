@@ -1,0 +1,23 @@
+table, td, tr, th {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+td, tr {
+    padding: 5px;
+}
+.bold {
+    font-weight: bold;
+    text-align: center;
+}
+
+.result {
+    width: 250px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+h3 {
+    font-size: 35px;
+}
