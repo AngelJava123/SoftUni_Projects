@@ -1,0 +1,92 @@
+body {
+    background: #F0F1F5;
+    margin: 0;
+    padding: 2rem 12rem;
+    font-family: "Helvetica", sans-serif;
+}
+
+header > p {
+    color: #F9690E;
+    float: left;
+}
+
+.resize {
+    width: 30px;
+    height: auto;
+    float: left;
+    padding-top: 9px;
+}
+
+nav {
+    text-align: right;
+}
+
+nav ul {
+    float: right;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+nav ul li a {
+    color: #F9690E;
+    text-decoration: none;
+}
+
+button:hover{
+    background-color: #ffffff !important;
+    color: #F9690E !important;
+}
+
+main section:nth-child(1) {
+    margin-top: 3rem;
+    background-image: url("../Requirements-and-Resources/Images/picture.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 11rem 15rem;
+    text-align: center;
+}
+
+main section:nth-child(1) h1 {
+    color: white;
+}
+
+main section:nth-child(1) span {
+    color: #F9690E;
+}
+
+main section:nth-child(1) button {
+    background: #F9690E;
+    border: none;
+    color: white;
+    font-size: 22px;
+    padding: 12px;
+    font-weight: bold;
+}
+
+main section:nth-child(2) article {
+    background: #F9690E;
+    color: white;
+    width: 29%;
+    display: inline-block;
+    padding: 16px;
+}
+
+main section:nth-child(2) article h3 {
+    text-align: center;
+}
+
+footer article:nth-child(1) {
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    font-size: 12px;
+    margin-right: 400px;
+}
+
+footer article:nth-child(2) {
+    display: inline-block;
+}
+
