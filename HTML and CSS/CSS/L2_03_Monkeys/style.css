@@ -1,0 +1,41 @@
+body {
+    background-color: #FAEBC8;
+}
+
+section {
+    background-color: white;
+    box-shadow: 1px 1px 15px 6px #834231;
+    border-radius: 15px 15px 15px 15px;
+    margin: 200px;
+    padding: 20px 60px;
+}
+
+article {
+    display: table-cell;
+    padding: 20px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    float: left;
+}
+
+a {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    color: #834231;
+    text-shadow: 13px 13px 2px rgba(150, 150, 150, 1);
+}
+
+
+
