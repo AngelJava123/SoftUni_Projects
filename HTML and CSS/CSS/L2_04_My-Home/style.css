@@ -1,0 +1,54 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+header article {
+    display: inline-block;
+    border-style: solid;
+    border-right: white;
+    border-top: white;
+    border-bottom: white;
+    border-left-color: #656565;
+    margin-top: 60px;
+    margin-left: 280px;
+}
+
+header article h2 {
+    padding-left: 10px;
+    bottom: 30px;
+    margin: 12px;
+    letter-spacing: 0.2em;
+    font-weight: lighter;
+    font-size: 30px;
+    transform: scaleY(1.2);
+    color: #656565;
+}
+
+header article p {
+    color: #656565;
+    padding-left: 23px;
+}
+
+main {
+    padding-left: 230px;
+}
+
+main article {
+    display: inline-block;
+    width: 300px;
+    margin-left: 50px;
+    font-size: 13px;
+    margin-right: -61px;
+}
+
+main article p {
+    color: #656565;
+    line-height: 20px;
+    padding-right: 35px;
+}
+
+main article img {
+    width: 260px;
+    position: relative;
+    height: 170px;
+}
