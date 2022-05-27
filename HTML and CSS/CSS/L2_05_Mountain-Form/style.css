@@ -1,0 +1,111 @@
+body {
+    font-family: Lato, sans-serif;
+}
+
+form {
+    margin-left: 270px;
+    margin-top: 40px;
+    margin-right: 298px;
+}
+
+form section {
+    display: table-cell;
+    width: 350px;
+    height: 60px;
+    padding-top: 375px;
+    margin: -3px;
+}
+
+form #left {
+    background: url("peak2.jpg"), linear-gradient(to top, #9b520f, #a7620f, #b3730f, #bd8511, #c69715);
+    background-size: cover;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+form #right {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-style: solid;
+    border-width: thick;
+    border-color: #38082A;
+    vertical-align: top;
+    position: relative;
+    padding-top: 120px;
+    font-size: 23px;
+}
+
+form #left h1 {
+    text-align: center;
+    position: relative;
+    bottom: 380px;
+    font-size: 35px;
+    color: white;
+}
+
+form #left footer p {
+    text-align: center;
+    position: relative;
+    color: white;
+    bottom: 25px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+form #left footer img {
+    position: relative;
+    width: 30px;
+    bottom: 30px;
+    padding-left: 160px;
+}
+
+form #right input, label {
+    display: inline-block;
+    margin-left: 100px;
+    position: center;
+    padding: 4px;
+}
+
+form #right label {
+    color: rgb(218, 217, 220);
+}
+
+form #right input {
+    color: rgb(118, 115, 115);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.action_btn {
+    margin-left: 90px;
+    margin-top: 25px;
+    font-size: 19px;
+}
+
+.action_btn button {
+    margin-left: -1px;
+}
+
+#bto {
+    background-color: transparent;
+    border-color: transparent;
+    color: #38082A;
+    cursor: pointer;
+}
+
+#bone {
+    background-color: #38082A;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    width: 22vh;
+    height: 8vh;
+}
+
+.action_btn #bone:hover {
+    background-color: white; /* Green */
+    color: #38082A;
+}
