@@ -1,0 +1,169 @@
+body {
+    font-family: Open Sans, sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+header {
+    background-color: white;
+}
+
+header nav {
+    text-align: center;
+    background-color: white;
+}
+
+header nav ul li {
+    display: inline-block;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: rgb(214, 116, 114);
+}
+
+.sectionFirst {
+    height: 100%;
+    background: url("header-flower.png") no-repeat center;
+    background-size: cover;
+    padding-top: 200px;
+
+}
+
+.sectionFirst hr {
+    width: 60px;
+    height: 2px;
+    background-color: rgb(214, 116, 114);
+    border: none;
+}
+
+.sectionFirst article {
+    text-align: center;
+    padding-bottom: 240px;
+    color: white;
+}
+
+.sectionFirst article h2 {
+    font-size: 36px;
+}
+
+.sectionFirst article p {
+    margin-left: 400px;
+    width: 450px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.sectionSecond {
+    display: flex;
+    background-color: rgb(214, 116, 114);
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.sectionSecond hr {
+    width: 60px;
+    height: 2px;
+    background-color: white;
+    border: none;
+}
+
+.sectionSecond article h1 {
+    padding-left: 460px;
+    color: white;
+}
+
+.sectionSecond article p {
+    margin-left: 400px;
+    width: 450px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+    color: white;
+}
+
+.sectionSecond hr {
+    display: flex;
+    margin-right: 190px;
+}
+
+.sectionSecond article button {
+    color: rgb(214, 116, 114);
+    border: none;
+    margin-left: 570px;
+    border-radius: 4px;
+    padding: 10px 25px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sectionSecond article button:hover {
+    cursor: pointer;
+}
+
+.thirdSection h1 {
+    padding-left: 560px;
+    font-size: 18px;
+}
+
+.thirdSection hr {
+    width: 60px;
+    height: 2px;
+    background-color: black;
+    border: none;
+}
+
+.thirdSection article a h1 {
+    color: rgb(118, 115, 115);
+    padding-left: 47px;
+    font-size: 17px;
+}
+
+.thirdSection article {
+    display: flex;
+    vertical-align: top;
+    padding-left: 110px;
+    padding-top: 30px;
+}
+
+.thirdSection article a img {
+    width: 140px;
+    padding-left: 18px;
+}
+
+.thirdSection article a p {
+    width: 175px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+    color: rgb(118, 115, 115);
+}
+
+.thirdSection article a {
+    padding-left: 130px;
+}
+
+.thirdSection {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+footer {
+    position: relative;
+    padding-left: 450px;
+    background-color: rgb(214, 116, 114);
+    color: white;
+    margin-top: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
