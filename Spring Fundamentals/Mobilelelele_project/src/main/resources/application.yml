@@ -1,6 +1,6 @@
 spring:
     datasource:
-        password: Harmantika123.
+        password:
         url: jdbc:mysql://localhost:3306/mobilelelele?createDatabaseIfNotExist=true&useSSL=true
         username: root
     jpa:
