@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hercules Fitness</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<header>
+    <nav class="navbar" th:fragment="navigation">
+        <ul>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:text="#{navbar_login}" th:href="@{/login}">LOGIN</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:text="#{navbar_register}" th:href="@{/register}">REGISTER</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:text="#{navbar_my_cards}" th:href="@{/my-cards}">MY CARDS</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:text="#{navbar_profile}" th:href="@{/profile}">PROFILE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:text="#{navbar_create_card}" th:href="@{/create-card}">CREATE CARD</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:text="#{navbar_training_plans}" th:href="@{/training-plans}">TRAINING PLANS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:text="#{navbar_trainers}" th:href="@{/trainers}">TRAINERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:text="#{navbar_subscriptions}" th:href="@{/subscriptions}">SUBSCRIPTIONS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:text="#{navbar_clubs}" th:href="@{/clubs}">CLUBS</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" th:text="#{navbar_admins}" th:href="@{/admins}">ADMIN</a>
+            </li>
+            <li class="nav-item">
+                <div class="form-inline my-2 my-lg-0 px-3">
+                    <div class="text-white" sec:authorize="isAuthenticated()">Welcome,
+                        <th:block sec:authentication="name"></th:block>
+                        !
+                    </div>
+                    <form th:action="@{/logout}" sec:authorize="isAuthenticated()" th:method="post">
+                        <input class="btn btn-link nav-link" type="submit" value="LOGOUT">
+                    </form>
+                </div>
+            </li>
+            <li class="nav-item">
+                <form th:method="get">
+                    <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                    <select
+                            onchange="this.form.submit()"
+                            id="lang"
+                            name="lang">
+                        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                    </select>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+<footer th:fragment="footer" class="footer">
+    <p>HERCULES FITNESS & WELLNESS © 2022 | All Rights Reserved.</p>
+    <ul>
+        <li>
+            <a href="https://www.facebook.com/" class="logoOne">
+                <img src="https://cdn1.iconfinder.com/data/icons/social-media-rounded-corners/512/Rounded_Facebook_svg-1024.png"
+                     alt="Logo Icon"/>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/" class="logoTwo">
+                <img src="https://cdn1.iconfinder.com/data/icons/social-media-rounded-corners/512/Rounded_Instagram_svg-1024.png"
+                     alt="Logo Icon"/>
+            </a>
+        </li>
+        <li>
+            <a href="https://twitter.com/?lang=bg" class="logoThree">
+                <img src="https://cdn1.iconfinder.com/data/icons/social-media-rounded-corners/512/Rounded_Twitter5_svg-1024.png"
+                     alt="Logo Icon"/>
+            </a>
+        </li>
+    </ul>
+</footer>
+</body>

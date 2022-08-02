@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment :: head"></head>
+<body class="bodyIndex">
+<header>
+    <a> <img class="resize"
+             src="/images/logo.jpg" alt="">
+    </a>
+    <p class="headerWord">
+        <a href="/">HERCULES</a>
+    </p>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<main class="content-wrap">
+    <h1 class="text-center mt-2"><span class="badgeSlideIn badge badge-pill border border-white text-white"
+                                       th:text="#{header_clubs}">OUR CLUBS AT TOP LOCATIONS</span>
+    </h1>
+    <hr class="hr-3 w-75 bg-white"/>
+    <section class="mx-auto w-75" th:each="a : ${allClubs.getContent()}" th:object="${a}">
+        <img th:src="*{image}" class="img-responsive w-100 border border-white" alt="Image">
+        <div class="card-group text-white">
+            <div class="card border border-white">
+
+                <div class="card-title">
+                    <h5 class="card-title">Title</h5>
+                </div>
+                <div class="card-footer">
+                    <small th:text="*{title}"></small>
+                </div>
+            </div>
+            <div class="card border border-white">
+
+                <div class="card-title">
+                    <h5 class="card-title">Location</h5>
+                </div>
+                <div class="card-footer">
+                    <small th:text="*{location}"></small>
+                </div>
+            </div>
+            <div class="card border border-white">
+                <div class="card-title">
+                    <h5 class="card-title">Opening</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="classifications SUPPORT" th:text="*{openingHour}"></small>
+                </div>
+            </div>
+            <div class="card border border-white">
+                <div class="card-title">
+                    <h5 class="card-title">Closing</h5>
+                </div>
+                <div class="card-footer">
+                    <small th:text="*{closingHour}"></small>
+                </div>
+            </div>
+            <div class="card border border-white">
+                <div class="card-title">
+                    <h5 class="card-title">Amenity</h5>
+                </div>
+                <div class="card-footer">
+                    <small th:text="*{additionalAmenities}"></small>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div class="container-fluid container-fluid row justify-content-center">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allClubs.isFirst()} ? 'disabled' : ''">
+                <a th:unless="${allClubs.isFirst()}"
+                   th:href="@{/clubs(size=${allClubs.getSize()},page=0)}"
+                   class="page-link" href="#">First</a>
+                <a th:if="${allClubs.isFirst()}"
+                   class="page-link" href="#">First</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allClubs.hasPrevious() ? '' : 'disabled'}">
+                <a th:if="${allClubs.hasPrevious()}"
+                   th:href="@{/clubs(size=${allClubs.getSize()},page=${allClubs.getNumber() - 1})}"
+                   class="page-link" href="#">Previous</a>
+                <a th:unless="${allClubs.hasPrevious()}"
+                   class="page-link" href="#">Previous</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allClubs.hasNext() ? '' : 'disabled'}">
+                <a th:if="${allClubs.hasNext()}"
+                   th:href="@{/clubs(size=${allClubs.getSize()},page=${allClubs.getNumber() + 1})}"
+                   class="page-link" href="#">Next</a>
+                <a th:unless="${allClubs.hasNext()}"
+                   class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allClubs.isLast()} ? 'disabled' : ''">
+                <a th:unless="${allClubs.isLast()}"
+                   th:href="@{/clubs(size=${allClubs.getSize()},page=${allClubs.getTotalPages() - 1})}"
+                   class="page-link" href="#">Last</a>
+                <a th:if="${allClubs.isLast()}"
+                   class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
