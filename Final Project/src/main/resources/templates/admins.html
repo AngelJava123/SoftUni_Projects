@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<body class="bg-secondary">
+<header>
+    <a> <img class="resize"
+             src="/images/logo.jpg" alt="">
+    </a>
+    <p class="headerWord">
+        <a href="/">HERCULES</a>
+    </p>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<main style="background: black">
+    <h1 class="text-center mt-2"><span
+            class="badgeSlideIn badge badge-pill border border-white text-white" th:text="#{header_admins}">ALL CARDS ASSOCIATED WITH USERS</span>
+    </h1>
+    <hr class="hr-3 w-75 bg-white"/>
+    <section class="cardSection text-white" th:each="a : ${allCards}" th:object="${a}">
+        <a class="main-btn">
+            <div class="cardList border border-white">
+                <img th:src="*{image}" alt="Image" class="cardImage fade-in-option border border-white">
+                <p class="cardH1" style="color: #b9bbbe">USER DETAILS:</p>
+                <p class="cardH1" style="color: #b9bbbe">Username: <span class="text-white"
+                                                                         th:text="*{username}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">FullName: <span class="text-white" th:text="*{fullName}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Age: <span class="text-white" th:text="*{ageUser}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Email: <span class="text-white" th:text="*{email}"></span>
+                <hr class="hr-3 w-75 bg-white"/>
+                <p class="cardH1" style="color: #b9bbbe">TRAINER DETAILS:</p>
+
+                <p class="cardH1" style="color: #b9bbbe">Name: <span class="text-white"
+                                                                     th:text="*{trainerName}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">Age: <span class="text-white" th:text="*{age}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Specialization: <span class="text-white"
+                                                                              th:text="*{specialization}"></span>
+                </p>
+                <hr class="hr-3 w-75 bg-white"/>
+                <p class="cardH1" style="color: #b9bbbe">PLAN DETAILS:</p>
+                <p class="cardP" style="color: #b9bbbe">Title: <span class="text-white" th:text="*{title}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Level: <span class="text-white" th:text="*{level}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Goal: <span class="text-white" th:text="*{goal}"></span>
+                </p>
+                <p class="cardP" style="color: #b9bbbe">Muscle Group: <span class="text-white"
+                                                                            th:text="*{muscleGroup}"></span></p>
+                <hr class="hr-3 w-75 bg-white"/>
+                <p class="cardH1" style="color: #b9bbbe">SUBSCRIPTION DETAILS:</p>
+
+                <p class="cardP" style="color: #b9bbbe">Type: <span class="text-white"
+                                                                    th:text="*{type}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">Price: $<span class="text-white"
+                                                                      th:text="*{price}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">Period: <span class="text-white"
+                                                                      th:text="*{period}"></span></p>
+                <hr class="hr-3 w-75 bg-white"/>
+                <p class="cardH1" style="color: #b9bbbe">CLUB DETAILS:</p>
+
+                <p class="cardP" style="color: #b9bbbe">Title: <span class="text-white"
+                                                                     th:text="*{titleClub}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">Location: <span class="text-white"
+                                                                        th:text="*{location}"></span></p>
+                <p class="cardP" style="color: #b9bbbe">Opening Hour: <span class="text-white"
+                                                                            th:text="*{openingHour}"></span> AM</p>
+                <p class="cardP" style="color: #b9bbbe">Closing Hour: <span class="text-white"
+                                                                            th:text="*{closingHour}"></span> PM</p>
+                <p class="cardP" style="color: #b9bbbe">Additional Amenities: <span class="text-white"
+                                                                                    th:text="*{additionalAmenities}"></span>
+                </p>
+                <a class="btn btn-outline-light w-50" th:href="@{/adminCard/remove/{id}(id = *{id})}">Remove Card</a>
+            </div>
+        </a>
+    </section>
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

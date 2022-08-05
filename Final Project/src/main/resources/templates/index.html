@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment :: head"></head>
+<body class="bodyIndex">
+<header>
+    <a> <img class="resize"
+             src="/images/logo.jpg" alt="">
+    </a>
+    <p class="headerWord">
+        <a href="/">HERCULES</a>
+    </p>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+    <section class="motivation">
+        <h1 class="text-center mt-5"><span class="badgeSlideIn badge badge-pill border border-white text-white"
+                                           th:text="#{header_one}">POSSIBILITIES BEYOND IMAGINATION</span></h1>
+    </section>
+</header>
+<main>
+    <section class="thirdSection">
+        <ul>
+            <li>
+                <img src="/images/joinUs.jpg" class="fade-in-option border border-white">
+                <section class="info">
+                    <div>
+                        <h3 th:text="#{navbar_subscriptions}">SUBSCRIPTIONS</h3>
+                        <p th:text="#{paragraph_one}">Best quality for your money</p>
+                    </div>
+                    <div></div>
+                </section>
+                <a class="moreInfo" th:href="@{/subscriptions}">
+                    <button class="button_under_picture" th:text="#{button_one}">LOOK AT</button>
+                </a>
+            </li>
+            <li class="second">
+                <img src="/images/luxuryFitness.jpg" class="fade-in-option border border-white">
+                <section class="info">
+                    <div>
+                        <h3 th:text="#{navbar_clubs}">CLUBS</h3>
+                        <p th:text="#{paragraph_two}">Nominated for most luxurious in Europe</p>
+                    </div>
+                    <div></div>
+                </section>
+                <a class="moreInfo" th:href="@{/clubs}">
+                    <button th:text="#{button_one}">LOOK AT</button>
+                </a>
+            </li>
+            <li>
+                <img src="/images/trainingPlans.jpg" class="fade-in-option border border-white">
+                <section class="info">
+                    <div>
+                        <h3 th:text="#{navbar_training_plans}">TRAINING PLANS</h3>
+                        <p th:text="#{paragraph_tree}">Guaranteed positive effects on your body</p>
+                    </div>
+                    <div></div>
+                </section>
+                <a class="moreInfo" th:href="@{/training-plans}">
+                    <button th:text="#{button_one}">LOOK AT</button>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section class="fourSection">
+        <h2 class="title_section_four">Hercules Fitness & Wellness</h2>
+        <p class="textOne" th:text="#{textSection_one}">Innovative, luxurious, unique. With its 1200 fitness centers
+            located in the largest cities in
+            Europe such as London, Paris, Sofia, Barcelona. Nominated 12 years in a row for the most luxurious fitness
+            center in Europe. Over 50,000 new club members every year. With its 6,000 highly qualified personal trainers
+            and ultra-modern facilities, Hercules Fitness is undisputedly and without competition one of the best in the
+            wellness and fitness industry.
+        </p>
+    </section>
+    <section class="fiveSection">
+        <h2 class="fiveHeading" th:text="#{heading_two}">Amenities</h2>
+        <li>
+            <img src="/images/spa.jpg" class="fade-in-option">
+            <h1 th:text="#{heading_amenities_one}">Spa Areas</h1>
+            <p th:text="#{amenitiesText_one}">Our spa department offers a one-of-a-kind and unforgettable experience.
+                the innovative smart jacuzzi for
+                10 people opens up all your senses with its massaging nozzles. The automated temperature control makes
+                it possible to adjust it to that of the body so that you feel as if there is no water. Sauna and steam
+                bath also for 10 people is another asset that will add to your amazing spa experience.
+            </p>
+        </li>
+        <li>
+            <img src="/images/fitness.jpg" class="fade-in-option">
+            <h1 th:text="#{heading_amenities_two}">Fitness Zones</h1>
+            <p th:text="#{amenitiesText_two}">Тhe fitness area has absolutely all the equipment with the help of which
+                all muscle groups in the human
+                body are trained. For your comfort, the fitness area is divided into different rooms with different
+                functionality. A room for group cycling, a room for yoga classes, a main room with fitness equipment as
+                well as changing rooms and showers, equipped with the necessary toiletries that one needs.
+            </p>
+        </li>
+        <li>
+            <img src="/images/pool.jpg" class="fade-in-option">
+            <h1 th:text="#{heading_amenities_tree}">Swimming Pools</h1>
+            <p th:text="#{amenitiesText_tree}">Two types of pools provided for our club members. An outdoor pool located
+                on the
+                roof of the building with a breathtaking 360 degree view. An indoor pool, which has a specialized
+                system through which the temperature in the room as well as in the pool matches the body temperature.
+                Special panels imitating sunlight and reproducing ultraviolet rays contribute to feeling as if you are
+                sitting outdoors under the sun.
+            </p>
+        </li>
+        <li>
+            <img src="/images/solarium.jpg" class="fade-in-option">
+            <h1 th:text="#{heading_amenities_four}">Solarium</h1>
+            <p th:text="#{amenitiesText_four}">The solarium provides the opportunity to build an evenly distributed tan
+                over the entire body. With its
+                special systems, the risk of producing more ultraviolet rays than necessary is minimized to
+                zero. all control is put into a touch control device. It is also possible to connect your mobile smart
+                device via bluetooth and control not only all functions, but also play music through the built-in
+                speakers.
+            </p>
+        </li>
+        <li>
+            <img src="/images/parking.jpg" class="fade-in-option">
+            <h1 th:text="#{heading_amenities_five}">Parking</h1>
+            <p th:text="#{amenitiesText_five}">We understand the difficulty of parking in big cities. All our clubs have
+                parking for a total of 100
+                cars,
+                divided into outdoor parking and indoor underground parking. In addition, the centers have an
+                innovative and ultra-modern self-service car wash equipped with everything your car needs. For all club
+                members,
+                the parking lot as well as the car wash can be used completely free of charge.</p>
+        </li>
+        <li>
+            <img src="/images/bar.jpg" class="fade-in-option">
+            <h1 class="lastOne" th:text="#{heading_amenities_six}">Fresh Bar</h1>
+            <p th:text="#{amenitiesText_six}">What's better than a healthy drink after a workout? Enjoy and immerse
+                yourself in the world of
+                healthy food and drinks in our fresh bar. It has a wide variety of fruits and vegetables to make
+                smoothies
+                and fresh, as well as all kinds of healthy seeds and nuts. Healthy desserts are another addition
+                that
+                you have the opportunity to try. Better come and try it for yourself to experience the amazing
+                flavors and quality of all our products.
+            </p>
+        </li>
+    </section>
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

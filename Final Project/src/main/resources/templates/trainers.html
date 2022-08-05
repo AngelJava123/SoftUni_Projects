@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment :: head"></head>
+<body class="bodyIndex">
+<header>
+    <a> <img class="resize"
+             src="/images/logo.jpg" alt="">
+    </a>
+    <p class="headerWord">
+        <a href="/">HERCULES</a>
+    </p>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<main class="content-wrap">
+    <h1 class="text-center mt-2"><span
+            class="badgeSlideIn badge badge-pill border border-white text-white" th:text="#{trainers_header}">OUR TOP PERSONAL TRAINERS</span>
+    </h1>
+    <hr class="hr-3 w-75 bg-white"/>
+    <section class="boxes text-white" th:each="a : ${allTrainers}" th:object="${a}">
+        <a class="main-btn">
+            <div class="box border border-white">
+                <img class="border border-white fade-in-option" th:src="*{image}" height="150px" alt="">
+                <p style="color: #b9bbbe">Name: <span class="text-white" th:text="*{trainerName}"></span></p>
+                <p style="color: #b9bbbe">Age: <span class="text-white" th:text="*{age}"></span></p>
+                <p style="color: #b9bbbe">Specialization: <span class="text-white" th:text="*{specialization}"></span>
+                </p>
+            </div>
+        </a>
+    </section>
+</main>
+<div class="container-fluid container-fluid row justify-content-center">
+    <nav>
+        <ul class="pagination ">
+            <li class="page-item" th:classappend="${allTrainers.isFirst()} ? 'disabled' : ''">
+                <a th:unless="${allTrainers.isFirst()}"
+                   th:href="@{/trainers(size=${allTrainers.getSize()},page=0)}"
+                   class="page-link" href="#">First</a>
+                <a th:if="${allTrainers.isFirst()}"
+                   class="page-link" href="#">First</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allTrainers.hasPrevious() ? '' : 'disabled'}">
+                <a th:if="${allTrainers.hasPrevious()}"
+                   th:href="@{/trainers(size=${allTrainers.getSize()},page=${allTrainers.getNumber() - 1})}"
+                   class="page-link" href="#">Previous</a>
+                <a th:unless="${allTrainers.hasPrevious()}"
+                   class="page-link" href="#">Previous</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allTrainers.hasNext() ? '' : 'disabled'}">
+                <a th:if="${allTrainers.hasNext()}"
+                   th:href="@{/trainers(size=${allTrainers.getSize()},page=${allTrainers.getNumber() + 1})}"
+                   class="page-link" href="#">Next</a>
+                <a th:unless="${allTrainers.hasNext()}"
+                   class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allTrainers.isLast()} ? 'disabled' : ''">
+                <a th:unless="${allTrainers.isLast()}"
+                   th:href="@{/trainers(size=${allTrainers.getSize()},page=${allTrainers.getTotalPages() - 1})}"
+                   class="page-link" href="#">Last</a>
+                <a th:if="${allTrainers.isLast()}"
+                   class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
