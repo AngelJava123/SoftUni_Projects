@@ -1,0 +1,358 @@
+.bodyIndex {
+    background: black;
+    margin: 2px;
+    font-family: "Helvetica", sans-serif;
+}
+
+header > p {
+    color: white;
+    float: left;
+}
+
+.resize {
+    width: 50px;
+    height: auto;
+    padding-right: 10px;
+    float: left;
+    padding-top: 30px;
+}
+
+nav {
+    text-align: right;
+    padding-top: 30px;
+}
+
+nav ul {
+    float: left;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0 7px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: black;
+    border-color: white;
+    text-decoration: none;
+}
+
+.headerWord {
+    font-family: "Brush Script MT", cursive;
+    font-size: 18px;
+    padding-top: 30px;
+}
+
+.sentence {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    display: flex;
+    position: relative;
+    color: white;
+    padding-top: 40px;
+    font-size: 66px;
+    margin-left: 150px;
+    width: 1000px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+}
+
+.badgeSlideIn {
+    animation-duration: 3s;
+    animation-name: slideIn;
+}
+
+.learnMore {
+    margin-left: 35px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    font-size: 23px;
+    background: transparent;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+}
+
+.learnMore:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+.thirdSection {
+    text-align: center;
+    display: block;
+    color: white;
+    padding-top: 40px;
+}
+
+.bodyIndex > main > section.thirdSection > p {
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.thirdSection li {
+    width: 3400px;
+    display: table-cell;
+}
+
+.thirdSection li:not(:last-child) {
+    padding-right: 10px;
+}
+
+.thirdSection img {
+    width: 400px;
+    height: 220px;
+}
+
+.info {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+.info div:nth-child(1) {
+    display: inline-block;
+    width: 329px;
+    text-align: left;
+}
+
+.info div:nth-child(2) {
+    display: inline-block;
+    width: 56px;
+    text-align: right;
+    font-size: 34px;
+    background: black;
+    color: white;
+    padding: 5px;
+}
+
+.info p, .info h3 {
+    margin: 2px 0;
+}
+
+.moreInfo {
+    text-align: center;
+    padding: 20px;
+}
+
+.moreInfo button {
+    padding: 8px 12px;
+    font-size: 18px;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+}
+
+.moreInfo button:hover {
+    background: white;
+    color: black;
+}
+
+.fourSection {
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.fiveSection {
+    background-color: white;
+    padding-bottom: 30px;
+    padding-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.fiveSection li {
+    display: inline-block;
+    width: 400px;
+    margin: 6px;
+}
+
+.fiveHeading {
+    text-align: center;
+}
+
+.fiveSection li img {
+    width: 400px;
+    height: 220px;
+}
+
+.fiveSection li h1 {
+    text-align: center;
+}
+
+.footer {
+    background: white;
+}
+
+.footer p {
+    display: inline-block;
+    width: 500px;
+    text-align: right;
+    color: black;
+}
+
+.footer ul {
+    display: inline-block;
+    width: 700px;
+    text-align: right;
+}
+
+.footer ul li {
+    color: black;
+}
+
+.footer ul li a:hover {
+    color: black;
+}
+
+.footer ul li {
+    display: inline-block;
+}
+
+.footer ul li a img {
+    width: 20px;
+}
+
+.card {
+    padding: 10px;
+}
+
+.card-group {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    padding-bottom: 60px;
+}
+
+.img-responsive {
+    animation-duration: 3s;
+    animation-name: slideIn;
+}
+
+.boxes {
+    padding-left: 475px;
+    padding-bottom: 60px;
+    display: inline-block;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.box {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    text-align: center;
+    padding: 1.5rem 2rem;
+}
+
+.cardSection {
+    padding-left: 350px;
+    padding-bottom: 60px;
+    display: inline-block;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cardList {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    text-align: left;
+    padding: 1.5rem 2rem;
+}
+
+.cardSection.cardList.cardH1 {
+    color: white;
+    padding-left: 125px;
+    font-size: 20px;
+}
+
+.cardSection.cardList.cardP {
+    font-size: 14px;
+    padding-left: 50px;
+    width: 300px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: left;
+}
+
+.cardSection.cardList.cardImage {
+    width: 400px;
+    height: 220px;
+}
+
+.cardSection1 {
+    padding-left: 350px;
+    padding-bottom: 60px;
+    display: inline-list-item;
+    margin-right: 350px;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cardList1 {
+    animation-duration: 3s;
+    animation-name: slideIn;
+    text-align: left;
+    padding: 1.5rem 2rem;
+}
+
+@keyframes slideIn {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+    to {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.fade-in-option {
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.profileImage {
+    width: 475px;
+    height: 255px;
+}
