@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<body class="bg-secondary">
+<header>
+    <a> <img class="resize"
+             src="/images/logo.jpg" alt="">
+    </a>
+    <p class="headerWord">
+        <a href="/">HERCULES</a>
+    </p>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<main style="background: black">
+    <h1 class="text-center mt-2"><span
+            class="badgeSlideIn badge badge-pill border border-white text-white" th:text="#{profile_details}">MY PROFILE DETAILS</span>
+    </h1>
+    <hr class="hr-3 w-75 bg-white"/>
+    <section class="cardSection text-white" th:each="a : ${profileDetails}" th:object="${a}">
+        <a class="main-btn">
+            <div class="cardList border border-white">
+                <img th:src="*{getImageUrl}" alt="Image" class="profileImage fade-in-option">
+                <p class="cardH1" style="color: #b9bbbe">My Username: <span class="text-white"
+                                                                            th:text="*{username}"></span></p>
+                <p class="cardH1" style="color: #b9bbbe">My FullName: <span class="text-white"
+                                                                            th:text="*{fullName}"></span></p>
+                <p class="cardH1" style="color: #b9bbbe">My Age: <span class="text-white" th:text="*{age}"></span></p>
+                <p class="cardH1" style="color: #b9bbbe">My Email: <span class="text-white" th:text="*{email}"></span>
+                </p>
+                <p class="cardH1" style="color: #b9bbbe">Available Money In My Wallet: $<span class="text-white"
+                                                                                              th:text="*{wallet}"></span>
+                </p>
+            </div>
+        </a>
+    </section>
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
