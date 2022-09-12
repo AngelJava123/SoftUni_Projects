@@ -5,4 +5,6 @@ function solve(string) {
 
 let string = 'Hello, JavaScript!';
 
+// string = 'strings are easy';
+
 solve(string);
