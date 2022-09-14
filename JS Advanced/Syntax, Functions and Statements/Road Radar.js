@@ -1,44 +1,26 @@
 function solve(speed, area) {
 
-    if (area === 'motorway') {
-        if (speed <= 130) {
-            console.log(`Driving ${speed} km/h in a 130 zone`)
+    let motowayLimit = 130;
+    let interstateLimit = 90;
+    let cityLimit = 50;
+    let residentialLimit = 20;
+
+    switch (area) {
+        case 'motorway': speedLimit(speed, motowayLimit); break;
+        case 'interstate': speedLimit(speed, interstateLimit); break;
+        case 'city': speedLimit(speed, cityLimit); break;
+        case 'residential': speedLimit(speed, residentialLimit); break;
+    }
+
+    function speedLimit(speed, limit) {
+        if (speed <= limit) {
+            console.log(`Driving ${speed} km/h in a ${limit} zone`);
         } else {
-           let overSpeeding = speed - 130;
-           let status = "";
-            
-           status = speeding(overSpeeding, status);
-           console.log(`The speed is ${overSpeeding} km/h faster than the allowed speed of 130 - ${status}`);
-        }
-    } else if (area === 'interstate') {
-        if (speed <= 90) {
-            console.log(`Driving ${speed} km/h in a 90 zone`)
-        } else {
-           let overSpeeding = speed - 90;
-           let status = "";
-            
-           status = speeding(overSpeeding, status);
-           console.log(`The speed is ${overSpeeding} km/h faster than the allowed speed of 90 - ${status}`);
-        }
-    } else if (area === 'city') {
-        if (speed <= 50) {
-            console.log(`Driving ${speed} km/h in a 50 zone`)
-        } else {
-           let overSpeeding = speed - 50;
-           let status = "";
-            
-           status = speeding(overSpeeding, status);
-           console.log(`The speed is ${overSpeeding} km/h faster than the allowed speed of 50 - ${status}`);
-        }
-    } else if (area === 'residential') {
-        if (speed <= 20) {
-            console.log(`Driving ${speed} km/h in a 20 zone`)
-        } else {
-           let overSpeeding = speed - 20;
-           let status = "";
-            
-           status = speeding(overSpeeding, status);
-           console.log(`The speed is ${overSpeeding} km/h faster than the allowed speed of 20 - ${status}`);
+            let overSpeeding = speed - limit;
+            let status = "";
+
+            status = speeding(overSpeeding, status);
+            console.log(`The speed is ${overSpeeding} km/h faster than the allowed speed of ${limit} - ${status}`);
         }
     }
 
