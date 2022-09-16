@@ -1,6 +1,6 @@
 function solve(arr) {
 
-    let biggestNum = Number.MIN_VALUE;
+    let biggestNum = Number.NEGATIVE_INFINITY;
 
     for (let row = 0; row < arr.length; row++) {
         for (let col = 0; col < arr[row].length; col++) {
