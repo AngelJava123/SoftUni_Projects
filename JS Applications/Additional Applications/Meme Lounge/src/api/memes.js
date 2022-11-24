@@ -21,5 +21,5 @@ export async function updateMeme(id, meme) {
 }
 
 export async function feleteMeme(id) {
-    return del('data/memes/' + id);
+    return del('/data/memes/' + id);
 }
