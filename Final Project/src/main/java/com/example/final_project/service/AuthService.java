@@ -51,4 +51,36 @@ public class AuthService {
 
         return true;
     }
+    
+    public void login(String userName) {
+        UserDetails userDetails =
+                herculesUserDetailsService.loadUserByUsername(userName);
+
+        Authentication auth =
+                new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        userDetails.getPassword(),
+                        userDetails.getAuthorities()
+                );
+
+        SecurityContextHolder.
+                getContext().
+                setAuthentication(auth);
+    }
+
+    public void createUserIfNotExist(String email) {
+
+        var userOpt = this.userRepository.findByEmail(email);
+        if (userOpt.isEmpty()) {
+            var newUser = new User();
+            newUser.setEmail(email);
+            newUser.setPassword(null);
+            newUser.setFullName("New User");
+            newUser.setFullName("User");
+            newUser.setAge(18);
+            newUser.setWallet(BigDecimal.valueOf(100));
+            userRepository.save(newUser);
+        }
+    }
+}
 }
