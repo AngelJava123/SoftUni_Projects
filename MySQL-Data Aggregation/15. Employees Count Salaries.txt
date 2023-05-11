@@ -1,6 +1,0 @@
-SELECT 
-    COUNT(*) AS employees_without_manager
-FROM
-    employees
-WHERE
-    manager_id IS NULL;

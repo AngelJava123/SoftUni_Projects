@@ -1,7 +1,0 @@
-WITH CTE AS
-(SELECT  department_id, salary,
-DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC ) RANK_SALARY
-FROM employees)
-SELECT DISTINCT (department_id), salary AS ThirdHighestSalary
-FROM CTE
-WHERE RANK_SALARY = 3;
