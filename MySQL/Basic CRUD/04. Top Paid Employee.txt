@@ -1,0 +1,7 @@
+CREATE VIEW view_top_payed AS
+SELECT *
+FROM `employees`
+ORDER BY salary DESC
+LIMIT 1;
+
+SELECT * FROM hotel.view_top_payed;
