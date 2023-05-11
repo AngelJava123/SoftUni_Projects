@@ -1,0 +1,85 @@
+CREATE TABLE categories (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `category` VARCHAR(30) NOT NULL,
+    `daily_rate` DOUBLE,
+    `weekly_rate` DOUBLE,
+    `monthly_rate` DOUBLE,
+    `weekend_rate` DOUBLE
+);
+
+CREATE TABLE cars (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `plate_number` INT NOT NULL,
+    `make` VARCHAR(30),
+    `model` VARCHAR(30),
+    `car_year` YEAR,
+    `category_id` INT,
+    `doors` INT,
+    `picture` BLOB,
+    `car_condition` VARCHAR(30),
+    `available` BOOLEAN
+);
+
+CREATE TABLE employees (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(30) NOT NULL,
+    `last_name` VARCHAR(30) NOT NULL,
+    `title` VARCHAR(30) NOT NULL,
+    `notes` TEXT
+);
+
+CREATE TABLE customers (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `driver_licence_number` INT NOT NULL,
+    `full_name` VARCHAR(30) NOT NULL,
+    `address` TEXT NOT NULL,
+    `city` VARCHAR(30),
+    `zip_code` INT,
+    `notes` TEXT
+);
+
+CREATE TABLE rental_orders (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `employee_id` INT,
+    `customer_id` INT,
+    `car_id` INT,
+    `car_condition` VARCHAR(30),
+    `tank_level` INT,
+    `kilometrage_start` INT,
+    `kilometrage_end` INT,
+    `total_kilometrage` INT,
+    `start_date` DATE,
+    `end_date` DATE,
+    `total_days` INT,
+    `rate_applied` DOUBLE,
+    `tax_rate` DOUBLE,
+    `order_status` VARCHAR(30) NOT NULL,
+    `notes` TEXT
+);
+
+INSERT INTO categories(`category`, `daily_rate`, `weekly_rate`, `monthly_rate`, `weekend_rate`)
+VALUES('Used', 5.5, 4.6, 6.5, 3.8),
+('New', 7.6, 7.8, 8.9, 9.3),
+('Rent', 8.6, 6.2, 5.9, 7.8);
+
+INSERT INTO cars(`plate_number`, `make`, `model`, `car_year`, `category_id`, `doors`, `picture`, `car_condition`, `available`)
+VALUES(876993, 'Alluminium', 'VW Tiguan', '2009', 1, 4, NULL, 'Satisfy', TRUE),
+(486627, 'Steele', 'Mercedes GLK', '2015', 2, 4, NULL, 'Excellent', TRUE),
+(304947, 'Metal', 'BMW X6', '2020', 3, 2, NULL, 'Extra Ordinary', FALSE);
+
+INSERT INTO employees(`first_name`, `last_name`, `title`, `notes`)
+VALUES('Angel', 'Tashev', 'Case Coordinator', 'Very nice person'),
+('Krasimira', 'Tasheva', 'Teacher', 'Kind, loveble'),
+('Valentin', 'Tashev', 'Technic', 'Very good and kind person');
+
+INSERT INTO customers(`driver_licence_number`, `full_name`, `address`, `city`, `zip_code`, `notes`)
+VALUES(249576, 'Jane Dawson', 'Hillton Park 43', 'New York', 49375, 'Senior Developer'),
+(684966, 'Sam Tason', 'Wellington 04', 'Chicago', 3405, 'Car Maker'),
+(340965, 'Mark Peecher', 'Cameron 90', 'Atlanta', 542455, 'Barman');
+
+INSERT INTO rental_orders(`employee_id`, `customer_id`, `car_id`, `car_condition`, `tank_level`,
+    `kilometrage_start`, `kilometrage_end`, `total_kilometrage`, `start_date`, `end_date`,`total_days`,
+    `rate_applied`,`tax_rate`,`order_status`,`notes`) 
+    VALUES(1, 1, 1, 'Used', 45, 145000, 200000, 345000, NULL, NULL, 30, 6.5, 4.5, 'Pending', 'Ready for Dispach next week'),
+    (2, 2, 2, 'New', 65, 100000, 140000, 240000, NULL, NULL, 30, 8.7, 7.5, 'Dispatched', 'Consilidate'),
+    (3, 3, 3, 'Rent', 45, 120000, 150000, 270000,  NULL, NULL, 30, 5.4, 5.7, 'Pending', 'Ordered for next weekend');
