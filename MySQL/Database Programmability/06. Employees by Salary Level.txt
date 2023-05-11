@@ -1,0 +1,26 @@
+CREATE FUNCTION ufn_get_salary_level(salary DOUBLE) 
+RETURNS VARCHAR(30)
+DETERMINISTIC
+BEGIN 
+  DECLARE salary_level VARCHAR(30);
+  SET salary_level = (
+CASE
+    WHEN salary < 30000 THEN "Low"
+    WHEN salary BETWEEN 30000 AND 50000 THEN "Average"
+    ELSE "High"
+END
+);
+  RETURN salary_level;
+END ;
+
+SELECT UFN_GET_SALARY_LEVEL(43300.00);
+
+CREATE PROCEDURE usp_get_employees_by_salary_level (LevelOfSalary VARCHAR(20))
+BEGIN
+  SELECT
+    first_name,
+    last_name
+  FROM employees
+  WHERE LevelOfSalary = ufn_get_salary_level(salary)
+  ORDER BY first_name DESC, last_name DESC;
+  END
