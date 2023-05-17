@@ -1,0 +1,70 @@
+1.installing mongodb in PowerShell.
+2.setting mongodb in command prompt.
+3.Connecting the mongoDB Compass using the same username and password we structured.
+4.downloading some dummy mongodb json file with data.
+5.adding through mongoDB Compass the json file into newly created DB: test with table: test1.
+
+/POWERSHELL/
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./MyWebsite/
+PS C:\Users\tasheva\MyWebsite> docker pull mongo:4.4.21
+4.4.21: Pulling from library/mongo
+99803d4b97f3: Pull complete
+6653ceb22977: Pull complete
+e067c5774dde: Pull complete
+3f2512535c9b: Pull complete
+95823dd64119: Pull complete
+77aa83f4fcd4: Pull complete
+7db43fff6317: Pull complete
+2abb8f5c5e66: Pull complete
+5ccc4657b334: Pull complete
+Digest: sha256:cc9361e0af4e51560f00995f642411a739edd7b21c5649fb2a74573aaafae4cb
+Status: Downloaded newer image for mongo:4.4.21
+docker.io/library/mongo:4.4.21
+PS C:\Users\tasheva\MyWebsite> echo ${PWD}
+
+Path
+----
+C:\Users\tasheva\MyWebsite
+
+/COMMAND PROMPT/
+
+Microsoft Windows [Version 10.0.19045.2846]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\tasheva>docker run ^
+More? -p 27017:27017 ^
+More? -v %cd%/data:/etc/mongo ^
+More? -d ^
+More? -e MONGO_INITDB_ROOT_USERNAME=mongoadmin ^
+More? -e MONGO_INITDB_ROOT_PASSWORD=secret ^
+More? mongo:4.4.21
+16e87f0f1ae0412ecce572067af08ebd5289aea7f2097169a08e90c894bb5173
+
+C:\Users\tasheva>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS                      NAMES
+16e87f0f1ae0   mongo:4.4.21   "docker-entrypoint.s…"   12 seconds ago   Up 10 seconds               0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16        "docker-entrypoint.s…"   33 minutes ago   Exited (1) 29 minutes ago                              infallible_villani
+
+C:\Users\tasheva>cd data
+
+C:\Users\tasheva\data>dir
+ Volume in drive C is PC COE
+ Volume Serial Number is 8AD4-79B7
+
+ Directory of C:\Users\tasheva\data
+
+2023-05-17  07:06 PM    <DIR>          .
+2023-05-17  07:06 PM    <DIR>          ..
+               0 File(s)              0 bytes
+               2 Dir(s)  33,609,011,200 bytes free
+
+C:\Users\tasheva\data>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS                      NAMES
+16e87f0f1ae0   mongo:4.4.21   "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes               0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16        "docker-entrypoint.s…"   46 minutes ago   Exited (1) 41 minutes ago                              infallible_villani
