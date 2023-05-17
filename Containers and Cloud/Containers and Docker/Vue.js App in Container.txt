@@ -131,3 +131,4 @@ Hit CTRL-C to stop the server
 [2023-05-17T15:12:02.655Z] "GET /dist/build.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
 [2023-05-17T15:12:02.660Z] "GET /dist/build.js" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
 18:12:03 GMT+0300 (Eastern European Summer Time) [HMR] User connected, syncing
+http-server stopped.
