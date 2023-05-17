@@ -177,3 +177,16 @@ Hit CTRL-C to stop the server
 15:33:59 GMT+0000 (Coordinated Universal Time) [HMR] Emitting updates
 15:33:59 GMT+0000 (Coordinated Universal Time) [HMR] Listening on localhost:3123
 2362040 bytes written to dist/build.js (28.98 seconds) at 3:34:00 PM
+^Chttp-server stopped.
+npm notice
+npm notice New major version of npm available! 8.19.4 -> 9.6.6
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.6.6
+npm notice Run npm install -g npm@9.6.6 to update!
+npm notice
+npm ERR! path /app
+npm ERR! command failed
+npm ERR! signal SIGINT
+npm ERR! command sh -c -- npm-run-all --parallel watchify serve
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-17T15_33_15_642Z-debug-0.log
