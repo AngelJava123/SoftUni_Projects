@@ -1,7 +1,7 @@
 1.installing mongodb in PowerShell.
 2.setting mongodb in command prompt.
 3.Connecting the mongoDB Compass using the same username and password we structured.
-4.downloading some dummy mongodb json file with data.
+4.downloading some dummy mongodb json file (zips.json) with data.
 5.adding through mongoDB Compass the json file into newly created DB: test with table: test1.
 
 /POWERSHELL/
