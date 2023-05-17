@@ -132,3 +132,48 @@ Hit CTRL-C to stop the server
 [2023-05-17T15:12:02.660Z] "GET /dist/build.js" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
 18:12:03 GMT+0300 (Eastern European Summer Time) [HMR] User connected, syncing
 http-server stopped.
+
+PS C:\Users\tasheva>  cd .\MyWebsite\
+PS C:\Users\tasheva\MyWebsite> docker pull node:16
+16: Pulling from library/node
+a94073ab46f8: Pull complete
+c0f81a21db43: Pull complete
+431d5332f45f: Pull complete
+817c83dfe9f0: Pull complete
+48824897ccbe: Pull complete
+ab2e44d4ae4a: Pull complete
+efc390dd9bed: Pull complete
+be2c80304069: Pull complete
+Digest: sha256:550f484fc5f314b575f5e397c9e2c71d7f218e59729fcda9ffa7ea1fc825dce7
+Status: Downloaded newer image for node:16
+docker.io/library/node:16
+PS C:\Users\tasheva\MyWebsite> notepad .\package.json
+PS C:\Users\tasheva\MyWebsite> docker run -it -p 8080:8080 ${PWD}:/app -w /app node:16 npm run dev
+docker: invalid reference format.
+See 'docker run --help'.
+PS C:\Users\tasheva\MyWebsite> docker run -it -p 8080:8080 -v ${PWD}:/app -w /app node:16 npm run dev
+
+> my-website@0.1.0 dev
+> npm-run-all --parallel watchify serve
+
+
+> my-website@0.1.0 watchify
+> watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js
+
+
+> my-website@0.1.0 serve
+> http-server -o -c 1 -a 0.0.0.0
+
+Starting up http-server, serving ./
+Available on:
+  http://127.0.0.1:8080
+  http://172.17.0.2:8080
+Hit CTRL-C to stop the server
+[2023-05-17T15:33:59.225Z] "GET /" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+(node:64) [DEP0066] DeprecationWarning: OutgoingMessage.prototype._headers is deprecated
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2023-05-17T15:33:59.357Z] "GET /dist/build.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+[2023-05-17T15:33:59.378Z] "GET /dist/build.js" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+15:33:59 GMT+0000 (Coordinated Universal Time) [HMR] Emitting updates
+15:33:59 GMT+0000 (Coordinated Universal Time) [HMR] Listening on localhost:3123
+2362040 bytes written to dist/build.js (28.98 seconds) at 3:34:00 PM
