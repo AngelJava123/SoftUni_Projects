@@ -1,0 +1,391 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./MyWebsite/
+PS C:\Users\tasheva\MyWebsite> dir
+
+
+    Directory: C:\Users\tasheva\MyWebsite
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-17   6:09 PM                dist
+d-----        2023-05-17   6:09 PM                node_modules
+d-----        2023-05-17   6:05 PM                src
+-a----        2023-05-17   6:05 PM             40 .babelrc
+-a----        2023-05-17   6:05 PM             95 .eslintrc
+-a----        2023-05-17   6:05 PM            151 .gitignore
+-a----        2023-05-17   6:05 PM            253 index.html
+-a----        2023-05-17   6:05 PM            568 karma.conf.js
+-a----        2023-05-17   6:09 PM         724716 package-lock.json
+-a----        2023-05-17   6:28 PM           1423 package.json
+-a----        2023-05-17   6:05 PM            364 README.md
+
+
+PS C:\Users\tasheva\MyWebsite> docker run -it node:16 bash
+root@1887a17643a5:/# cd /app
+bash: cd: /app: No such file or directory
+root@1887a17643a5:/# mkdir /app
+root@1887a17643a5:/# cd /app
+root@1887a17643a5:/app# ls -la
+total 8
+drwxr-xr-x 2 root root 4096 May 21 07:46 .
+drwxr-xr-x 1 root root 4096 May 21 07:46 ..
+root@1887a17643a5:/app# du -hs
+4.0K    .
+root@1887a17643a5:/app# ls =la
+ls: cannot access '=la': No such file or directory
+root@1887a17643a5:/app# ls -la
+total 64
+drwxr-xr-x   4 root root  4096 May 21 07:54 .
+drwxr-xr-x   1 root root  4096 May 21 07:54 ..
+-rwxr-xr-x   1 root root    40 May 17 15:05 .babelrc
+-rwxr-xr-x   1 root root    95 May 17 15:05 .eslintrc
+-rwxr-xr-x   1 root root   151 May 17 15:05 .gitignore
+-rwxr-xr-x   1 root root   364 May 17 15:05 README.md
+drwxr-xr-x   2 root root  4096 May 21 07:54 dist
+-rwxr-xr-x   1 root root   253 May 17 15:05 index.html
+-rwxr-xr-x   1 root root   568 May 17 15:05 karma.conf.js
+drwxr-xr-x 691 root root 24576 May 21 07:54 node_modules
+root@1887a17643a5:/app# ls -la
+total 784
+drwxr-xr-x   5 root root   4096 May 21 07:54 .
+drwxr-xr-x   1 root root   4096 May 21 07:54 ..
+-rwxr-xr-x   1 root root     40 May 17 15:05 .babelrc
+-rwxr-xr-x   1 root root     95 May 17 15:05 .eslintrc
+-rwxr-xr-x   1 root root    151 May 17 15:05 .gitignore
+-rwxr-xr-x   1 root root    364 May 17 15:05 README.md
+drwxr-xr-x   2 root root   4096 May 21 07:50 dist
+-rwxr-xr-x   1 root root    253 May 17 15:05 index.html
+-rwxr-xr-x   1 root root    568 May 17 15:05 karma.conf.js
+drwxr-xr-x 706 root root  28672 May 17 15:09 node_modules
+-rwxr-xr-x   1 root root 724716 May 17 15:09 package-lock.json
+-rwxr-xr-x   1 root root   1423 May 17 15:28 package.json
+drwxr-xr-x   3 root root   4096 May 17 15:05 src
+root@1887a17643a5:/app# npm install
+
+up to date, audited 904 packages in 13s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+54 vulnerabilities (34 moderate, 17 high, 3 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm notice
+npm notice New major version of npm available! 8.19.4 -> 9.6.7
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.6.7
+npm notice Run npm install -g npm@9.6.7 to update!
+npm notice
+root@1887a17643a5:/app# npm run dev
+
+> my-website@0.1.0 dev
+> npm-run-all --parallel watchify serve
+
+
+> my-website@0.1.0 serve
+> http-server -o -c 1 -a 0.0.0.0
+
+
+> my-website@0.1.0 watchify
+> watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js
+
+Starting up http-server, serving ./
+Available on:
+  http://127.0.0.1:8080
+  http://172.17.0.2:8080
+Hit CTRL-C to stop the server
+07:58:46 GMT+0000 (Coordinated Universal Time) [HMR] Emitting updates
+07:58:46 GMT+0000 (Coordinated Universal Time) [HMR] Listening on localhost:3123
+2362040 bytes written to dist/build.js (3.21 seconds) at 7:58:46 AM
+^Chttp-server stopped.
+
+root@1887a17643a5:/app# npm run dev &
+[1] 117
+root@1887a17643a5:/app#
+> my-website@0.1.0 dev
+> npm-run-all --parallel watchify serve
+
+
+> my-website@0.1.0 watchify
+> watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js
+
+
+> my-website@0.1.0 serve
+> http-server -o -c 1 -a 0.0.0.0
+
+Starting up http-server, serving ./
+Available on:
+  http://127.0.0.1:8080
+  http://172.17.0.2:8080
+Hit CTRL-C to stop the server
+08:00:25 GMT+0000 (Coordinated Universal Time) [HMR] Emitting updates
+08:00:25 GMT+0000 (Coordinated Universal Time) [HMR] Listening on localhost:3123
+2362040 bytes written to dist/build.js (4.06 seconds) at 8:00:26 AM
+^C
+root@1887a17643a5:/app# ^C
+root@1887a17643a5:/app# exit
+exit
+PS C:\Users\tasheva\MyWebsite> ps -a
+Get-Process : A parameter cannot be found that matches parameter name 'a'.
+At line:1 char:4
++ ps -a
++    ~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-Process], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.GetProcessCommand
+
+[+] Building 41.9s (9/9) FINISHED
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 122B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:16                                                         0.0s0 => [internal] load build context                                                                                 20.0s
+ => => transferring context: 99.63MB                                                                              19.9s
+ => [1/4] FROM docker.io/library/node:16                                                                           0.5s
+ => [2/4] WORKDIR /app                                                                                             0.2s
+ => [3/4] COPY . .                                                                                                 5.1s
+ => [4/4] RUN npm install                                                                                         14.0s
+ => exporting to image                                                                                             2.4s
+ => => exporting layers                                                                                            2.4s
+ => => writing image sha256:449b9a49e1339d907821965e557bda93297cc458bb45625280a90982fbb05e5b                       0.0s
+ => => naming to docker.io/library/mywebsite                                                                       0.0s
+PS C:\Users\tasheva\MyWebsite> docker image ls -a
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+mywebsite    latest    449b9a49e133   17 seconds ago   1.02GB
+node         16        9b7ab79e69b7   2 weeks ago      909MBrfile
+mongo        4.4.21    6dcde8b068de   2 weeks ago      432MB
+[+] Building 40.2s (9/9) FINISHED
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.1s
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 141B                                                                               0.1s
+ => [internal] load metadata for docker.io/library/node:16                                                         0.0s
+ => [1/4] FROM docker.io/library/node:16                                                                           0.0s
+ => [internal] load build context                                                                                 10.0s
+ => => transferring context: 1.30MB                                                                                9.8s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => [3/4] COPY . .                                                                                                 6.0s
+ => [4/4] RUN npm install                                                                                         21.7s
+ => exporting to image                                                                                             2.3s
+ => => exporting layers                                                                                            2.3s
+ => => writing image sha256:5e8cee27b5394ca4b47720df1cd084a10bf07cf46b776b6453afdb6da24b78ad                       0.0s
+ => => naming to docker.io/library/mywebsite:1.0                                                                   0.0s
+PS C:\Users\tasheva\MyWebsite> docker run -d mywebsite ^C
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                    PORTS                      NAMES
+e440084d1a76   mywebsite      "/bin/sh -c 'npm run…"   5 minutes ago   Up 5 minutes              0.0.0.0:8080->8080/tcp     magical_merkle
+16e87f0f1ae0   mongo:4.4.21   "docker-entrypoint.s…"   3 days ago      Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16        "docker-entrypoint.s…"   3 days ago      Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker rm e4 -f
+e4
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED      STATUS                    PORTS                      NAMES
+16e87f0f1ae0   mongo:4.4.21   "docker-entrypoint.s…"   3 days ago   Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16        "docker-entrypoint.s…"   3 days ago   Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker run -d mywebsite:1.0
+f55c0d7721fa17f4dcc5f5fbffe741f96060d6814fe2d1e92e88117c1c8725e1
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+f55c0d7721fa   mywebsite:1.0   "/bin/sh -c 'npm run…"   53 seconds ago   Up 50 seconds             8080/tcp                   relaxed_pasteur
+16e87f0f1ae0   mongo:4.4.21    "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16         "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker rm f5 -f
+f5
+PS C:\Users\tasheva\MyWebsite> docker run -p 8080:8080 -d mywebsite:1.0
+aecc881b07b91990272c6e41ca827ac4c8636bd1dceec1a99f0da510516ee494
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+aecc881b07b9   mywebsite:1.0   "/bin/sh -c 'npm run…"   18 seconds ago   Up 16 seconds             0.0.0.0:8080->8080/tcp     modest_swirles
+16e87f0f1ae0   mongo:4.4.21    "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16         "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker rm ae -f
+ae
+PS C:\Users\tasheva\MyWebsite> docker run -P -d mywebsite:1.0
+45a0286b1d5b727725a861fa0b718ee36ea4601c8d61ec4a7dffadb3f582e16d
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+45a0286b1d5b   mywebsite:1.0   "/bin/sh -c 'npm run…"   11 seconds ago   Up 10 seconds             0.0.0.0:32768->8080/tcp    reverent_grothendieck
+16e87f0f1ae0   mongo:4.4.21    "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16         "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED              STATUS                    PORTS                      NAMES
+45a0286b1d5b   mywebsite:1.0   "/bin/sh -c 'npm run…"   About a minute ago   Up About a minute         0.0.0.0:32768->8080/tcp    reverent_grothendieck
+16e87f0f1ae0   mongo:4.4.21    "docker-entrypoint.s…"   3 days ago           Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16         "docker-entrypoint.s…"   3 days ago           Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker rm 45 -f
+45
+PS C:\Users\tasheva\MyWebsite> docker run -P -d mywebsite:1.0 ^C
+
+
+----------------------------------/BUILD AND PUBLISH THE IMAGE TO DOCKER HUB/----------------------------------
+
+
+PS C:\Users\tasheva\MyWebsite> docker login -u angelvtashev
+Password:
+Error: Password Required
+PS C:\Users\tasheva\MyWebsite> docker login -u angelvtashev
+Password:
+Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
+PS C:\Users\tasheva\MyWebsite> docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: angelvtashev
+Password:
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+PS C:\Users\tasheva\MyWebsite> wfawfawfq
+wfawfawfq : The term 'wfawfawfq' is not recognized as the name of a cmdlet, function, script file, or operable
+program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ wfawfawfq
++ ~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (wfawfawfq:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\tasheva\MyWebsite>
+PS C:\Users\tasheva\MyWebsite> docker image ls -a
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+mywebsite    1.0       5e8cee27b539   44 minutes ago   1.02GB
+mywebsite    latest    449b9a49e133   50 minutes ago   1.02GB
+node         16        9b7ab79e69b7   2 weeks ago      909MB
+mongo        4.4.21    6dcde8b068de   2 weeks ago      432MB
+PS C:\Users\tasheva\MyWebsite> docker tag
+"docker tag" requires exactly 2 arguments.
+See 'docker tag --help'.
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+PS C:\Users\tasheva\MyWebsite> docker tag mywebsite:1.0 angelvtashev/mywebsite:1.0
+PS C:\Users\tasheva\MyWebsite> docker image ls -a
+REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+angelvtashev/mywebsite   1.0       5e8cee27b539   46 minutes ago   1.02GB
+mywebsite                1.0       5e8cee27b539   46 minutes ago   1.02GB
+mywebsite                latest    449b9a49e133   52 minutes ago   1.02GB
+node                     16        9b7ab79e69b7   2 weeks ago      909MB
+mongo                    4.4.21    6dcde8b068de   2 weeks ago      432MB
+PS C:\Users\tasheva\MyWebsite> docker push angelvtashev/mywebsite:1.0
+The push refers to repository [docker.io/angelvtashev/mywebsite]
+1d9d6b725a6a: Pushed
+46751c0d83a1: Pushed
+1b8ebd7c190b: Pushed
+c4d7495580fd: Mounted from library/node
+4aa2274f91a0: Mounted from library/node
+75b410f76042: Mounted from library/node
+5c7da2ce555d: Mounted from library/node
+c73ad13a1488: Mounted from library/node
+f584c095e67e: Mounted from library/node
+ee4d330edba0: Mounted from library/node
+f689d32da261: Mounted from library/node
+1.0: digest: sha256:67a45fce8e84dfb9df26b93f55eb61a3a6eb9466bfb300177e4120f231c6c201 size: 2634
+PS C:\Users\tasheva\MyWebsite> docker tag mywebsite:1.0 angelvtashev
+PS C:\Users\tasheva\MyWebsite> docker push angelvtashev
+Using default tag: latest
+The push refers to repository [docker.io/library/angelvtashev]
+1d9d6b725a6a: Preparing
+46751c0d83a1: Preparing
+1b8ebd7c190b: Preparing
+c4d7495580fd: Preparing
+4aa2274f91a0: Preparing
+75b410f76042: Waiting
+5c7da2ce555d: Waiting
+c73ad13a1488: Waiting
+f584c095e67e: Waiting
+ee4d330edba0: Waiting
+f689d32da261: Waiting
+denied: requested access to the resource is denied
+PS C:\Users\tasheva\MyWebsite> docker tag mywebsite:1.0 angelvtashev/mywebsite
+PS C:\Users\tasheva\MyWebsite> docker push angelvtashev/mywebsite
+Using default tag: latest
+The push refers to repository [docker.io/angelvtashev/mywebsite]
+1d9d6b725a6a: Pushed
+46751c0d83a1: Pushed
+1b8ebd7c190b: Pushed
+c4d7495580fd: Layer already exists
+4aa2274f91a0: Pushed
+75b410f76042: Pushed
+5c7da2ce555d: Pushed
+c73ad13a1488: Pushed
+f584c095e67e: Pushed
+ee4d330edba0: Pushed
+f689d32da261: Pushed
+latest: digest: sha256:67a45fce8e84dfb9df26b93f55eb61a3a6eb9466bfb300177e4120f231c6c201 size: 2634
+
+
+----------------------------------/PULL THE IMAGE FROM DOCKER HUB/----------------------------------
+
+
+PS C:\Users\tasheva\MyWebsite> docker pull angelvtashev/mywebsite:1.0
+1.0: Pulling from angelvtashev/mywebsite
+Digest: sha256:67a45fce8e84dfb9df26b93f55eb61a3a6eb9466bfb300177e4120f231c6c201
+Status: Image is up to date for angelvtashev/mywebsite:1.0
+docker.io/angelvtashev/mywebsite:1.0
+PS C:\Users\tasheva\MyWebsite> docker run -d angelvtashev/mywebsite:1.0
+586c53e0d527d4ffecaf69d5ed09f141ae0223ee66ab45dbe6a02780a48e0d74
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+586c53e0d527   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   14 seconds ago   Up 7 seconds              8080/tcp                   elated_archimedes
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker rm 58 -f
+58
+PS C:\Users\tasheva\MyWebsite>
+
+
+-------------------------------------- /POWERSHELL DOCKERFILE CREATION/ --------------------------------------
+
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./MyWebsite/
+PS C:\Users\tasheva\MyWebsite> notepad Dockerfile
+PS C:\Users\tasheva\MyWebsite> dir
+
+
+    Directory: C:\Users\tasheva\MyWebsite
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-17   6:09 PM                dist
+d-----        2023-05-17   6:09 PM                node_modules
+d-----        2023-05-17   6:05 PM                src
+-a----        2023-05-17   6:05 PM             40 .babelrc
+-a----        2023-05-17   6:05 PM             95 .eslintrc
+-a----        2023-05-17   6:05 PM            151 .gitignore
+-a----        2023-05-17   6:05 PM            253 index.html
+-a----        2023-05-17   6:05 PM            568 karma.conf.js
+-a----        2023-05-17   6:09 PM         724716 package-lock.json
+-a----        2023-05-17   6:28 PM           1423 package.json
+-a----        2023-05-17   6:05 PM            364 README.md
+
+
+PS C:\Users\tasheva\MyWebsite> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                    PORTS                      NAMES
+1887a17643a5   node:16        "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes                                         blissful_knuth
+16e87f0f1ae0   mongo:4.4.21   "docker-entrypoint.s…"   3 days ago      Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16        "docker-entrypoint.s…"   3 days ago      Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\MyWebsite> docker cp * infallible_villani:/app/
+CreateFile C:\Users\tasheva\MyWebsite\*: The filename, directory name, or volume label syntax is incorrect.
+PS C:\Users\tasheva\MyWebsite> docker cp . infallible_villani:/app/
+Successfully copied 113MB to infallible_villani:/app/
+Error response from daemon: Error processing tar file(exit status 1): unlinkat /app/dist/build.js: permission denied
+PS C:\Users\tasheva\MyWebsite> docker cp . blissful_knuth:/app/
+Successfully copied 113MB to blissful_knuth:/app/
+PS C:\Users\tasheva\MyWebsite> docker rm 18
+18
+PS C:\Users\tasheva\MyWebsite> notepad .\Dockerfile
+PS C:\Users\tasheva\MyWebsite>

@@ -1,0 +1,108 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd wordpress
+PS C:\Users\tasheva\wordpress> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                     PORTS                      NAMES
+b843717da903   wordpress                    "docker-entrypoint.s…"   31 minutes ago   Created                                               wordpress-website
+4d9e746f1d9e   mysql                        "docker-entrypoint.s…"   3 hours ago      Up 3 hours                 3306/tcp, 33060/tcp        wordpress_db
+8e70d03bb7f2   mywebsite:1.0                "/bin/sh -c 'npm run…"   3 hours ago      Exited (137) 2 hours ago                              pedantic_colden
+af49fbc54a3f   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   3 hours ago      Exited (137) 2 hours ago                              beautiful_noyce
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago    0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                 infallible_villani
+PS C:\Users\tasheva\wordpress> docker rm b8 4d -f
+b8
+4d
+PS C:\Users\tasheva\wordpress> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED       STATUS                     PORTS                      NAMES
+8e70d03bb7f2   mywebsite:1.0                "/bin/sh -c 'npm run…"   3 hours ago   Exited (137) 2 hours ago                              pedantic_colden
+af49fbc54a3f   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   3 hours ago   Exited (137) 2 hours ago                              beautiful_noyce
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   3 days ago    Exited (255) 2 days ago    0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   3 days ago    Exited (1) 3 days ago                                 infallible_villani
+PS C:\Users\tasheva\wordpress> notepad docker-compose.yaml
+PS C:\Users\tasheva\wordpress> docker-compose up
+time="2023-05-21T16:00:32+03:00" level=warning msg="The \"PWD\" variable is not set. Defaulting to a blank string."
+time="2023-05-21T16:00:32+03:00" level=warning msg="The \"PWD\" variable is not set. Defaulting to a blank string."
+[+] Running 2/2
+ ✔ Container wordpress_db       Created                                                                            0.3s
+ ✔ Container wordpress-website  Created                                                                            0.3s
+Attaching to wordpress-website, wordpress_db
+[+] Running 2/2from daemon: Ports are not available: exposing port TCP 0.0.0.0:80 -> 0.0.0.0:0: listen tcp 0.0.0.0:80: b
+ ✔ Container wordpress-website  Recreated                                                                          0.4s
+ ✔ Container wordpress_db       Recreated                                                                          2.2s
+Attaching to wordpress-website, wordpress_dbving network: network mynetwork id 687028291ceef6a7b95c4ee28459874c95e32be3f
+[+] Running 3/3from daemon: Ports are not available: exposing port TCP 0.0.0.0:80 -> 0.0.0.0:0: listen tcp 0.0.0.0:80: b
+ ✔ Network wordpress_my_network  Created                                                                           1.0s
+ ✔ Container wordpress_db        Recreated                                                                         0.6s
+ ✔ Container wordpress-website   Recreated                                                                         0.6s
+Attaching to wordpress-website, wordpress_dbng msg="The \"PWD\" variable is not set. Defaulting to a blank string."
+Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:80 -> 0.0.0.0:0: listen tcp 0.0.0.0:80: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
+PS C:\Users\tasheva\wordpress> docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+9c43ceca98a1   bridge                 bridge    local
+68227109ade4   host                   host      local
+687028291cee   mynetwork              bridge    local
+b882c99156df   none                   null      local
+9ffeced1d713   wordpress_my_network   bridge    local
+PS C:\Users\tasheva\wordpress> ^C
+PS C:\Users\tasheva\wordpress> docker-compose -help
+unknown shorthand flag: 'e' in -elp
+PS C:\Users\tasheva\wordpress> docker-compose --help
+
+Usage:  docker compose [OPTIONS] COMMAND
+
+Docker Compose
+
+Options:
+      --ansi string                Control when to print ANSI control
+                                   characters ("never"|"always"|"auto")
+                                   (default "auto")
+      --compatibility              Run compose in backward compatibility mode
+      --env-file stringArray       Specify an alternate environment file.
+  -f, --file stringArray           Compose configuration files
+      --parallel int               Control max parallelism, -1 for
+                                   unlimited (default -1)
+      --profile stringArray        Specify a profile to enable
+      --project-directory string   Specify an alternate working directory
+                                   (default: the path of the, first
+                                   specified, Compose file)
+  -p, --project-name string        Project name
+
+Commands:
+  build       Build or rebuild services
+  config      Parse, resolve and render compose file in canonical format
+  cp          Copy files/folders between a service container and the local filesystem
+  create      Creates containers for a service.
+  down        Stop and remove containers, networks
+  events      Receive real time events from containers.
+  exec        Execute a command in a running container.
+  images      List images used by the created containers
+  kill        Force stop service containers.
+  logs        View output from containers
+  ls          List running compose projects
+  pause       Pause services
+  port        Print the public port for a port binding.
+  ps          List containers
+  pull        Pull service images
+  push        Push service images
+  restart     Restart service containers
+  rm          Removes stopped service containers
+  run         Run a one-off command on a service.
+  start       Start services
+  stop        Stop services
+  top         Display the running processes
+  unpause     Unpause services
+  up          Create and start containers
+  version     Show the Docker Compose version information
+
+Run 'docker compose COMMAND --help' for more information on a command.
+[+] Running 1/2heva\wordpress> docker-compose up -d
+ - Container wordpress-website  Starting                                                                           4.3s
+ ✔ Container wordpress_db       Started                                                                            4.3s
+Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:80 -> 0.0.0.0:0: listen tcp 0.0.0.0:80: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
+PS C:\Users\tasheva\wordpress> docker-compose ps -a
+NAME                IMAGE               COMMAND                  SERVICE             CREATED              STATUS              PORTS
+wordpress-website   wordpress           "docker-entrypoint.s…"   wordpress           About a minute ago   Created       
+wordpress_db        mysql               "docker-entrypoint.s…"   mysql               About a minute ago   Up About a minute   3306/tcp, 33060/tcp

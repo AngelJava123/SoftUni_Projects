@@ -1,0 +1,228 @@
+PS C:\Users\tasheva\MyWebsite> cd ..
+PS C:\Users\tasheva> mkdir wordpress
+
+
+    Directory: C:\Users\tasheva
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-21  12:49 PM                wordpress
+
+
+PS C:\Users\tasheva> cd ./wordpress/
+PS C:\Users\tasheva\wordpress> dir
+
+
+----------------------------------------Create a Network----------------------------------------
+
+
+PS C:\Users\tasheva\wordpress> docker network create mynetwork
+687028291ceef6a7b95c4ee28459874c95e32be3fc5342a72e270d80121cdd08
+PS C:\Users\tasheva\wordpress> docker network ls
+NETWORK ID     NAME        DRIVER    SCOPE
+9c43ceca98a1   bridge      bridge    local
+68227109ade4   host        host      local
+687028291cee   mynetwork   bridge    local
+b882c99156df   none        null      local
+
+
+----------------------------------------Add MySQL Container to Network----------------------------------------
+
+
+PS C:\Users\tasheva\wordpress> docker run -dit `
+>> --name wordpress_db `
+>> -e MYSQL_ROOT_PASSWORD=pass `
+>> -e MYSQL_DATABASE=wordpressdb `
+>> -e MYSQL_USER=wordpress `
+>> -e MYSQL_PASSWORD=wordpress `
+>> --expose 3306 `
+>> --expose 33060 `
+>> --network mynetwork `
+>> -v ${PWD}/data/:/var/lib/mysql `
+>> mysql
+Unable to find image 'mysql:latest' locally
+latest: Pulling from library/mysql
+328ba678bf27: Pull complete
+f3f5ff008d73: Pull complete
+dd7054d6d0c7: Pull complete
+70b5d4e8750e: Pull complete
+cdc4a7b43bdd: Pull complete
+a0608f8959e0: Pull complete
+5823e721608f: Pull complete
+a564ada930a9: Pull complete
+539565d00e89: Pull complete
+a11a06843fd5: Pull complete
+92f6d4aa041d: Pull complete
+Digest: sha256:a43f6e7e7f3a5e5b90f857fbed4e3103ece771b19f0f75880f767cf66bbb6577
+Status: Downloaded newer image for mysql:latest
+4d9e746f1d9e7b70860b9957d28b1d5f79ba1752247bdbc214b7149ca83b9526
+PS C:\Users\tasheva\wordpress> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+4d9e746f1d9e   mysql                        "docker-entrypoint.s…"   21 seconds ago   Up 14 seconds             3306/tcp, 33060/tcp        wordpress_db
+8e70d03bb7f2   mywebsite:1.0                "/bin/sh -c 'npm run…"   23 minutes ago   Up 23 minutes             0.0.0.0:32769->8080/tcp    pedantic_colden
+af49fbc54a3f   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   25 minutes ago   Up 25 minutes             8080/tcp                   beautiful_noyce
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\wordpress> dir
+
+
+    Directory: C:\Users\tasheva\wordpress
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+da----        2023-05-21  12:59 PM                data
+
+
+PS C:\Users\tasheva\wordpress> dir data
+
+
+    Directory: C:\Users\tasheva\wordpress\data
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-21  12:59 PM                #innodb_redo
+d-----        2023-05-21  12:59 PM                #innodb_temp
+d-----        2023-05-21  12:58 PM                mysql
+d-----        2023-05-21  12:58 PM                performance_schema
+d-----        2023-05-21  12:59 PM                sys
+d-----        2023-05-21  12:59 PM                wordpressdb
+-a----        2023-05-21  12:59 PM         196608 #ib_16384_0.dblwr
+-a----        2023-05-21  12:58 PM        8585216 #ib_16384_1.dblwr
+-a----        2023-05-21  12:59 PM           1733 4d9e746f1d9e.err
+-a----        2023-05-21  12:58 PM             56 auto.cnf
+-a----        2023-05-21  12:59 PM        3040629 binlog.000001
+-a----        2023-05-21  12:59 PM             16 binlog.index
+-a----        2023-05-21  12:58 PM           1680 ca-key.pem
+-a----        2023-05-21  12:58 PM           1112 ca.pem
+-a----        2023-05-21  12:58 PM           1112 client-cert.pem
+-a----        2023-05-21  12:58 PM           1680 client-key.pem
+-a----        2023-05-21  12:59 PM       12582912 ibdata1
+-a----        2023-05-21  12:59 PM           5727 ib_buffer_pool
+-a----        2023-05-21  12:59 PM       31457280 mysql.ibd
+-a---l        2023-05-21  12:59 PM              0 mysql.sock
+-a----        2023-05-21  12:58 PM           1680 private_key.pem
+-a----        2023-05-21  12:58 PM            452 public_key.pem
+-a----        2023-05-21  12:58 PM           1112 server-cert.pem
+-a----        2023-05-21  12:58 PM           1676 server-key.pem
+-a----        2023-05-21  12:59 PM       16777216 undo_001
+-a----        2023-05-21  12:59 PM       16777216 undo_002
+
+
+
+----------------------------------------Add WordPress Container to Network----------------------------------------
+
+
+
+PS C:\Users\tasheva\wordpress> docker run -dit `
+>> --name wordpress-website `
+>> -e WORDPRESS_DB_HOST=wordpress_db `
+>> -e WORDPRESS_DB_USER=wordpress `
+>> -e WORDPRESS_DB_PASSWORD=wordpress `
+>> -e WORDPRESS_DB_NAME=wordpressdb `
+>> -v ${PWD}/wp-data:/var/www/html `
+>> -p 80:80 `
+>> --network mynetwork `
+>> wordpress
+Unable to find image 'wordpress:latest' locally
+latest: Pulling from library/wordpress
+9e3ea8720c6d: Pull complete
+07353b772b5e: Pull complete
+5908153120ba: Pull complete
+8681ad2eeea6: Pull complete
+92711ce78973: Pull complete
+bf1c5be6427e: Pull complete
+1d02a81768ed: Pull complete
+d674a0135f85: Pull complete
+6d87d0359817: Pull complete
+5e8c2df9b69e: Pull complete
+aacfb138e3c1: Pull complete
+2db2528ade33: Pull complete
+beeef66f0c04: Pull complete
+f06b38c16403: Pull complete
+a2c661d6acd5: Pull complete
+e4ac8d746152: Pull complete
+f264881ab77b: Pull complete
+0436c0c6e94a: Pull complete
+328897f635d0: Pull complete
+b2ea761ddb4a: Pull complete
+3d15d55761e9: Pull complete
+Digest: sha256:f3b8d54fe9b80e88255121a46933ca1961fb9f3f39e6981a668cdb7f019a5bbd
+Status: Downloaded newer image for wordpress:latest
+b3854408fbeb4a709b685c7d0ac0d1c03680c04d4232bddb96e31bb0544834b8
+PS C:\Users\tasheva\wordpress> dir
+
+
+    Directory: C:\Users\tasheva\wordpress
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+da----        2023-05-21  12:59 PM                data
+d-----        2023-05-21   1:05 PM                wp-data
+
+
+PS C:\Users\tasheva\wordpress> dir wp-data
+PS C:\Users\tasheva\wordpress> dir .\wp-data\
+PS C:\Users\tasheva\wordpress> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+b3854408fbeb   wordpress                    "docker-entrypoint.s…"   3 minutes ago    Created                                              wordpress-website
+4d9e746f1d9e   mysql                        "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes             3306/tcp, 33060/tcp        wordpress_db
+8e70d03bb7f2   mywebsite:1.0                "/bin/sh -c 'npm run…"   35 minutes ago   Up 35 minutes             0.0.0.0:32769->8080/tcp    pedantic_colden
+af49fbc54a3f   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   37 minutes ago   Up 37 minutes             8080/tcp                   beautiful_noyce
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   3 days ago       Exited (255) 2 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   3 days ago       Exited (1) 3 days ago                                infallible_villani
+PS C:\Users\tasheva\wordpress> docker logs wordpress-website -f
+PS C:\Users\tasheva\wordpress> dir wp-data
+
+
+----------------------------------------Inspect Network----------------------------------------
+
+
+PS C:\Users\tasheva\wordpress> docker network ls
+NETWORK ID     NAME        DRIVER    SCOPE
+9c43ceca98a1   bridge      bridge    local
+68227109ade4   host        host      local
+687028291cee   mynetwork   bridge    local
+b882c99156df   none        null      local
+PS C:\Users\tasheva\wordpress> docker network inspect mynetwork
+[
+    {
+        "Name": "mynetwork",
+        "Id": "687028291ceef6a7b95c4ee28459874c95e32be3fc5342a72e270d80121cdd08",
+        "Created": "2023-05-21T09:50:33.2071665Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "4d9e746f1d9e7b70860b9957d28b1d5f79ba1752247bdbc214b7149ca83b9526": {
+                "Name": "wordpress_db",
+                "EndpointID": "387fbf16c971eded3eae0f248ce800e9899f185c32bfaf86e7bb3e891b662a4e",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
