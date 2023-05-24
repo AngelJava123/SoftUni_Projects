@@ -1,0 +1,40 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> mkdir Lesson5
+
+
+    Directory: C:\Users\tasheva
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24   9:52 PM                Lesson5
+
+
+PS C:\Users\tasheva> cd .\Lesson5\
+PS C:\Users\tasheva\Lesson5> docker run -d -p 80:8080 --name ls-server lightstreamer:latest
+Unable to find image 'lightstreamer:latest' locally
+latest: Pulling from library/lightstreamer
+1bc677758ad7: Pull complete
+458b02b5411a: Pull complete
+47b2ae38d777: Pull complete
+00c7d406486b: Pull complete
+427480a34342: Pull complete
+b0f3fd361a7b: Pull complete
+690360c0ff3b: Pull complete
+Digest: sha256:2167ee33da62d1402e9a980ea61c6b2b1a0a162b6490e0e0a92dc29c620b1a9c
+Status: Downloaded newer image for lightstreamer:latest
+2606625d558adaebcaedc8ee15b57b3591c469bdea403d53fd022f891a194786
+docker: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:80 -> 0.0.0.0:0: listen tcp 0.0.0.0:80: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
+PS C:\Users\tasheva\Lesson5> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED              STATUS                    PORTS                      NAMES
+2606625d558a   lightstreamer:latest         "./LS.sh run"            About a minute ago   Created                                              ls-server
+8e70d03bb7f2   mywebsite:1.0                "/bin/sh -c 'npm run…"   3 days ago           Exited (137) 3 days ago                              pedantic_colden
+af49fbc54a3f   angelvtashev/mywebsite:1.0   "/bin/sh -c 'npm run…"   3 days ago           Exited (137) 3 days ago                              beautiful_noyce
+16e87f0f1ae0   mongo:4.4.21                 "docker-entrypoint.s…"   7 days ago           Exited (255) 6 days ago   0.0.0.0:27017->27017/tcp   loving_hawking
+ecff0fe622bc   node:16                      "docker-entrypoint.s…"   7 days ago           Exited (1) 7 days ago                                infallible_villani
+PS C:\Users\tasheva\Lesson5> docker run -d -p 81:8080 --name ls-server lightstreamer:latest
+a47127dcdd85a19e93af05876d271bd365335f61bbd294b3380735d41843e465
