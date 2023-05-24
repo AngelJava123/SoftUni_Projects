@@ -1,0 +1,42 @@
+
+-----------------------------------Creating the container without a volume-----------------------------------
+
+PS C:\Users\tasheva\Lesson5> docker run -d -p 8080:80 --name my-apache-app -v .\apache:/usr/local/apache2/htdocs/ httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+f03b40093957: Already exists
+abaf8619eb1c: Pull complete
+e3fe37d0c2ad: Pull complete
+52a1e37affe5: Pull complete
+49d8a68fd903: Pull complete
+Digest: sha256:1bb3f7669a85713906e695599d29c58ab40d4e6409907946609d92a428e95b49
+Status: Downloaded newer image for httpd:latest
+1341f0da24b6b92ecb53f377d605dd5ed81bccedadbd216b6a7df8bd18c8b32f
+PS C:\Users\tasheva\Lesson5> dir .\apache\
+PS C:\Users\tasheva\Lesson5> echo "This is a test" > .\apache\test.txt
+PS C:\Users\tasheva\Lesson5> dir .\apache\
+
+
+    Directory: C:\Users\tasheva\Lesson5\apache
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2023-05-24  10:24 PM             34 test.txt
+
+
+PS C:\Users\tasheva\Lesson5> del .\apache\
+
+Confirm
+The item at C:\Users\tasheva\Lesson5\apache\ has children and the Recurse parameter was not specified. If you continue, all
+children will be removed with the item. Are you sure you want to continue?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): A
+PS C:\Users\tasheva\Lesson5> docker run -d -p 8080:80 --name my-apache-app -v ./apache:/usr/local/apache2/htdocs/ httpd
+docker: Error response from daemon: Conflict. The container name "/my-apache-app" is already in use by container "1341f0da24b6b92ecb53f377d605dd5ed81bccedadbd216b6a7df8bd18c8b32f". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+-----------------------------------Creating the container with a volume-----------------------------------
+
+
+PS C:\Users\tasheva\Lesson5> docker run -d -p 8080:80 --name my-apache-app -v ./apache:/usr/local/apache2/htdocs/ httpd
+e027101f712b54decabf705733d61d3e4a9dd2a2716503d0e809e0d104fc3b06
