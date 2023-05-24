@@ -1,0 +1,14 @@
+PS C:\Users\tasheva\Lesson5> docker run `
+>> -e ACCEPT_EULA=Y `
+>> -e MSSQL_SA_PASSWORD=yourStrongPassword12# `
+>> -p 1433:1433 `
+>> -v sqldata:/var/opt/mssql `
+>> -d mcr.microsoft.com/mssql/server
+Unable to find image 'mcr.microsoft.com/mssql/server:latest' locally
+latest: Pulling from mssql/server
+bbfe84ab0c13: Pull complete
+a10fc635e35b: Pull complete
+5e5ce06e3adb: Pull complete
+Digest: sha256:603a19e6c5be21ca615de325a2fb758827558de0a8c4a9925256a4329b4e41be
+Status: Downloaded newer image for mcr.microsoft.com/mssql/server:latest
+265625aeca8b565cb91c9d50a0186ae4b49e16a976ba7148bd0d91a1c0b18e7f
