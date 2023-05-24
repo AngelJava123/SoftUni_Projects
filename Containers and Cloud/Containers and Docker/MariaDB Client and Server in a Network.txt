@@ -1,0 +1,86 @@
+PS C:\Users\tasheva\Lesson5> docker run -d --name mariadb_client --network mariadb_network -e MARIADB_ROOT_PASSWORD=my-root mariadb
+9670ea88ea1da61872d3cd1862f9c596c5276caca7f51583ee2fa444089595c5
+PS C:\Users\tasheva\Lesson5> docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS      NAMES
+9670ea88ea1d   mariadb          "docker-entrypoint.s…"   31 seconds ago   Up 30 seconds   3306/tcp   mariadb_client
+b08d430bd84c   mariadb:latest   "docker-entrypoint.s…"   4 minutes ago    Up 4 minutes    3306/tcp   mariadb_server
+PS C:\Users\tasheva\Lesson5> docker network inspect
+"docker network inspect" requires at least 1 argument.
+See 'docker network inspect --help'.
+
+Usage:  docker network inspect [OPTIONS] NETWORK [NETWORK...]
+
+Display detailed information on one or more networks
+PS C:\Users\tasheva\Lesson5> docker network inspect mariadb_network
+[
+    {
+        "Name": "mariadb_network",
+        "Id": "e9fd62621940c76f18c8cebddcb109f113fc13c7bb706acc7f792d7ca6ac6aac",
+        "Created": "2023-05-24T20:14:33.0400522Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.19.0.0/16",
+                    "Gateway": "172.19.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "9670ea88ea1da61872d3cd1862f9c596c5276caca7f51583ee2fa444089595c5": {
+                "Name": "mariadb_client",
+                "EndpointID": "ecc0f982a41191bbb42328b3f0521529654a628d9612cb90cc566e211bb9a8e4",
+                "MacAddress": "02:42:ac:13:00:03",
+                "IPv4Address": "172.19.0.3/16",
+                "IPv6Address": ""
+            },
+            "b08d430bd84c365adbf421442c6eebc178c432d7922c98aa865b8aa02506d4e1": {
+                "Name": "mariadb_server",
+                "EndpointID": "d56859249bcaed6b877f6144b80777fea5802af0308d513dc5528dd837c808ef",
+                "MacAddress": "02:42:ac:13:00:02",
+                "IPv4Address": "172.19.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+PS C:\Users\tasheva\Lesson5> docker exec -it mariadb_client bash
+root@9670ea88ea1d:/# mariadb -h mariadb_server -u my-user -p my-password
+Enter password:
+ERROR 1044 (42000): Access denied for user 'my-user'@'%' to database 'my-password'
+root@9670ea88ea1d:/# mariadb -h mariadb_server -u my-user -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4
+Server version: 10.11.3-MariaDB-1:10.11.3+maria~ubu2204 mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> exit
+Bye
+root@9670ea88ea1d:/# exit
+exit
+PS C:\Users\tasheva\Lesson5> docker network ls
+NETWORK ID     NAME              DRIVER    SCOPE
+51bb7f1b0b2a   bridge            bridge    local
+68227109ade4   host              host      local
+e9fd62621940   mariadb_network   bridge    local
+687028291cee   mynetwork         bridge    local
+b882c99156df   none              null      local
+PS C:\Users\tasheva\Lesson5> docker network rm mariadb_network
+mariadb_network
