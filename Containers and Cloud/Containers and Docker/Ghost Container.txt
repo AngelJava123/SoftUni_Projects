@@ -1,0 +1,16 @@
+PS C:\Users\tasheva\Lesson5> docker run -d -p 3001:2368 --name ghost-container -e NODE_ENV=development ghost:latest
+
+Unable to find image 'ghost:latest' locally
+latest: Pulling from library/ghost
+f03b40093957: Pull complete
+0bfad7312c25: Pull complete
+b7d791d3063c: Pull complete
+3322cec09fd0: Pull complete
+7517b98eefe8: Pull complete
+76b99027be5f: Pull complete
+fb852ebc16c4: Pull complete
+5a1c8d3e2531: Pull complete
+cae0c04eb92a: Pull complete
+Digest: sha256:332f838e754d3d33a3913aec31a8f216cfed88e43fb7babb9f7ec660c2211e2b
+Status: Downloaded newer image for ghost:latest
+bc600280ff9ddf853e7f742cb1b17ad33bad744ffc9f94b9e61698818d4ccccf
