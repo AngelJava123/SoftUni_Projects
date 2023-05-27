@@ -1,0 +1,120 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./Lesson5/
+PS C:\Users\tasheva\Lesson5> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-27  10:05 AM                Resources
+
+
+PS C:\Users\tasheva\Lesson5> cd ./Resources/
+PS C:\Users\tasheva\Lesson5\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-26  12:00 AM                06-08-10.TaskBoard-ASP.NET-App
+d-----        2023-05-25  11:40 PM                07.Tracker-App
+d-----        2023-05-24  11:49 PM                09.TODO-App
+d-----        2023-05-24  11:49 PM                11.Blue-VS-Green-App
+
+
+PS C:\Users\tasheva\Lesson5\Resources> cd ./06-08-10.TaskBoard-ASP.NET-App/
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker image ls -a
+REPOSITORY                   TAG       IMAGE ID       CREATED        SIZE
+angelvtashev/taskboard_app   latest    dbf3ee2f8242   28 hours ago   286MB
+mariadb                      latest    4af0c16be4b1   2 weeks ago    403MB
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker network create taskboard_network
+55ebb48c5dd086f83a6ddc3c6a227d0a74b29f1886d50524343b747836a40674
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+e045e12b712c   bridge              bridge    local
+68227109ade4   host                host      local
+687028291cee   mynetwork           bridge    local
+b882c99156df   none                null      local
+55ebb48c5dd0   taskboard_network   bridge    local
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker run `
+>>  -e ACCEPT_EULA=Y `
+>>  -e MSSQL_SA_PASSWORD=yourStrongPassword12# `
+>>  -v sqldata:/var/opt/mssql `
+>>  --rm --network taskboard_network --name sqlserver `
+>>  -d mcr.microsoft.com/mssql/server
+Unable to find image 'mcr.microsoft.com/mssql/server:latest' locally
+latest: Pulling from mssql/server
+bbfe84ab0c13: Pull complete
+a10fc635e35b: Pull complete
+5e5ce06e3adb: Pull complete
+Digest: sha256:603a19e6c5be21ca615de325a2fb758827558de0a8c4a9925256a4329b4e41be
+Status: Downloaded newer image for mcr.microsoft.com/mssql/server:latest
+ac9b98319b43e00b7fefc0801db90866f7ffb4556ccdd04f568868e354dad0af
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker ps -a
+CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS      NAMES
+ac9b98319b43   mcr.microsoft.com/mssql/server   "/opt/mssql/bin/perm…"   24 seconds ago   Up 16 seconds   1433/tcp   sqlserver
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker build -t angelvtashev/taskboard_app .
+[+] Building 25.4s (19/19) FINISHED
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 741B                                                                               0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:6.0                                                  0.5s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:6.0                                               0.5s
+ => [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:bbfa9e57570a875dc888d5ef63bc2114cd7bdb75aefe433a17  0.0s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 1.71MB                                                                                0.1s
+ => [build 1/8] FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a706  0.0s
+ => CACHED [build 2/8] WORKDIR /src                                                                                0.0s
+ => CACHED [build 3/8] COPY [TaskBoard.WebApp/TaskBoard.WebApp.csproj, TaskBoard.WebApp/]                          0.0s
+ => CACHED [build 4/8] COPY [TaskBoard.Data/TaskBoard.Data.csproj, TaskBoard.Data/]                                0.0s
+ => CACHED [build 5/8] RUN dotnet restore "TaskBoard.WebApp/TaskBoard.WebApp.csproj"                               0.0s
+ => [build 6/8] COPY . .                                                                                           0.4s
+ => [build 7/8] WORKDIR /src/TaskBoard.WebApp                                                                      0.3s
+ => [build 8/8] RUN dotnet build "TaskBoard.WebApp.csproj" -c Release -o /app/build                               12.5s
+ => [publish 1/1] RUN dotnet publish "TaskBoard.WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false      9.2s
+ => CACHED [base 2/2] WORKDIR /app                                                                                 0.0s
+ => CACHED [final 1/2] WORKDIR /app                                                                                0.0s
+ => [final 2/2] COPY --from=publish /app/publish .                                                                 1.2s
+ => exporting to image                                                                                             0.6s
+ => => exporting layers                                                                                            0.5s
+ => => writing image sha256:6dade72706a8232d03e4c782d704de15c816f1c6b11bafcfe49bb38176c5c600                       0.0s
+ => => naming to docker.io/angelvtashev/taskboard_app                                                              0.0s
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker run `
+>> -p 5000:80 --rm `
+>> --name web_app `
+>> --network taskboard_network `
+>> angelvtashev/taskboard_app
+warn: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository[60]
+      Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {f1367065-1bfc-4198-961c-7715ae3a560c} may be persisted to storage in unencrypted form.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:80
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app/
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+e045e12b712c   bridge              bridge    local
+68227109ade4   host                host      local
+687028291cee   mynetwork           bridge    local
+b882c99156df   none                null      local
+55ebb48c5dd0   taskboard_network   bridge    local
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker network rm taskboard_network
+taskboard_network
