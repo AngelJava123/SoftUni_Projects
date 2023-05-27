@@ -1,0 +1,355 @@
+-----------------------------------------BUILDING BACKEND AND FRONTEND IMAGES-----------------------------------------
+
+
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> cat ./backend/Dockerfile
+FROM node:lts-buster-slim AS development
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
+RUN npm ci
+
+COPY . /usr/src/app
+
+EXPOSE 3000
+
+CMD [ "npm", "run", "dev" ]
+
+FROM development as dev-envs
+RUN apt-get update && apt-get install -y git
+
+RUN useradd -s /bin/bash -m vscode && groupadd docker && usermod -aG docker vscode
+
+# install Docker tools (cli, buildx, compose)
+COPY --from=gloursdocker/docker / /
+CMD [ "npm", "run", "dev" ]
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> cat ./frontend/Dockerfile
+# Create image based on the official Node image from dockerhub
+FROM node:lts-buster AS development
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy dependency definitions
+COPY package.json /usr/src/app
+COPY package-lock.json /usr/src/app
+
+# Install dependecies
+#RUN npm set progress=false \
+#    && npm config set depth 0 \
+#    && npm i install
+RUN npm ci
+
+# Get all the code needed to run the app
+COPY . /usr/src/app
+
+# Expose the port the app runs in
+EXPOSE 3000
+
+# Serve the app
+CMD ["npm", "start"]
+
+RUN apt-get update && apt-get install -y git
+
+FROM development as dev-envs
+RUN apt-get update && apt-get install -y git
+
+RUN useradd -s /bin/bash -m vscode && groupadd docker && usermod -aG docker vscode
+
+# install Docker tools (cli, buildx, compose)
+COPY --from=gloursdocker/docker / /
+CMD [ "npm", "start" ]
+[+] Building 428.7s (19/19) FINISHED
+ => [internal] load .dockerignore                                                                                  0.3s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.4s
+ => => transferring dockerfile: 893B                                                                               0.0s
+ => [internal] load metadata for docker.io/gloursdocker/docker:latest                                             17.1s
+ => [internal] load metadata for docker.io/library/node:lts-buster                                                17.1s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => [auth] gloursdocker/docker:pull token for registry-1.docker.io                                                 0.0s
+ => FROM docker.io/gloursdocker/docker@sha256:756a5712056c43dc5028b0dc8bfd9dbd171fce27f8c6b24ae5f5839ff7f2af1f    93.4s
+ => => resolve docker.io/gloursdocker/docker@sha256:756a5712056c43dc5028b0dc8bfd9dbd171fce27f8c6b24ae5f5839ff7f2a  0.2s
+ => => sha256:756a5712056c43dc5028b0dc8bfd9dbd171fce27f8c6b24ae5f5839ff7f2af1f 743B / 743B                         0.0s
+ => => sha256:a66243282b1165f556ec4a91d749c1ebc81dd28bcfbce653ccf49b01ae3b3fdf 1.38kB / 1.38kB                     0.0s
+ => => sha256:92e7e46848c6c339bb2f1febd550de4f522044f07506eb1e0286debe7f9fa194 1.41kB / 1.41kB                     0.0s
+ => => sha256:54c8d0aeda9acc625c4a72ea072f3a0c8162eb0109843d6f7c4b712fe8e18719 8.76MB / 8.76MB                    17.6s
+ => => sha256:0a53c98509c9970d35031e10ab927102abdb60c392f5fa553eaa14e6c926e5f7 16.53MB / 16.53MB                  27.6s
+ => => sha256:4c46afcb7b05961b847d32668a60587f14cf0d3fbd2e1496ae9b962bd0432358 14.21MB / 14.21MB                  20.5s
+ => => extracting sha256:4c46afcb7b05961b847d32668a60587f14cf0d3fbd2e1496ae9b962bd0432358                          1.3s
+ => => extracting sha256:0a53c98509c9970d35031e10ab927102abdb60c392f5fa553eaa14e6c926e5f7                          0.9s
+ => => extracting sha256:54c8d0aeda9acc625c4a72ea072f3a0c8162eb0109843d6f7c4b712fe8e18719                          0.5s
+ => => sha256:5260ebcf1b8504e0a22bb281723af6850bfea34dd9f04b7b953673017bb3a8da 25.70MB / 25.70MB                  77.9s
+ => => extracting sha256:5260ebcf1b8504e0a22bb281723af6850bfea34dd9f04b7b953673017bb3a8da                          0.9s
+ => => sha256:cf15776e3fa83217ec1fe19d133f2bd4add7b95300e1bfd7bede7c7d686dd5bf 5.02MB / 5.02MB                    90.7s
+ => => extracting sha256:cf15776e3fa83217ec1fe19d133f2bd4add7b95300e1bfd7bede7c7d686dd5bf                          1.8s
+ => [development 1/7] FROM docker.io/library/node:lts-buster@sha256:df5a66ed15950f6933d438198dae0524679e3028428  240.1s
+ => => resolve docker.io/library/node:lts-buster@sha256:df5a66ed15950f6933d438198dae0524679e3028428eb0dd88c4f5815  0.2s
+ => => sha256:13d76443c2fe4e4887617185de15c79eca7b2915fe0c0d7c08b21738b9b58d3a 7.24kB / 7.24kB                     0.0s
+ => => sha256:df5a66ed15950f6933d438198dae0524679e3028428eb0dd88c4f58157a75d3b 776B / 776B                         0.0s
+ => => sha256:ec6b3cf85ddc39bd2778fb5f3052aa2d43e57e933a5f186a8a3251b992dbfae1 2.00kB / 2.00kB                     0.0s
+ => => sha256:c722db24a050621ee87ea07acd5d066d3d6a94737c32012f27d73a1ad5cc645c 50.45MB / 50.45MB                  99.5s
+ => => sha256:a3f8e4a0ed530ff1c74aea38be7ec6c725334c7c3a551b417d0f6f9e220a36fb 17.58MB / 17.58MB                  53.2s
+ => => sha256:a739c67a76c3ff201aa979efc9c5deb081a75f5b98390ee176315cb0cb582aa9 51.88MB / 51.88MB                 118.2s
+ => => sha256:51e0d706266f768c6ed028e990dbb063fc43f6028827fe0f39ee6539a963e677 191.89MB / 191.89MB               213.1s
+ => => sha256:f38700a2e11ea7634ce0423f6925765a846b14a257049bde997005a7f881b6fe 4.21kB / 4.21kB                   100.3s
+ => => extracting sha256:c722db24a050621ee87ea07acd5d066d3d6a94737c32012f27d73a1ad5cc645c                          8.7s
+ => => sha256:373876b31bbc0482b1e79df75e0a6d6e89828a077cf9d9c1391605dbae5acb13 45.52MB / 45.52MB                 150.6s
+ => => extracting sha256:a3f8e4a0ed530ff1c74aea38be7ec6c725334c7c3a551b417d0f6f9e220a36fb                          2.2s
+ => => sha256:9bab4ab4842025a60a1e2269e81ae8a2905b60f04c2c2bd60a28a82bd0aabdcd 2.28MB / 2.28MB                   123.4s
+ => => extracting sha256:a739c67a76c3ff201aa979efc9c5deb081a75f5b98390ee176315cb0cb582aa9                          5.2s
+ => => sha256:42f829c541f9e9a795a74b54b3db2345da57a845e0b5b00e315840071140f474 451B / 451B                       123.8s
+ => => extracting sha256:51e0d706266f768c6ed028e990dbb063fc43f6028827fe0f39ee6539a963e677                         12.9s
+ => => extracting sha256:f38700a2e11ea7634ce0423f6925765a846b14a257049bde997005a7f881b6fe                          0.0s
+ => => extracting sha256:373876b31bbc0482b1e79df75e0a6d6e89828a077cf9d9c1391605dbae5acb13                         11.4s
+ => => extracting sha256:9bab4ab4842025a60a1e2269e81ae8a2905b60f04c2c2bd60a28a82bd0aabdcd                          0.1s
+ => => extracting sha256:42f829c541f9e9a795a74b54b3db2345da57a845e0b5b00e315840071140f474                          0.0s
+ => [internal] load build context                                                                                  0.3s
+ => => transferring context: 569.58kB                                                                              0.1s
+ => [development 2/7] WORKDIR /usr/src/app                                                                         2.8s
+ => [development 3/7] COPY package.json /usr/src/app                                                               0.2s
+ => [development 4/7] COPY package-lock.json /usr/src/app                                                          0.2s
+ => [development 5/7] RUN npm ci                                                                                 124.0s
+ => [development 6/7] COPY . /usr/src/app                                                                          0.7s
+ => [development 7/7] RUN apt-get update && apt-get install -y git                                                14.7s
+ => [dev-envs 1/3] RUN apt-get update && apt-get install -y git                                                    5.4s
+ => [dev-envs 2/3] RUN useradd -s /bin/bash -m vscode && groupadd docker && usermod -aG docker vscode              2.4s
+ => [dev-envs 3/3] COPY --from=gloursdocker/docker / /                                                            10.8s
+ => exporting to image                                                                                             9.2s
+ => => exporting layers                                                                                            9.0s
+ => => writing image sha256:4f5a64fd2c1e300be685b40c0a4b4dda919fff7c433550f66c1bb6ed2bae3fb6                       0.0s
+ => => naming to docker.io/library/frontend                                                                        0.0s
+[+] Building 152.8s (18/18) FINISHED
+ => [internal] load .dockerignore                                                                                  0.2s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 589B                                                                               0.0s
+ => [internal] load metadata for docker.io/gloursdocker/docker:latest                                             16.0s
+ => [internal] load metadata for docker.io/library/node:lts-buster-slim                                           16.7s
+ => [auth] gloursdocker/docker:pull token for registry-1.docker.io                                                 0.0s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => [internal] load build context                                                                                  0.3s
+ => => transferring context: 74.56kB                                                                               0.1s
+ => CACHED FROM docker.io/gloursdocker/docker@sha256:756a5712056c43dc5028b0dc8bfd9dbd171fce27f8c6b24ae5f5839ff7f2  0.0s
+ => [development 1/6] FROM docker.io/library/node:lts-buster-slim@sha256:d99a40755da4a6bd554542e95d0b9b94e562d8b  52.7s
+ => => resolve docker.io/library/node:lts-buster-slim@sha256:d99a40755da4a6bd554542e95d0b9b94e562d8be6a57e74c8b25  0.1s
+ => => sha256:d99a40755da4a6bd554542e95d0b9b94e562d8be6a57e74c8b2512347ba4ee88 776B / 776B                         0.0s
+ => => sha256:29a6b6266f26c7e9bedc0e51a124218c2f9dda9752073840747f425a1f081fc0 1.37kB / 1.37kB                     0.0s
+ => => sha256:4be15737f633787a64813a38e77c868fa95f2088721294a0360a8cfd82e99f76 6.84kB / 6.84kB                     0.0s
+ => => sha256:99bf4787315b60d97d860ac6d006b7835b2241a601e93c2da4af6ca554be8704 27.14MB / 27.14MB                  37.2s
+ => => sha256:61c3159279c73bd7ab8cc211003449bbb08613ecf5c9fa73abef2091d5f6ad99 4.18kB / 4.18kB                     0.6s
+ => => sha256:913017e054318c8772d057c40c861cdae5bbe6ab08679095f52b6b80290dcf48 45.98MB / 45.98MB                  48.1s
+ => => sha256:e976f51ec26da6c5788742049c358e62eca6ea195af354257c174e6aebdf33b4 2.73MB / 2.73MB                     3.6s
+ => => sha256:4646e7b5a8a72c9733c662a9a9d23a1e64df56019272c18840953facfce7045c 451B / 451B                         3.9s
+ => => extracting sha256:99bf4787315b60d97d860ac6d006b7835b2241a601e93c2da4af6ca554be8704                          2.3s
+ => => extracting sha256:61c3159279c73bd7ab8cc211003449bbb08613ecf5c9fa73abef2091d5f6ad99                          0.0s
+ => => extracting sha256:913017e054318c8772d057c40c861cdae5bbe6ab08679095f52b6b80290dcf48                          3.0s
+ => => extracting sha256:e976f51ec26da6c5788742049c358e62eca6ea195af354257c174e6aebdf33b4                          0.2s
+ => => extracting sha256:4646e7b5a8a72c9733c662a9a9d23a1e64df56019272c18840953facfce7045c                          0.0s
+ => [development 2/6] WORKDIR /usr/src/app                                                                        14.0s
+ => [development 3/6] COPY package.json /usr/src/app/package.json                                                  0.2s
+ => [development 4/6] COPY package-lock.json /usr/src/app/package-lock.json                                        0.2s
+ => [development 5/6] RUN npm ci                                                                                  22.8s
+ => [development 6/6] COPY . /usr/src/app                                                                          0.4s
+ => [dev-envs 1/3] RUN apt-get update && apt-get install -y git                                                   38.7s
+ => [dev-envs 2/3] RUN useradd -s /bin/bash -m vscode && groupadd docker && usermod -aG docker vscode              1.2s
+ => [dev-envs 3/3] COPY --from=gloursdocker/docker / /                                                             4.3s
+ => exporting to image                                                                                             1.2s
+ => => exporting layers                                                                                            1.2s
+ => => writing image sha256:630cb577f8f102f02a3033461f56974624d99afe686e91f4813adbc0ba45e7c5                       0.0s
+ => => naming to docker.io/library/backend
+
+
+-----------------------------------------CONNECTIONS-----------------------------------------
+
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> docker network create react-express
+589c6f2a41d6b3a746bc45f2b049e645e45938cd37aab111db8e60365f90dc6b
+PS C:\Users\tasheva> docker network create express-mongo
+5e229fed87e93a7c9a0548bdf8d1f43953cce205d8c404fd5355312054c86782
+PS C:\Users\tasheva> cd ./Lesson5/Resources
+PS C:\Users\tasheva\Lesson5\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-27   8:49 PM                06-08-10.TaskBoard-ASP.NET-App
+d-----        2023-05-25  11:40 PM                07.Tracker-App
+d-----        2023-05-24  11:49 PM                09.TODO-App
+d-----        2023-05-24  11:49 PM                11.Blue-VS-Green-App
+
+
+PS C:\Users\tasheva\Lesson5\Resources> cd ./09.TODO-App/
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d -v .\data:/data/db --network express-mongo:latest
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Create and run a new container from an image
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d -v .\data:/data/db --network express-mongo mongo:latest
+Unable to find image 'mongo:latest' locally
+latest: Pulling from library/mongo
+1bc677758ad7: Already exists
+7eb83bb7be98: Pull complete
+e95121721c4c: Pull complete
+799041b403ca: Pull complete
+1828e70ef29a: Pull complete
+8e3781beae9e: Pull complete
+5d5753162333: Pull complete
+bf73eea516c8: Pull complete
+95cf5b4ad967: Pull complete
+Digest: sha256:695cc4d237d158d32d5ddcadefe06444dbbd5feac2d50f560b60b70f2198c16c
+Status: Downloaded newer image for mongo:latest
+673df941865d1cecffc93edbc27837471197a5c36b4a67bf23b7ca4d636e5a87
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS       NAMES
+673df941865d   mongo:latest   "docker-entrypoint.s…"   17 seconds ago   Up 10 seconds   27017/tcp   clever_wright
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker rm 67 -f
+67
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d -v .\data:/data/db --network express-mongo --name mongo mongo:latest
+ba8d5397852d49284f148cd7c219dc1ffea2784e10be23d9aaa6b06df43ef69e
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS       NAMES
+ba8d5397852d   mongo:latest   "docker-entrypoint.s…"   24 seconds ago   Up 17 seconds   27017/tcp   mongo
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d --name frontend --network react-express -p 3000:3000
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Create and run a new container from an image
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d --name frontend --network react-express -p 3000:3000 .
+docker: invalid reference format.
+See 'docker run --help'.
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d --name frontend --network react-express -p 3000:3000 frontend
+e731f6821bd5fdcb350330d569504a997af1cdc37657698385bc104748d3d94f
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                    NAMES
+e731f6821bd5   frontend       "docker-entrypoint.s…"   30 seconds ago   Up 27 seconds   0.0.0.0:3000->3000/tcp   frontend
+ba8d5397852d   mongo:latest   "docker-entrypoint.s…"   7 minutes ago    Up 7 minutes    27017/tcp                mongo
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker run -d --name backend --network react-express backend
+574666391a08c1dd354ce5237b3e600282b24d06441c33504ee12635639d99ca
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                    NAMES
+574666391a08   backend        "docker-entrypoint.s…"   9 seconds ago    Up 7 seconds    3000/tcp                 backend
+e731f6821bd5   frontend       "docker-entrypoint.s…"   3 minutes ago    Up 3 minutes    0.0.0.0:3000->3000/tcp   frontend
+ba8d5397852d   mongo:latest   "docker-entrypoint.s…"   10 minutes ago   Up 10 minutes   27017/tcp                mongo
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker network connect -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:  docker network connect [OPTIONS] NETWORK CONTAINER
+
+Connect a container to a network
+
+Options:
+      --alias strings           Add network-scoped alias for the container
+      --driver-opt strings      driver options for the network
+      --ip string               IPv4 address (e.g., "172.30.100.104")
+      --ip6 string              IPv6 address (e.g., "2001:db8::33")
+      --link list               Add link to another container
+      --link-local-ip strings   Add a link-local address for the container
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker network connect express-mongo backend
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker network inspect express-mongo
+[
+    {
+        "Name": "express-mongo",
+        "Id": "5e229fed87e93a7c9a0548bdf8d1f43953cce205d8c404fd5355312054c86782",
+        "Created": "2023-05-27T18:22:17.7413954Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.21.0.0/16",
+                    "Gateway": "172.21.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "574666391a08c1dd354ce5237b3e600282b24d06441c33504ee12635639d99ca": {
+                "Name": "backend",
+                "EndpointID": "bf09c4bd79525d928b0a9f48194cf678033d234e89ebee28a639ccdb65cdbdda",
+                "MacAddress": "02:42:ac:15:00:03",
+                "IPv4Address": "172.21.0.3/16",
+                "IPv6Address": ""
+            },
+            "ba8d5397852d49284f148cd7c219dc1ffea2784e10be23d9aaa6b06df43ef69e": {
+                "Name": "mongo",
+                "EndpointID": "6c6cf812818dcbccec918550f86ea42d72513e9ebb924753acf08517f02f43e3",
+                "MacAddress": "02:42:ac:15:00:02",
+                "IPv4Address": "172.21.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+PS C:\Users\tasheva\Lesson5\Resources\09.TODO-App> docker network inspect react-express
+[
+    {
+        "Name": "react-express",
+        "Id": "589c6f2a41d6b3a746bc45f2b049e645e45938cd37aab111db8e60365f90dc6b",
+        "Created": "2023-05-27T18:21:47.5833348Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "574666391a08c1dd354ce5237b3e600282b24d06441c33504ee12635639d99ca": {
+                "Name": "backend",
+                "EndpointID": "558faa73de79ae2252def4361b941221ddf1c3f28b5fa8cfcac755647bb48ff7",
+                "MacAddress": "02:42:ac:14:00:03",
+                "IPv4Address": "172.20.0.3/16",
+                "IPv6Address": ""
+            },
+            "e731f6821bd5fdcb350330d569504a997af1cdc37657698385bc104748d3d94f": {
+                "Name": "frontend",
+                "EndpointID": "0e3b0fdfee54553083fea2405ed15aadad4807d35ecc17080360005254de7904",
+                "MacAddress": "02:42:ac:14:00:02",
+                "IPv4Address": "172.20.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+
