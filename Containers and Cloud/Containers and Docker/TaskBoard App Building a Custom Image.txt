@@ -1,0 +1,127 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./Lesson5/
+PS C:\Users\tasheva\Lesson5> cd ./Resources/
+PS C:\Users\tasheva\Lesson5\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-26  12:00 AM                06-08-10.TaskBoard-ASP.NET-App
+d-----        2023-05-25  11:40 PM                07.Tracker-App
+d-----        2023-05-24  11:49 PM                09.TODO-App
+d-----        2023-05-24  11:49 PM                11.Blue-VS-Green-App
+
+
+PS C:\Users\tasheva\Lesson5\Resources> cd ./06-08-10.TaskBoard-ASP.NET-App/
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24  11:49 PM                TaskBoard.Data
+d-----        2023-05-26  12:48 AM                TaskBoard.WebApp
+
+
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> cd ./TaskBoard.WebApp/
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App\TaskBoard.WebApp> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App\TaskBoard.WebApp
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-25  11:07 PM                .vs
+d-----        2023-05-24  11:49 PM                Areas
+d-----        2023-05-24  11:49 PM                Controllers
+d-----        2023-05-24  11:49 PM                Models
+d-----        2023-05-24  11:49 PM                Properties
+d-----        2023-05-24  11:49 PM                Views
+d-----        2023-05-24  11:49 PM                wwwroot
+-a----        2021-11-07  10:40 AM            168 appsettings.Development.json
+-a----        2021-11-07  10:40 AM            356 appsettings.json
+-a----        2023-01-20  11:22 AM           1700 Program.cs
+-a----        2022-11-30  12:10 PM           1467 TaskBoard.WebApp.csproj
+-a----        2021-11-07  10:40 AM           1148 TaskBoard.WebApp.csproj.user
+
+
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App\TaskBoard.WebApp> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App\TaskBoard.WebApp
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-25  11:07 PM                .vs
+d-----        2023-05-24  11:49 PM                Areas
+d-----        2023-05-24  11:49 PM                Controllers
+d-----        2023-05-24  11:49 PM                Models
+d-----        2023-05-24  11:49 PM                Properties
+d-----        2023-05-24  11:49 PM                Views
+d-----        2023-05-24  11:49 PM                wwwroot
+-a----        2021-11-07  10:40 AM            168 appsettings.Development.json
+-a----        2021-11-07  10:40 AM            356 appsettings.json
+-a----        2023-05-26   3:48 PM            702 Dockerfile
+-a----        2023-01-20  11:22 AM           1700 Program.cs
+-a----        2022-11-30  12:10 PM           1467 TaskBoard.WebApp.csproj
+-a----        2021-11-07  10:40 AM           1148 TaskBoard.WebApp.csproj.user
+
+
+[+] Building 340.4s (19/19) FINISHED
+ => [internal] load .dockerignore                                                                                  0.1s\ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 741B                                                                               0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:6.0                                                  0.9s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:6.0                                               0.4s
+ => [build 1/8] FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a7  165.5s
+ => => resolve mcr.microsoft.com/dotnet/sdk:6.0@sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a70664083f  0.1s
+ => => sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a70664083f7bb37e 1.82kB / 1.82kB                     0.0s
+ => => sha256:24de6e2623991e3e5253a2e0b347dd70cde3abd9686ef9c152082d70eb788507 2.01kB / 2.01kB                     0.0s
+ => => sha256:541f4bb5cf223fdeec460025550c7925cef409b08566e0e336e782a763afb777 7.17kB / 7.17kB                     0.0s
+ => => sha256:0c7e41386c8eadde46a3290f80435c97d8a7a726709984d2588d6eef7568287b 25.37MB / 25.37MB                  51.5s
+ => => sha256:c7e16202c1e1c56776fbbd6eaa0b1c547be1f4ee6f0285d5678c30bc81826185 148.55MB / 148.55MB               160.8s
+ => => sha256:0a870562846b4eee6cc58b0c4467e1777896158c4b00d4e4838fb871f9e18c37 13.61MB / 13.61MB                  43.1s
+ => => extracting sha256:0c7e41386c8eadde46a3290f80435c97d8a7a726709984d2588d6eef7568287b                          0.8s
+ => => extracting sha256:c7e16202c1e1c56776fbbd6eaa0b1c547be1f4ee6f0285d5678c30bc81826185                          3.4s
+ => => extracting sha256:0a870562846b4eee6cc58b0c4467e1777896158c4b00d4e4838fb871f9e18c37                          0.4s
+ => [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:bbfa9e57570a875dc888d5ef63bc2114cd7bdb75aefe433a17  0.0s
+ => [internal] load build context                                                                                  0.4s
+ => => transferring context: 3.63MB                                                                                0.4s
+ => CACHED [base 2/2] WORKDIR /app                                                                                 0.0s
+ => CACHED [final 1/2] WORKDIR /app                                                                                0.0s
+ => [build 2/8] WORKDIR /src                                                                                       2.8s
+ => [build 3/8] COPY [TaskBoard.WebApp/TaskBoard.WebApp.csproj, TaskBoard.WebApp/]                                 0.1s
+ => [build 4/8] COPY [TaskBoard.Data/TaskBoard.Data.csproj, TaskBoard.Data/]                                       0.1s
+ => [build 5/8] RUN dotnet restore "TaskBoard.WebApp/TaskBoard.WebApp.csproj"                                    132.7s
+ => [build 6/8] COPY . .                                                                                           0.2s
+ => [build 7/8] WORKDIR /src/TaskBoard.WebApp                                                                      0.1s
+ => [build 8/8] RUN dotnet build "TaskBoard.WebApp.csproj" -c Release -o /app/build                               18.2s
+ => [publish 1/1] RUN dotnet publish "TaskBoard.WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false     17.0s
+ => [final 2/2] COPY --from=publish /app/publish .                                                                 1.4s
+ => exporting to image                                                                                             1.0s
+ => => exporting layers                                                                                            0.9s
+ => => writing image sha256:dbf3ee2f8242a8ed6d907c03a69ada97809de3374edc934ed4a0db7777d6f220                       0.1s
+ => => naming to docker.io/angelvtashev/taskboard_app                                                              0.0s
+PS C:\Users\tasheva\Lesson5\Resources\06-08-10.TaskBoard-ASP.NET-App> docker push angelvtashev/taskboard_app
+Using default tag: latest
+The push refers to repository [docker.io/angelvtashev/taskboard_app]
+931c359d0b8d: Pushed
+5f70bf18a086: Pushed
+fc5f00c6b5b5: Pushed
+87edbcd48e4d: Pushed
+4cf15d404e20: Pushed
+847d60aa4ab2: Pushed
+b681f1ff1a0f: Pushed
+8cbe4b54fa88: Mounted from library/nginx
+latest: digest: sha256:c5b3b0e468b44129eae481e96e0354885d433cbf3d0915e5accfe660d1a76e10 size: 1996
