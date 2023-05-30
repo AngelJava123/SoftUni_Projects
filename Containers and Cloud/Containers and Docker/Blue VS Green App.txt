@@ -1,0 +1,369 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./Lesson5/Resources
+PS C:\Users\tasheva\Lesson5\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-27   8:49 PM                06-08-10.TaskBoard-ASP.NET-App
+d-----        2023-05-25  11:40 PM                07.Tracker-App
+d-----        2023-05-27   9:26 PM                09.TODO-App
+d-----        2023-05-24  11:49 PM                11.Blue-VS-Green-App
+
+
+PS C:\Users\tasheva\Lesson5\Resources> cd ./11.Blue-VS-Green-App/
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24  11:49 PM                result
+d-----        2023-05-24  11:49 PM                vote
+d-----        2023-05-24  11:49 PM                worker
+-a----        2022-12-05   1:36 PM           2095 ExampleVotingApp.sln
+
+
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> cd ./result/
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App\result> docker build -t result .
+[+] Building 101.4s (15/15) FINISHED
+ => [internal] load .dockerignore                                                                                  0.3s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.3s
+ => => transferring dockerfile: 527B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:10-slim                                                   16.1s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => https://github.com/krallin/tini/releases/download/v0.19.0/tini                                                 0.7s
+ => [1/8] FROM docker.io/library/node:10-slim@sha256:88932859e3d022d79161b99628c4c2c50e836437455e2d1b1a008d98367  32.7s
+ => => resolve docker.io/library/node:10-slim@sha256:88932859e3d022d79161b99628c4c2c50e836437455e2d1b1a008d98367b  0.1s
+ => => sha256:88932859e3d022d79161b99628c4c2c50e836437455e2d1b1a008d98367b10d6 776B / 776B                         0.0s
+ => => sha256:64c30c91d628d40eb8f772ee1477f78aff820e317e8afbc5160857ee804e4b70 1.37kB / 1.37kB                     0.0s
+ => => sha256:6fbcbbb5c6032ce4013d4c736ffe54e0764c36fa14315ae54cb51f244e813c52 7.09kB / 7.09kB                     0.0s
+ => => sha256:62deabe7a6db312ed773ccd640cd7cfbf51c22bf466886345684558f1036e358 22.53MB / 22.53MB                  23.0s
+ => => sha256:f698164f6049bead44aeb7590e88d3df323011c20f0cedbff3d86f62e4c9f184 4.17kB / 4.17kB                     0.6s
+ => => sha256:bc29352cb629712e7fbce7227a16b53308b541ef41e19122a04c15646756b176 21.91MB / 21.91MB                  22.6s
+ => => sha256:85e84b4c858fae373ccdf48432de781210efb7fd75d9d801be9917577fe6ca09 2.93MB / 2.93MB                     3.4s
+ => => sha256:ac72e4359589952a2e38fbe10287d792cbb57f2ec3cd1eb730e9bab685ac9754 295B / 295B                         3.7s
+ => => extracting sha256:62deabe7a6db312ed773ccd640cd7cfbf51c22bf466886345684558f1036e358                          4.7s
+ => => extracting sha256:f698164f6049bead44aeb7590e88d3df323011c20f0cedbff3d86f62e4c9f184                          0.0s
+ => => extracting sha256:bc29352cb629712e7fbce7227a16b53308b541ef41e19122a04c15646756b176                          3.3s
+ => => extracting sha256:85e84b4c858fae373ccdf48432de781210efb7fd75d9d801be9917577fe6ca09                          0.2s
+ => => extracting sha256:ac72e4359589952a2e38fbe10287d792cbb57f2ec3cd1eb730e9bab685ac9754                          0.0s
+ => [internal] load build context                                                                                  0.3s
+ => => transferring context: 475.05kB                                                                              0.2s
+ => [2/8] ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /tini                                 2.6s
+ => [3/8] RUN chmod +x /tini                                                                                       1.1s
+ => [4/8] WORKDIR /app                                                                                             0.2s
+ => [5/8] RUN npm install -g nodemon                                                                              41.4s
+ => [6/8] COPY package*.json ./                                                                                    0.2s
+ => [7/8] RUN npm ci  && npm cache clean --force  && mv /app/node_modules /node_modules                            5.6s
+ => [8/8] COPY . .                                                                                                 0.2s
+ => exporting to image                                                                                             0.7s
+ => => exporting layers                                                                                            0.7s
+ => => writing image sha256:e6c7a3b2bf95ba86ab7631c06a03203cee3483684aad683e3d1aaef4b76f2e2f                       0.0s
+ => => naming to docker.io/library/result
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd ./Lesson5/Resources
+PS C:\Users\tasheva\Lesson5\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-27   8:49 PM                06-08-10.TaskBoard-ASP.NET-App
+d-----        2023-05-25  11:40 PM                07.Tracker-App
+d-----        2023-05-27   9:26 PM                09.TODO-App
+d-----        2023-05-24  11:49 PM                11.Blue-VS-Green-App
+
+
+PS C:\Users\tasheva\Lesson5\Resources> cd ./11.Blue-VS-Green-App/
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24  11:49 PM                result
+d-----        2023-05-24  11:49 PM                vote
+d-----        2023-05-24  11:49 PM                worker
+-a----        2022-12-05   1:36 PM           2095 ExampleVotingApp.sln
+[+] Building 270.8s (15/15) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 707B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.2s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:3.1                                               1.2s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/core/sdk:3.1                                             1.1s
+ => [builder 1/6] FROM mcr.microsoft.com/dotnet/core/sdk:3.1@sha256:150d074697d1cda38a0c2185fe43895d84b5745841e  241.1s
+ => => resolve mcr.microsoft.com/dotnet/core/sdk:3.1@sha256:150d074697d1cda38a0c2185fe43895d84b5745841e9d15c5adba  0.2s
+ => => sha256:150d074697d1cda38a0c2185fe43895d84b5745841e9d15c5adba29604a6e4cb 1.34kB / 1.34kB                     0.0s
+ => => sha256:ed737e6920105e2a5cdcd13b9697e7973011e5619339ea64e30871ba0b53fec8 1.80kB / 1.80kB                     0.0s
+ => => sha256:1e8401d05dea4bdf104418a6e99c3fbbef9db505b98d96188f67d54f493ba448 6.43kB / 6.43kB                     0.0s
+ => => sha256:c7c50787e2da71205402343dd1233b3ca6ebe70c7e790f6ba7d856b81b893200 50.45MB / 50.45MB                 132.5s
+ => => sha256:aff359114acb7d843de09375f87669fffb0abd1125c16f96431bc3c4173b48f8 7.86MB / 7.86MB                    48.1s
+ => => sha256:821dc261e045ba09851c52ed28be3b9ecc9fe8c923fba05854ab0fd2fa38ceca 10.00MB / 10.00MB                  62.9s
+ => => sha256:3790459d63d5fdf148a092f1857010796dfa217329491b66a015a40de92f3db9 51.87MB / 51.87MB                 136.1s
+ => => sha256:d9f67e74b01d79e8ec12dad49692cce8b8f0e91aef2b850a49391dbd9a516114 13.70MB / 13.70MB                  86.7s
+ => => sha256:c28a95092be1a4441be71d24c85bd428d2822cc8cd28387f3df15e6e0b776458 126.08MB / 126.08MB               216.6s
+ => => sha256:208cfb120a77b6282506e4d1bad46b3393d9ef9e4d8e0ce240a72470fd9336c7 13.42MB / 13.42MB                 146.0s
+ => => extracting sha256:c7c50787e2da71205402343dd1233b3ca6ebe70c7e790f6ba7d856b81b893200                          2.3s
+ => => extracting sha256:aff359114acb7d843de09375f87669fffb0abd1125c16f96431bc3c4173b48f8                          0.4s
+ => => extracting sha256:821dc261e045ba09851c52ed28be3b9ecc9fe8c923fba05854ab0fd2fa38ceca                          0.3s
+ => => extracting sha256:3790459d63d5fdf148a092f1857010796dfa217329491b66a015a40de92f3db9                          2.0s
+ => => extracting sha256:d9f67e74b01d79e8ec12dad49692cce8b8f0e91aef2b850a49391dbd9a516114                          0.3s
+ => => extracting sha256:c28a95092be1a4441be71d24c85bd428d2822cc8cd28387f3df15e6e0b776458                         21.0s
+ => => extracting sha256:208cfb120a77b6282506e4d1bad46b3393d9ef9e4d8e0ce240a72470fd9336c7                          1.9s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 6.28kB                                                                                0.0s
+ => [stage-1 1/3] FROM mcr.microsoft.com/dotnet/aspnet:3.1@sha256:31740421c9c67f0cb99f31b16ae3d2fab4e2b5443ffb60  59.4s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:3.1@sha256:31740421c9c67f0cb99f31b16ae3d2fab4e2b5443ffb605a700e6e4  0.1s
+ => => sha256:c30ae929a3cfef278f140c6e2ec050ea2bbab17cfc6b3426c8fe806d9fb3b6dd 1.38kB / 1.38kB                     0.0s
+ => => sha256:454a55eab920c34d8fca036ed25d1ed7f539ca9fd63b858c2af022c875e46fe4 4.53kB / 4.53kB                     0.0s
+ => => sha256:31740421c9c67f0cb99f31b16ae3d2fab4e2b5443ffb605a700e6e4a7369ad09 1.67kB / 1.67kB                     0.0s
+ => => sha256:b52ebda398ed2c4602ea06056f78d45a59474ee4e2a020967251ba082424e7e2 27.14MB / 27.14MB                  31.2s
+ => => sha256:0e5939387a0e7fec485c185286476155db8cc36a8ed2abbd3a5e963df6491ee8 17.09MB / 17.09MB                  28.4s
+ => => sha256:747ae99f521d656b757b56d6211c55d98be5ff2685e7fa0cddfed3fa39061647 1.02MB / 1.02MB                     2.1s
+ => => sha256:016ca20b2cbaa7ff105a77acade0c9b9d7207c185941ae2436b5a010fffd9f2b 31.31MB / 31.31MB                  57.6s
+ => => sha256:a3d5dbf2ddecba029aeb893ba5eaf653c81879e277484e2c4cd3750ef317fdf8 8.16MB / 8.16MB                    40.1s
+ => => extracting sha256:b52ebda398ed2c4602ea06056f78d45a59474ee4e2a020967251ba082424e7e2                          1.4s
+ => => extracting sha256:0e5939387a0e7fec485c185286476155db8cc36a8ed2abbd3a5e963df6491ee8                          0.4s
+ => => extracting sha256:747ae99f521d656b757b56d6211c55d98be5ff2685e7fa0cddfed3fa39061647                          0.1s
+ => => extracting sha256:016ca20b2cbaa7ff105a77acade0c9b9d7207c185941ae2436b5a010fffd9f2b                          0.6s
+ => => extracting sha256:a3d5dbf2ddecba029aeb893ba5eaf653c81879e277484e2c4cd3750ef317fdf8                          0.2s
+ => [stage-1 2/3] WORKDIR /app                                                                                     1.7s
+ => [builder 2/6] WORKDIR /builder                                                                                 6.2s
+ => [builder 3/6] COPY src/Worker/Worker.csproj .                                                                  0.2s
+ => [builder 4/6] RUN dotnet restore                                                                              16.4s
+ => [builder 5/6] COPY src/Worker/ .                                                                               0.2s
+ => [builder 6/6] RUN dotnet publish -c Release -o /out Worker.csproj                                              3.7s
+ => [stage-1 3/3] COPY --from=builder /out .                                                                       0.3s
+ => exporting to image                                                                                             0.3s
+ => => exporting layers                                                                                            0.2s
+ => => writing image sha256:1ed85eb594b278cbeefc7d0c0b63a7c3716b424df2ddcc67c481b7292448f585                       0.0s
+ => => naming to docker.io/library/worker                                                                          0.0s
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App\worker> cd ..
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24  11:49 PM                result
+d-----        2023-05-24  11:49 PM                vote
+d-----        2023-05-24  11:49 PM                worker
+-a----        2022-12-05   1:36 PM           2095 ExampleVotingApp.sln
+
+
+[+] Building 278.4s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 477B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.2s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:latest                                                  16.3s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 136.73kB                                                                              0.1s
+ => [1/4] FROM docker.io/library/python@sha256:3a619e3c96fd4c5fc5e1998fd4dcb1f1403eb90c4c6409c70d7e80b9468df7df  253.5s
+ => => resolve docker.io/library/python@sha256:3a619e3c96fd4c5fc5e1998fd4dcb1f1403eb90c4c6409c70d7e80b9468df7df    0.2s
+ => => sha256:3a619e3c96fd4c5fc5e1998fd4dcb1f1403eb90c4c6409c70d7e80b9468df7df 2.14kB / 2.14kB                     0.0s
+ => => sha256:cbaa654007e0c2f2e2869ae69f9e9924826872d405c02647f65f5a72b597e853 2.01kB / 2.01kB                     0.0s
+ => => sha256:0a6cd0db41a4daebb332262ddd1f61a29e88169b8c93476cb885f46d400473c8 7.52kB / 7.52kB                     0.0s
+ => => sha256:bd73737482dd5575526c7207872963479808d979ab2741c321706b8553918474 55.05MB / 55.05MB                 114.8s
+ => => sha256:6710592d62aa1338ac1c1c363dedc255659f666cc41441c7e0f735c484db10ff 15.76MB / 15.76MB                  31.4s
+ => => sha256:75256935197ed1bb3b994a77c01efa00349b901014448a260fafd9c3719a741d 54.58MB / 54.58MB                  99.1s
+ => => sha256:c1e5026c64577dee4b6bac20b18196f964a41d8b9016fbbbada0c70b601cd5bf 196.85MB / 196.85MB               224.1s
+ => => sha256:f0016544b8b99a7e91472b231a8eb1af0aede28806efc821c60ca20b65fc1eb8 6.29MB / 6.29MB                   115.0s
+ => => extracting sha256:bd73737482dd5575526c7207872963479808d979ab2741c321706b8553918474                          8.7s
+ => => sha256:93dc7b704cd18c44b49693575022ab7ebaf7bf9f186af30ef53602fb0c19d4ce 243B / 243B                       115.6s
+ => => sha256:1d58eee51ff228a3e1f6abee482290e736c696025d75a5a7b29029b97f37f162 19.99MB / 19.99MB                 138.0s
+ => => sha256:caefdefa531e3b0d90aa4918fa072a441f0f0e57bc69f61212e7f00ce5a94340 3.08MB / 3.08MB                   121.2s
+ => => extracting sha256:6710592d62aa1338ac1c1c363dedc255659f666cc41441c7e0f735c484db10ff                          2.0s
+ => => extracting sha256:75256935197ed1bb3b994a77c01efa00349b901014448a260fafd9c3719a741d                          6.5s
+ => => extracting sha256:c1e5026c64577dee4b6bac20b18196f964a41d8b9016fbbbada0c70b601cd5bf                         20.0s
+ => => extracting sha256:f0016544b8b99a7e91472b231a8eb1af0aede28806efc821c60ca20b65fc1eb8                          1.8s
+ => => extracting sha256:1d58eee51ff228a3e1f6abee482290e736c696025d75a5a7b29029b97f37f162                          1.1s
+ => => extracting sha256:93dc7b704cd18c44b49693575022ab7ebaf7bf9f186af30ef53602fb0c19d4ce                          0.0s
+ => => extracting sha256:caefdefa531e3b0d90aa4918fa072a441f0f0e57bc69f61212e7f00ce5a94340                          0.3s
+ => [2/4] WORKDIR /app                                                                                             1.3s
+ => [3/4] RUN pip install Flask Redis gunicorn --no-cache-dir                                                      6.3s
+ => [4/4] COPY . .                                                                                                 0.2s
+ => exporting to image                                                                                             0.5s
+ => => exporting layers                                                                                            0.4s
+ => => writing image sha256:93bc5513318b89d85674825121ebe6bd30d46cdcf20b918efbc338e32d72fce4                       0.0s
+ => => naming to docker.io/library/vote                                                                            0.0s
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App\vote> cd ..
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-05-24  11:49 PM                result
+d-----        2023-05-24  11:49 PM                vote
+d-----        2023-05-24  11:49 PM                worker
+-a----        2023-05-28   2:14 PM           1144 docker-compose.yaml
+-a----        2022-12-05   1:36 PM           2095 ExampleVotingApp.sln
+
+
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> docker-compose build
+[+] Building 0.0s (0/0)
+[+] Building 0.0s (0/0)
+[+] Building 0.2s (0/2)
+ => [internal] load build definition from Dockerfile                                                               0.2s
+[+] Building 0.3s (0/2)
+[+] Building 0.3s (0/2)
+[+] Building 2.1s (2/3)
+[+] Building 0.1s (0/2)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+[+] Building 2.9s (2/3)
+ => [internal] load .dockerignore                                                                                  0.5s
+[+] Building 3.1s (2/3)
+[+] Building 1.0s (11/14)
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 707B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.2s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:3.1                                               0.5s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/core/sdk:3.1                                             0.5s
+ => [internal] load build context                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [builder 1/6] FROM mcr.microsoft.com/dotnet/core/sdk:3.1@sha256:150d074697d1cda38a0c2185fe43895d84b5745841e9d  0.0s
+ => [stage-1 1/3] FROM mcr.microsoft.com/dotnet/aspnet:3.1@sha256:31740421c9c67f0cb99f31b16ae3d2fab4e2b5443ffb605  0.0s
+ => CACHED [builder 2/6] WORKDIR /builder                                                                          0.0s
+ => ERROR [builder 3/6] COPY src/Worker/Worker.csproj .                                                            0.0s
+ => CACHED [builder 4/6] RUN dotnet restore                                                                        0.0s
+ => ERROR [builder 5/6] COPY src/Worker/ .                                                                         0.0s
+[+] Building 3.7s (3/3) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.5s
+ => => transferring dockerfile: 527B                                                                               0.1s
+[+] Building 3.7s (3/3) FINISHED
+ => [internal] load .dockerignore                                                                                  0.5s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.6s
+ => => transferring dockerfile: 477B                                                                               0.0s
+ => ERROR [internal] load metadata for docker.io/library/python:latest                                             3.1s
+------
+ > [internal] load metadata for docker.io/library/python:latest:
+------
+failed to solve: failed to compute cache key: failed to calculate checksum of ref moby::kp99lrka7v46m4wcvpnwbcft9: failed to walk /var/lib/docker/tmp/buildkit-mount4004371610/src: lstat /var/lib/docker/tmp/buildkit-mount4004371610/src: no such file or directory
+[+] Building 0.0s (0/0)
+[+] Building 0.0s (0/0)
+[+] Building 0.1s (2/2)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 482B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+[+] Building 0.1s (0/2)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+[+] Building 0.3s (2/3)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 482B                                                                               0.0s
+[+] Building 0.4s (2/3)
+[+] Building 1.1s (15/15) FINISHED
+ => [internal] load .dockerignore                                                                                  0.3s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.3s
+ => => transferring dockerfile: 721B                                                                               0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:3.1                                               0.6s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/core/sdk:3.1                                             0.6s
+ => [builder 1/6] FROM mcr.microsoft.com/dotnet/core/sdk:3.1@sha256:150d074697d1cda38a0c2185fe43895d84b5745841e9d  0.0s
+ => [stage-1 1/3] FROM mcr.microsoft.com/dotnet/aspnet:3.1@sha256:31740421c9c67f0cb99f31b16ae3d2fab4e2b5443ffb605  0.0s
+ => [internal] load build context                                                                                  0.1s
+[+] Building 13.3s (2/3)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 482B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+[+] Building 16.7s (15/15) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 541B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.2s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/node:10-slim                                                   14.8s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => https://github.com/krallin/tini/releases/download/v0.19.0/tini                                                 0.7s
+ => [1/8] FROM docker.io/library/node:10-slim@sha256:88932859e3d022d79161b99628c4c2c50e836437455e2d1b1a008d98367b  0.0s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 475.42kB                                                                              0.1s
+ => CACHED [2/8] ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /tini                          0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:latest                                                  15.6s
+ => CACHED [3/8] RUN chmod +x /tini                                                                                0.0s
+ => CACHED [4/8] WORKDIR /app                                                                                      0.0s
+ => CACHED [5/8] RUN npm install -g nodemon                                                                        0.0s
+ => CACHED [6/8] COPY result/package*.json ./                                                                      0.0s
+[+] Building 16.8s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 482B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:latest                                                  15.6s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 136.95kB                                                                              0.1s
+ => [1/4] FROM docker.io/library/python@sha256:3a619e3c96fd4c5fc5e1998fd4dcb1f1403eb90c4c6409c70d7e80b9468df7df    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => CACHED [3/4] RUN pip install Flask Redis gunicorn --no-cache-dir                                               0.0s
+ => [4/4] COPY vote/. .                                                                                            0.3s
+ => exporting to image                                                                                             0.4s
+ => => exporting layers                                                                                            0.3s
+ => => writing image sha256:debaaca0ccaae96629f45cbfc0d1e2bb872f250b5ac70dfe2099e0abdfa01cbe                       0.1s
+ => => naming to docker.io/library/11blue-vs-green-app-vote                                                        0.1s
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> docker-compose up -d
+[+] Running 20/20
+ ✔ postgres 13 layers [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]      0B/0B      Pulled                                                      88.5s
+   ✔ f03b40093957 Already exists                                                                                   0.0s
+   ✔ 9d674c93414d Pull complete                                                                                    6.9s
+   ✔ de781e8e259a Pull complete                                                                                   10.1s
+   ✔ 5ea6efaf51f6 Pull complete                                                                                   11.4s
+   ✔ b078d5f4ac82 Pull complete                                                                                   14.7s
+   ✔ 97f84fb2a918 Pull complete                                                                                   15.6s
+   ✔ 5a6bf2f43fb8 Pull complete                                                                                   16.0s
+   ✔ f1a40e88fea4 Pull complete                                                                                   16.4s
+   ✔ 4be673794a1a Pull complete                                                                                   80.8s
+   ✔ 9d72f84fb861 Pull complete                                                                                   81.0s
+   ✔ 5d52569da92e Pull complete                                                                                   81.2s
+   ✔ 5d48fbe991ff Pull complete                                                                                   81.6s
+   ✔ 4ae692d11ad3 Pull complete                                                                                   81.8s
+ ✔ redis 5 layers [⣿⣿⣿⣿⣿]      0B/0B      Pulled                                                                  27.7s
+   ✔ 8db26c5e8435 Pull complete                                                                                   11.5s
+   ✔ 37e84c7a626f Pull complete                                                                                   13.5s
+   ✔ 806c192e0375 Pull complete                                                                                   19.9s
+   ✔ 08769906aa59 Pull complete                                                                                   20.4s
+   ✔ 635073d8ccd5 Pull complete                                                                                   20.8s
+[+] Running 8/8
+ ✔ Network 11blue-vs-green-app_frontend  Created                                                                   0.5s
+ ✔ Network 11blue-vs-green-app_backend   Created                                                                   0.1s
+ ✔ Volume "11blue-vs-green-app_pgdata"   Created                                                                   0.0s
+ ✔ Container vote                        Started                                                                  14.6s
+ ✔ Container db                          Started                                                                  14.3s
+ ✔ Container result                      Started                                                                  14.8s
+ ✔ Container worker                      Started                                                                  14.1s
+ ✔ Container redis                       Started                                                                  13.9s
+PS C:\Users\tasheva\Lesson5\Resources\11.Blue-VS-Green-App> docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS          PORTS                  NAMES
+2656384fe8ab   redis                        "docker-entrypoint.s…"   26 seconds ago   Up 12 seconds   6379/tcp               redis
+dd26f715df77   postgres                     "docker-entrypoint.s…"   26 seconds ago   Up 12 seconds   5432/tcp               db
+6cf5a4334917   11blue-vs-green-app-result   "docker-entrypoint.s…"   26 seconds ago   Up 12 seconds   0.0.0.0:5001->80/tcp   result
+ee084854813a   11blue-vs-green-app-worker   "/bin/sh -c 'dotnet …"   26 seconds ago   Up 12 seconds                          worker
+756f5eb0347c   11blue-vs-green-app-vote     "/bin/sh -c 'python …"   26 seconds ago   Up 12 seconds   0.0.0.0:5000->80/tcp   vote
