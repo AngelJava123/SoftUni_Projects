@@ -1,0 +1,471 @@
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> az login
+A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "4a06d40c-e447-42be-baef-dd0421ed10bd",
+    "id": "f2389761-fd4e-49ed-bdea-bd44e2c10539",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure for Students",
+    "state": "Enabled",
+    "tenantId": "4a06d40c-e447-42be-baef-dd0421ed10bd",
+    "user": {
+      "name": "AngelVTashev@students.softuni.bg",
+      "type": "user"
+    }
+  }
+]
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> az group create --name "taskBoardResourceGroup" --location westeurope
+{
+  "id": "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/taskBoardResourceGroup",
+  "location": "westeurope",
+  "managedBy": null,
+  "name": "taskBoardResourceGroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> az acr create --resource-group taskBoardResourceGroup --name taskboardcrangel --sku Basic
+{
+  "adminUserEnabled": false,
+  "anonymousPullEnabled": false,
+  "creationDate": "2023-06-01T21:21:11.132591+00:00",
+  "dataEndpointEnabled": false,
+  "dataEndpointHostNames": [],
+  "encryption": {
+    "keyVaultProperties": null,
+    "status": "disabled"
+  },
+  "id": "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/taskBoardResourceGroup/providers/Microsoft.ContainerRegistry/registries/taskboardcrangel",
+  "identity": null,
+  "location": "westeurope",
+  "loginServer": "taskboardcrangel.azurecr.io",
+  "name": "taskboardcrangel",
+  "networkRuleBypassOptions": "AzureServices",
+  "networkRuleSet": null,
+  "policies": {
+    "azureAdAuthenticationAsArmPolicy": {
+      "status": "enabled"
+    },
+    "exportPolicy": {
+      "status": "enabled"
+    },
+    "quarantinePolicy": {
+      "status": "disabled"
+    },
+    "retentionPolicy": {
+      "days": 7,
+      "lastUpdatedTime": "2023-06-01T21:21:19.318422+00:00",
+      "status": "disabled"
+    },
+    "softDeletePolicy": {
+      "lastUpdatedTime": "2023-06-01T21:21:19.318422+00:00",
+      "retentionDays": 7,
+      "status": "disabled"
+    },
+    "trustPolicy": {
+      "status": "disabled",
+      "type": "Notary"
+    }
+  },
+  "privateEndpointConnections": [],
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "taskBoardResourceGroup",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "status": null,
+  "systemData": {
+    "createdAt": "2023-06-01T21:21:11.132591+00:00",
+    "createdBy": "AngelVTashev@students.softuni.bg",
+    "createdByType": "User",
+    "lastModifiedAt": "2023-06-01T21:21:11.132591+00:00",
+    "lastModifiedBy": "AngelVTashev@students.softuni.bg",
+    "lastModifiedByType": "User"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries",
+  "zoneRedundancy": "Disabled"
+}
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker context ls
+NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT                             KUBERNETES ENDPOINT   ORCHESTRATOR
+default *           moby                Current DOCKER_HOST based configuration   npipe:////./pipe/docker_engine                  
+desktop-linux       moby                                                          npipe:////./pipe/dockerDesktopLinuxEngine       
+[+] Running 4/4heva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> az acr login --name taskboardcrangel
+ ✔ sqlserver 3 layers [⣿⣿⣿]      0B/0B      Pulled                                                                         444.2s
+   ✔ bbfe84ab0c13 Pull complete                                                                                             58.0s
+   ✔ a10fc635e35b Pull complete                                                                                            431.5s
+   ✔ 5e5ce06e3adb Pull complete                                                                                            442.5s
+[+] Building 46.6s (19/19) FINISHED
+ => [internal] load build definition from Dockerfile                                                                         0.2s
+ => => transferring dockerfile: 875B                                                                                         0.0s
+ => [internal] load .dockerignore                                                                                            0.1s
+ => => transferring context: 2B                                                                                              0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:6.0                                                            0.4s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:6.0                                                         0.5s
+ => [internal] load build context                                                                                            0.2s
+ => => transferring context: 9.04kB                                                                                          0.1s
+ => [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:bbfa9e57570a875dc888d5ef63bc2114cd7bdb75aefe433a17af42220a2d  0.0s
+ => [build 1/8] FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a70664083f7bb3  0.0s
+ => CACHED [build 2/8] WORKDIR /src                                                                                          0.0s
+ => CACHED [build 3/8] COPY [TaskBoard.WebApp/TaskBoard.WebApp.csproj, TaskBoard.WebApp/]                                    0.0s
+ => CACHED [build 4/8] COPY [TaskBoard.Data/TaskBoard.Data.csproj, TaskBoard.Data/]                                          0.0s
+ => CACHED [build 5/8] RUN dotnet restore "TaskBoard.WebApp/TaskBoard.WebApp.csproj"                                         0.0s
+ => [build 6/8] COPY . .                                                                                                     3.0s
+ => [build 7/8] WORKDIR /src/TaskBoard.WebApp                                                                                0.2s
+ => [build 8/8] RUN dotnet build "TaskBoard.WebApp.csproj" -c Release -o /app/build                                         22.6s
+ => [publish 1/1] RUN dotnet publish "TaskBoard.WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false               18.9s
+ => CACHED [base 2/2] WORKDIR /app                                                                                           0.0s
+ => CACHED [final 1/2] WORKDIR /app                                                                                          0.0s
+ => CACHED [final 2/2] COPY --from=publish /app/publish .                                                                    0.0s
+ => exporting to image                                                                                                       0.1s
+ => => exporting layers                                                                                                      0.0s
+ => => writing image sha256:401f306b3ee693ab5e9e41effc029b68968ccb3bcfda093e69c8237499530048                                 0.0s
+ => => naming to docker.io/library/06taskboard-aspnet-app-web-app                                                            0.0s
+[+] Running 4/4
+ ✔ Network 06taskboard-aspnet-app_default   Created                                                                          0.4s
+ ✔ Volume "06taskboard-aspnet-app_sqldata"  Created                                                                          0.1s
+ ✔ Container web-app                        Created                                                                          5.6s
+ ✔ Container sqlserver                      Created                                                                          5.6s
+Attaching to sqlserver, web-app
+sqlserver  | SQL Server 2022 will run as non-root by default.
+sqlserver  | This container is running as user mssql.
+sqlserver  | To learn more visit https://go.microsoft.com/fwlink/?linkid=2099216.
+web-app    | warn: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository[60]
+web-app    |       Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+web-app    | warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+web-app    |       No XML encryptor configured. Key {9e82cff5-926d-4d86-b8ab-de5bba6ab704} may be persisted to storage in unencrypted form.
+web-app    | info: Microsoft.Hosting.Lifetime[14]
+web-app    |       Now listening on: http://[::]:80
+web-app    | info: Microsoft.Hosting.Lifetime[0]
+web-app    |       Application started. Press Ctrl+C to shut down.
+web-app    | info: Microsoft.Hosting.Lifetime[0]
+web-app    |       Hosting environment: Production
+web-app    | info: Microsoft.Hosting.Lifetime[0]
+web-app    |       Content root path: /app/
+sqlserver  | 2023-06-01 21:32:04.45 Server      Setup step is copying system data file 'C:\templatedata\master.mdf' to '/var/opt/mssql/data/master.mdf'.
+2023-06-01 21:32:04.69 Server      Did not find an existing master data file /var/opt/mssql/data/master.mdf, copying the missing default master and other system database files. If you have moved the database location, but not moved the database files, startup may fail. To repair: shutdown SQL Server, move the master database to configured location, and restart.
+2023-06-01 21:32:04.70 Server      Setup step is copying system data file 'C:\templatedata\mastlog.ldf' to '/var/opt/mssql/data/mastlog.ldf'.
+2023-06-01 21:32:04.91 Server      Setup step is copying system data file 'C:\templatedata\model.mdf' to '/var/opt/mssql/data/model.mdf'.
+2023-06-01 21:32:05.45 Server      Setup step is copying system data file 'C:\templatedata\modellog.ldf' to '/var/opt/mssql/data/modellog.ldf'.
+2023-06-01 21:32:05.72 Server      Setup step is copying system data file 'C:\templatedata\msdbdata.mdf' to '/var/opt/mssql/data/msdbdata.mdf'.
+2023-06-01 21:32:07.89 Server      Setup step is copying system data file 'C:\templatedata\msdblog.ldf' to '/var/opt/mssql/data/msdblog.ldf'.
+2023-06-01 21:32:07.91 Server      Setup step is copying system data file 'C:\templatedata\model_replicatedmaster.mdf' to '/var/opt/mssql/data/model_replicatedmaster.mdf'.
+2023-06-01 21:32:08.05 Server      Setup step is copying system data file 'C:\templatedata\model_replicatedmaster.ldf' to '/var/opt/mssql/data/model_replicatedmaster.ldf'.
+2023-06-01 21:32:08.09 Server      Setup step is copying system data file 'C:\templatedata\model_msdbdata.mdf' to '/var/opt/mssql/data/model_msdbdata.mdf'.
+2023-06-01 21:32:08.89 Server      Setup step is copying system data file 'C:\templatedata\model_msdblog.ldf' to '/var/opt/mssql/data/model_msdblog.ldf'.
+2023-06-01 21:32:08.99 Server      Microsoft SQL Server 2022 (RTM-CU4) (KB5026717) - 16.0.4035.4 (X64)
+sqlserveMay  1 2023 10:34:45
+sqlserveCopyright (C) 2022 Microsoft Corporation
+sqlserveDeveloper Edition (64-bit) on Linux (Ubuntu 20.04.6 LTS) <X64>
+2023-06-01 21:32:09.00 Server      UTC adjustment: 0:00
+2023-06-01 21:32:09.00 Server      (c) Microsoft Corporation.
+2023-06-01 21:32:09.00 Server      All rights reserved.
+2023-06-01 21:32:09.00 Server      Server process ID is 468.
+2023-06-01 21:32:09.01 Server      Logging SQL Server messages in file '/var/opt/mssql/log/errorlog'.
+2023-06-01 21:32:09.02 Server      Registry startup parameters:
+sqlserve -d /var/opt/mssql/data/master.mdf
+sqlserve -l /var/opt/mssql/data/mastlog.ldf
+sqlserve -e /var/opt/mssql/log/errorlog
+2023-06-01 21:32:09.03 Server      SQL Server detected 1 sockets with 4 cores per socket and 8 logical processors per socket, 8 total logical processors; using 8 logical processors based on SQL Server licensing. This is an informational message; no user action is required.
+2023-06-01 21:32:09.04 Server      SQL Server is starting at normal priority base (=7). This is an informational message only. No user action is required.
+2023-06-01 21:32:09.04 Server      Detected 4969 MB of RAM. This is an informational message; no user action is required.
+2023-06-01 21:32:09.05 Server      Using conventional memory in the memory manager.
+2023-06-01 21:32:09.05 Server      Detected pause instruction latency: 19 cycles.
+2023-06-01 21:32:09.06 Server      Page exclusion bitmap is enabled.
+2023-06-01 21:32:09.56 Server      Buffer pool extension is not supported on Linux platform.
+2023-06-01 21:32:09.56 Server      Buffer Pool: Allocating 1048576 bytes for 660216 hashPages.
+2023-06-01 21:32:10.53 Server      Buffer pool extension is already disabled. No action is necessary.
+2023-06-01 21:32:11.50 Server      Installing Client TLS certificates to the store.
+2023-06-01 21:32:11.63 Server      Error searching first file in /var/opt/mssql/security/ca-certificates: 3(The system cannot find the path specified.)
+2023-06-01 21:32:11.64 Server      CPU vectorization level(s) detected:  SSE SSE2 SSE3 SSSE3 SSE41 SSE42 AVX AVX2 POPCNT BMI1 BMI2
+2023-06-01 21:32:13.28 Server      Successfully initialized the TLS configuration. Allowed TLS protocol versions are ['1.0 1.1 1.2']. Allowed TLS ciphers are ['ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-GCM-SHA256:!DHE-RSA-AES256-SHA:!DHE-RSA-AES128-SHA'].
+2023-06-01 21:32:13.61 Server      Query Store settings initialized with enabled = 1,
+2023-06-01 21:32:13.65 Server      The maximum number of dedicated administrator connections for this instance is '1'
+2023-06-01 21:32:13.66 Server      Node configuration: node 0: CPU mask: 0x00000000000000ff:0 Active CPU mask: 0x00000000000000ff:0. This message provides a description of the NUMA configuration for this computer. This is an informational message only. No user action is required.
+2023-06-01 21:32:14.82 Server      Using dynamic lock allocation.  Initial allocation of 2500 Lock blocks and 5000 Lock Owner blocks per node.  This is an informational message only.  No user action is required.
+2023-06-01 21:32:15.11 Server      CLR version v4.0.30319 loaded.
+2023-06-01 21:32:15.28 Server      In-Memory OLTP initialized on lowend machine.
+2023-06-01 21:32:15.84 Server      [INFO] Created Extended Events session 'hkenginexesession'
+2023-06-01 21:32:15.85 Server      Database Instant File Initialization: enabled. For security and performance considerations see the topic 'Database Instant File Initialization' in SQL Server Books Online. This is an informational message only. No user action is required.
+ForceFlush is enabled for this instance.
+2023-06-01 21:32:15.93 Server      Total Log Writer threads: 2, Node CPUs: 4, Nodes: 1, Log Writer threads per CPU: 1, Log Writer threads per Node: 2
+2023-06-01 21:32:15.99 Server      clflushopt is selected for pmem flush operation.
+2023-06-01 21:32:16.00 Server      Software Usage Metrics is disabled.
+2023-06-01 21:32:16.69 spid26s     [1]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:16.71 spid26s     Starting up database 'master'.
+ForceFlush feature is enabled for log durability.
+2023-06-01 21:32:17.03 spid26s     The tail of the log for database master is being rewritten to match the new sector size of 4096 bytes.  1024 bytes at offset 396288 in file /var/opt/mssql/data/mastlog.ldf will be written.
+2023-06-01 21:32:17.27 spid26s     Converting database 'master' from version 927 to the current version 957.
+2023-06-01 21:32:17.27 spid26s     Database 'master' running the upgrade step from version 927 to version 928.
+2023-06-01 21:32:17.41 spid26s     Database 'master' running the upgrade step from version 928 to version 929.
+2023-06-01 21:32:17.58 spid26s     Database 'master' running the upgrade step from version 929 to version 930.
+2023-06-01 21:32:17.65 spid26s     Database 'master' running the upgrade step from version 930 to version 931.
+2023-06-01 21:32:17.70 spid26s     Database 'master' running the upgrade step from version 931 to version 932.
+2023-06-01 21:32:17.75 spid26s     Database 'master' running the upgrade step from version 932 to version 933.
+2023-06-01 21:32:17.82 spid26s     Database 'master' running the upgrade step from version 933 to version 934.
+2023-06-01 21:32:17.88 spid26s     Database 'master' running the upgrade step from version 934 to version 935.
+2023-06-01 21:32:17.98 spid26s     Database 'master' running the upgrade step from version 935 to version 936.
+2023-06-01 21:32:18.03 spid26s     Database 'master' running the upgrade step from version 936 to version 937.
+2023-06-01 21:32:18.09 spid26s     Database 'master' running the upgrade step from version 937 to version 938.
+2023-06-01 21:32:18.18 spid26s     Database 'master' running the upgrade step from version 938 to version 939.
+2023-06-01 21:32:18.23 spid26s     Database 'master' running the upgrade step from version 939 to version 940.
+2023-06-01 21:32:18.29 spid26s     Database 'master' running the upgrade step from version 940 to version 941.
+2023-06-01 21:32:18.33 spid26s     Database 'master' running the upgrade step from version 941 to version 942.
+2023-06-01 21:32:18.38 spid26s     Database 'master' running the upgrade step from version 942 to version 943.
+2023-06-01 21:32:18.41 Server      Common language runtime (CLR) functionality initialized.
+2023-06-01 21:32:18.52 spid26s     Database 'master' running the upgrade step from version 943 to version 944.
+2023-06-01 21:32:18.57 spid26s     Database 'master' running the upgrade step from version 944 to version 945.
+2023-06-01 21:32:18.65 spid26s     Database 'master' running the upgrade step from version 945 to version 946.
+2023-06-01 21:32:18.73 spid26s     Database 'master' running the upgrade step from version 946 to version 947.
+2023-06-01 21:32:18.79 spid26s     Database 'master' running the upgrade step from version 947 to version 948.
+2023-06-01 21:32:18.83 spid26s     Database 'master' running the upgrade step from version 948 to version 949.
+2023-06-01 21:32:18.88 spid26s     Database 'master' running the upgrade step from version 949 to version 950.
+2023-06-01 21:32:18.97 spid26s     Database 'master' running the upgrade step from version 950 to version 951.
+2023-06-01 21:32:19.06 spid26s     Database 'master' running the upgrade step from version 951 to version 952.
+2023-06-01 21:32:19.10 spid26s     Database 'master' running the upgrade step from version 952 to version 953.
+2023-06-01 21:32:19.17 spid26s     Database 'master' running the upgrade step from version 953 to version 954.
+2023-06-01 21:32:19.22 spid26s     Database 'master' running the upgrade step from version 954 to version 955.
+2023-06-01 21:32:19.27 spid26s     Database 'master' running the upgrade step from version 955 to version 956.
+2023-06-01 21:32:19.36 spid26s     Database 'master' running the upgrade step from version 956 to version 957.
+2023-06-01 21:32:19.67 spid34s     [32767]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:19.67 spid34s     Starting up database 'mssqlsystemresource'.
+2023-06-01 21:32:19.69 spid34s     The resource database build version is 16.00.4035. This is an informational message only. No user action is required.
+2023-06-01 21:32:19.71 spid37s     Password policy update was successful.
+2023-06-01 21:32:19.77 spid34s     [3]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:19.77 spid34s     Starting up database 'model'.
+2023-06-01 21:32:19.91 spid26s     [32762]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:19.92 spid26s     Starting up database 'model_replicatedmaster'.
+2023-06-01 21:32:19.97 spid34s     The tail of the log for database model is being rewritten to match the new sector size of 4096 bytes.  2048 bytes at offset 75776 in file /var/opt/mssql/data/modellog.ldf will be written.
+2023-06-01 21:32:20.10 spid26s     The tail of the log for database model_replicatedmaster is being rewritten to match the new sector size of 4096 bytes.  2560 bytes at offset 99840 in file /var/opt/mssql/data/model_replicatedmaster.ldf will be written.
+2023-06-01 21:32:20.10 spid34s     Converting database 'model' from version 927 to the current version 957.
+2023-06-01 21:32:20.11 spid34s     Database 'model' running the upgrade step from version 927 to version 928.
+2023-06-01 21:32:20.16 spid37s     A self-generated certificate was successfully loaded for encryption.
+2023-06-01 21:32:20.17 spid37s     Server is listening on [ 'any' <ipv6> 1433] accept sockets 1.
+2023-06-01 21:32:20.17 spid37s     Server is listening on [ 'any' <ipv4> 1433] accept sockets 1.
+2023-06-01 21:32:20.19 Server      Server is listening on [ ::1 <ipv6> 1434] accept sockets 1.
+2023-06-01 21:32:20.21 Server      Server is listening on [ 127.0.0.1 <ipv4> 1434] accept sockets 1.
+2023-06-01 21:32:20.23 spid34s     Database 'model' running the upgrade step from version 928 to version 929.
+2023-06-01 21:32:20.23 Server      Dedicated admin connection support was established for listening locally on port 1434.
+2023-06-01 21:32:20.24 spid37s     Server is listening on [ ::1 <ipv6> 1431] accept sockets 1.
+2023-06-01 21:32:20.25 spid37s     Server is listening on [ 127.0.0.1 <ipv4> 1431] accept sockets 1.
+2023-06-01 21:32:20.25 spid37s     SQL Server is now ready for client connections. This is an informational message; no user action is required.
+2023-06-01 21:32:20.42 spid26s     Converting database 'model_replicatedmaster' from version 927 to the current version 957.
+2023-06-01 21:32:20.43 spid34s     Database 'model' running the upgrade step from version 929 to version 930.
+2023-06-01 21:32:20.44 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 927 to version 928.
+2023-06-01 21:32:20.55 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 928 to version 929.
+2023-06-01 21:32:20.55 spid34s     Database 'model' running the upgrade step from version 930 to version 931.
+2023-06-01 21:32:20.63 spid34s     Database 'model' running the upgrade step from version 931 to version 932.
+2023-06-01 21:32:20.69 spid34s     Database 'model' running the upgrade step from version 932 to version 933.
+2023-06-01 21:32:20.76 spid34s     Database 'model' running the upgrade step from version 933 to version 934.
+2023-06-01 21:32:20.81 spid34s     Database 'model' running the upgrade step from version 934 to version 935.
+2023-06-01 21:32:20.91 spid34s     Database 'model' running the upgrade step from version 935 to version 936.
+2023-06-01 21:32:20.98 spid34s     Database 'model' running the upgrade step from version 936 to version 937.
+2023-06-01 21:32:21.07 spid34s     Database 'model' running the upgrade step from version 937 to version 938.
+2023-06-01 21:32:21.14 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 929 to version 930.
+2023-06-01 21:32:21.19 spid34s     Database 'model' running the upgrade step from version 938 to version 939.
+2023-06-01 21:32:21.28 spid34s     Database 'model' running the upgrade step from version 939 to version 940.
+2023-06-01 21:32:21.34 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 930 to version 931.
+2023-06-01 21:32:21.36 spid34s     Database 'model' running the upgrade step from version 940 to version 941.
+2023-06-01 21:32:21.40 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 931 to version 932.
+2023-06-01 21:32:21.44 spid34s     Database 'model' running the upgrade step from version 941 to version 942.
+2023-06-01 21:32:21.48 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 932 to version 933.
+2023-06-01 21:32:21.52 spid34s     Database 'model' running the upgrade step from version 942 to version 943.
+2023-06-01 21:32:21.58 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 933 to version 934.
+2023-06-01 21:32:21.65 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 934 to version 935.
+2023-06-01 21:32:21.74 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 935 to version 936.
+2023-06-01 21:32:21.74 spid34s     Database 'model' running the upgrade step from version 943 to version 944.
+2023-06-01 21:32:21.83 spid34s     Database 'model' running the upgrade step from version 944 to version 945.
+2023-06-01 21:32:21.83 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 936 to version 937.
+2023-06-01 21:32:21.89 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 937 to version 938.
+2023-06-01 21:32:21.91 spid34s     Database 'model' running the upgrade step from version 945 to version 946.
+2023-06-01 21:32:21.99 spid34s     Database 'model' running the upgrade step from version 946 to version 947.
+2023-06-01 21:32:21.99 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 938 to version 939.
+2023-06-01 21:32:22.06 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 939 to version 940.
+2023-06-01 21:32:22.06 spid34s     Database 'model' running the upgrade step from version 947 to version 948.
+2023-06-01 21:32:22.18 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 940 to version 941.
+2023-06-01 21:32:22.18 spid34s     Database 'model' running the upgrade step from version 948 to version 949.
+2023-06-01 21:32:22.26 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 941 to version 942.
+2023-06-01 21:32:22.26 spid34s     Database 'model' running the upgrade step from version 949 to version 950.
+2023-06-01 21:32:22.36 spid34s     Database 'model' running the upgrade step from version 950 to version 951.
+2023-06-01 21:32:22.36 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 942 to version 943.
+2023-06-01 21:32:22.47 spid34s     Database 'model' running the upgrade step from version 951 to version 952.
+2023-06-01 21:32:22.56 spid34s     Database 'model' running the upgrade step from version 952 to version 953.
+2023-06-01 21:32:22.63 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 943 to version 944.
+2023-06-01 21:32:22.70 spid34s     Database 'model' running the upgrade step from version 953 to version 954.
+2023-06-01 21:32:22.73 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 944 to version 945.
+2023-06-01 21:32:22.80 spid34s     Database 'model' running the upgrade step from version 954 to version 955.
+2023-06-01 21:32:22.85 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 945 to version 946.
+2023-06-01 21:32:22.86 spid34s     Database 'model' running the upgrade step from version 955 to version 956.
+2023-06-01 21:32:22.94 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 946 to version 947.
+2023-06-01 21:32:22.97 spid34s     Database 'model' running the upgrade step from version 956 to version 957.
+2023-06-01 21:32:23.03 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 947 to version 948.
+2023-06-01 21:32:23.12 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 948 to version 949.
+2023-06-01 21:32:23.21 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 949 to version 950.
+2023-06-01 21:32:23.28 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 950 to version 951.
+2023-06-01 21:32:23.42 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 951 to version 952.
+2023-06-01 21:32:23.48 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 952 to version 953.
+2023-06-01 21:32:23.53 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 953 to version 954.
+2023-06-01 21:32:23.57 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 954 to version 955.
+2023-06-01 21:32:23.69 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 955 to version 956.
+2023-06-01 21:32:23.75 spid26s     Database 'model_replicatedmaster' running the upgrade step from version 956 to version 957.
+2023-06-01 21:32:27.34 spid26s     [32761]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:27.35 spid26s     Starting up database 'model_msdb'.
+2023-06-01 21:32:28.20 spid26s     Converting database 'model_msdb' from version 927 to the current version 957.
+2023-06-01 21:32:28.20 spid26s     Database 'model_msdb' running the upgrade step from version 927 to version 928.
+2023-06-01 21:32:28.30 spid26s     Database 'model_msdb' running the upgrade step from version 928 to version 929.
+2023-06-01 21:32:28.52 spid26s     Database 'model_msdb' running the upgrade step from version 929 to version 930.
+2023-06-01 21:32:28.64 spid26s     Database 'model_msdb' running the upgrade step from version 930 to version 931.
+2023-06-01 21:32:28.75 spid26s     Database 'model_msdb' running the upgrade step from version 931 to version 932.
+2023-06-01 21:32:28.86 spid26s     Database 'model_msdb' running the upgrade step from version 932 to version 933.
+2023-06-01 21:32:29.23 spid26s     Database 'model_msdb' running the upgrade step from version 933 to version 934.
+2023-06-01 21:32:29.33 spid26s     Database 'model_msdb' running the upgrade step from version 934 to version 935.
+2023-06-01 21:32:29.45 spid26s     Database 'model_msdb' running the upgrade step from version 935 to version 936.
+2023-06-01 21:32:29.57 spid26s     Database 'model_msdb' running the upgrade step from version 936 to version 937.
+2023-06-01 21:32:29.71 spid26s     Database 'model_msdb' running the upgrade step from version 937 to version 938.
+2023-06-01 21:32:29.86 spid26s     Database 'model_msdb' running the upgrade step from version 938 to version 939.
+2023-06-01 21:32:29.97 spid26s     Database 'model_msdb' running the upgrade step from version 939 to version 940.
+2023-06-01 21:32:30.09 spid26s     Database 'model_msdb' running the upgrade step from version 940 to version 941.
+2023-06-01 21:32:30.22 spid26s     Database 'model_msdb' running the upgrade step from version 941 to version 942.
+2023-06-01 21:32:30.34 spid26s     Database 'model_msdb' running the upgrade step from version 942 to version 943.
+2023-06-01 21:32:30.62 spid26s     Database 'model_msdb' running the upgrade step from version 943 to version 944.
+2023-06-01 21:32:30.67 spid26s     Database 'model_msdb' running the upgrade step from version 944 to version 945.
+2023-06-01 21:32:30.75 spid26s     Database 'model_msdb' running the upgrade step from version 945 to version 946.
+2023-06-01 21:32:30.79 spid26s     Database 'model_msdb' running the upgrade step from version 946 to version 947.
+2023-06-01 21:32:30.84 spid26s     Database 'model_msdb' running the upgrade step from version 947 to version 948.
+2023-06-01 21:32:30.88 spid26s     Database 'model_msdb' running the upgrade step from version 948 to version 949.
+2023-06-01 21:32:30.94 spid26s     Database 'model_msdb' running the upgrade step from version 949 to version 950.
+2023-06-01 21:32:30.98 spid26s     Database 'model_msdb' running the upgrade step from version 950 to version 951.
+2023-06-01 21:32:31.04 spid26s     Database 'model_msdb' running the upgrade step from version 951 to version 952.
+2023-06-01 21:32:31.08 spid26s     Database 'model_msdb' running the upgrade step from version 952 to version 953.
+2023-06-01 21:32:31.13 spid26s     Database 'model_msdb' running the upgrade step from version 953 to version 954.
+2023-06-01 21:32:31.17 spid26s     Database 'model_msdb' running the upgrade step from version 954 to version 955.
+2023-06-01 21:32:31.21 spid26s     Database 'model_msdb' running the upgrade step from version 955 to version 956.
+2023-06-01 21:32:31.31 spid26s     Database 'model_msdb' running the upgrade step from version 956 to version 957.
+2023-06-01 21:32:31.57 spid26s     Resource governor reconfiguration succeeded.
+2023-06-01 21:32:31.57 spid45s     External governance manager initialized
+2023-06-01 21:32:31.57 spid45s     Attribute synchronization manager initialized
+2023-06-01 21:32:31.59 spid26s     SQL Server Audit is starting the audits. This is an informational message. No user action is required.
+2023-06-01 21:32:31.60 spid26s     SQL Server Audit has started the audits. This is an informational message. No user action is required.
+2023-06-01 21:32:31.62 spid26s     XE session 'system_health' started.
+2023-06-01 21:32:32.08 spid26s     SQL Trace ID 1 was started by login "sa".
+2023-06-01 21:32:32.12 spid26s     Server name is '1f33632017f7'. This is an informational message only. No user action is required.
+2023-06-01 21:32:32.31 spid34s     Clearing tempdb database.
+2023-06-01 21:32:32.32 spid72s     Always On: The availability replica manager is starting. This is an informational message only. No user action is required.
+2023-06-01 21:32:32.32 spid73s     [4]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:32.32 spid72s     Always On: The availability replica manager is waiting for the instance of SQL Server to allow client connections. This is an informational message only. No user action is required.
+2023-06-01 21:32:32.33 spid73s     Starting up database 'msdb'.
+2023-06-01 21:32:32.84 spid73s     Converting database 'msdb' from version 927 to the current version 957.
+2023-06-01 21:32:32.84 spid73s     Database 'msdb' running the upgrade step from version 927 to version 928.
+2023-06-01 21:32:33.11 spid34s     [2]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:33.11 spid34s     Starting up database 'tempdb'.
+2023-06-01 21:32:33.14 spid73s     Database 'msdb' running the upgrade step from version 928 to version 929.
+2023-06-01 21:32:33.30 spid73s     Database 'msdb' running the upgrade step from version 929 to version 930.
+2023-06-01 21:32:33.33 spid34s     The tempdb database has 1 data file(s).
+2023-06-01 21:32:33.35 spid72s     The Service Broker endpoint is in disabled or stopped state.
+2023-06-01 21:32:33.36 spid72s     The Database Mirroring endpoint is in disabled or stopped state.
+2023-06-01 21:32:33.42 spid73s     Database 'msdb' running the upgrade step from version 930 to version 931.
+2023-06-01 21:32:33.48 spid73s     Database 'msdb' running the upgrade step from version 931 to version 932.
+2023-06-01 21:32:33.54 spid73s     Database 'msdb' running the upgrade step from version 932 to version 933.
+2023-06-01 21:32:33.64 spid72s     Service Broker manager has started.
+2023-06-01 21:32:33.66 spid73s     Database 'msdb' running the upgrade step from version 933 to version 934.
+2023-06-01 21:32:33.84 spid73s     Database 'msdb' running the upgrade step from version 934 to version 935.
+2023-06-01 21:32:33.89 spid73s     Database 'msdb' running the upgrade step from version 935 to version 936.
+2023-06-01 21:32:33.94 spid73s     Database 'msdb' running the upgrade step from version 936 to version 937.
+2023-06-01 21:32:33.98 spid73s     Database 'msdb' running the upgrade step from version 937 to version 938.
+2023-06-01 21:32:34.03 spid73s     Database 'msdb' running the upgrade step from version 938 to version 939.
+2023-06-01 21:32:34.07 spid73s     Database 'msdb' running the upgrade step from version 939 to version 940.
+2023-06-01 21:32:34.12 spid73s     Database 'msdb' running the upgrade step from version 940 to version 941.
+2023-06-01 21:32:34.25 spid73s     Database 'msdb' running the upgrade step from version 941 to version 942.
+2023-06-01 21:32:34.30 spid73s     Database 'msdb' running the upgrade step from version 942 to version 943.
+2023-06-01 21:32:34.47 spid73s     Database 'msdb' running the upgrade step from version 943 to version 944.
+2023-06-01 21:32:34.51 spid73s     Database 'msdb' running the upgrade step from version 944 to version 945.
+2023-06-01 21:32:34.64 spid73s     Database 'msdb' running the upgrade step from version 945 to version 946.
+2023-06-01 21:32:34.72 spid73s     Database 'msdb' running the upgrade step from version 946 to version 947.
+2023-06-01 21:32:34.79 spid73s     Database 'msdb' running the upgrade step from version 947 to version 948.
+2023-06-01 21:32:34.86 spid73s     Database 'msdb' running the upgrade step from version 948 to version 949.
+2023-06-01 21:32:34.91 spid73s     Database 'msdb' running the upgrade step from version 949 to version 950.
+2023-06-01 21:32:34.96 spid73s     Database 'msdb' running the upgrade step from version 950 to version 951.
+2023-06-01 21:32:35.03 spid73s     Database 'msdb' running the upgrade step from version 951 to version 952.
+2023-06-01 21:32:35.08 spid73s     Database 'msdb' running the upgrade step from version 952 to version 953.
+2023-06-01 21:32:35.14 spid73s     Database 'msdb' running the upgrade step from version 953 to version 954.
+2023-06-01 21:32:35.19 spid73s     Database 'msdb' running the upgrade step from version 954 to version 955.
+2023-06-01 21:32:35.24 spid73s     Database 'msdb' running the upgrade step from version 955 to version 956.
+2023-06-01 21:32:35.39 spid73s     Database 'msdb' running the upgrade step from version 956 to version 957.
+2023-06-01 21:32:35.74 spid26s     Recovery is complete. This is an informational message only. No user action is required.
+2023-06-01 21:32:35.82 spid35s     The default language (LCID 0) has been set for engine and full-text services.
+2023-06-01 21:32:36.65 spid35s     The tempdb database has 8 data file(s).
+web-app    | warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+web-app    |       Failed to determine the https port for redirect.
+2023-06-01 21:32:54.31 Logon       Error: 18456, Severity: 14, State: 38.
+2023-06-01 21:32:54.31 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'MyDB'. [CLIENT: 172.28.0.3]
+2023-06-01 21:32:55.78 spid73      [5]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:55.79 spid73      Starting up database 'MyDB'.
+2023-06-01 21:32:55.79 spid73      RemoveStaleDbEntries: Cleanup of stale DB entries called for database ID: [5]
+2023-06-01 21:32:55.79 spid73      RemoveStaleDbEntries: Cleanup of stale DB entries skipped because master db is not memory optimized. DbId: 5.
+2023-06-01 21:32:55.97 spid73      Parallel redo is started for database 'MyDB' with worker pool size [4].
+2023-06-01 21:32:56.14 spid73      Parallel redo is shutdown for database 'MyDB' with worker pool size [4].
+2023-06-01 21:32:56.49 spid73      Setting database option READ_COMMITTED_SNAPSHOT to ON for database 'MyDB'.
+RecoveryUnit::Shutdown. IsOnline: 02023-06-01 21:32:56.71 spid73      RBPEX::NotifyFileShutdown: Called for database ID: [5], file Id [0]
+2023-06-01 21:32:56.79 spid73      [5]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1. ConcurrentGAMUpdate: 1. ConcurrentSGAMUpdate: 1, CleanupUnderUserTransaction: 0. TranLevelPVS: 0
+2023-06-01 21:32:56.79 spid73      Starting up database 'MyDB'.
+2023-06-01 21:32:56.79 spid73      RemoveStaleDbEntries: Cleanup of stale DB entries called for database ID: [5]
+2023-06-01 21:32:56.80 spid73      RemoveStaleDbEntries: Cleanup of stale DB entries skipped because master db is not memory optimized. DbId: 5.
+2023-06-01 21:32:56.95 spid73      Parallel redo is started for database 'MyDB' with worker pool size [4].
+2023-06-01 21:32:57.16 spid50s     Parallel redo is shutdown for database 'MyDB' with worker pool size [4].
+Gracefully stopping... (press Ctrl+C again to force)
+Aborting on container exit...
+[+] Running 2/2
+ ✔ Container sqlserver  Stopped                                                                                              5.4s
+ ✔ Container web-app    Stopped                                                                                              4.6s
+canceled
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker-compose build
+[+] Building 32.3s (19/19) FINISHED
+ => [internal] load build definition from Dockerfile                                                                         0.2s
+ => => transferring dockerfile: 875B                                                                                         0.0s
+ => [internal] load .dockerignore                                                                                            0.1s
+ => => transferring context: 2B                                                                                              0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:6.0                                                            0.7s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:6.0                                                         0.7s
+ => [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:bbfa9e57570a875dc888d5ef63bc2114cd7bdb75aefe433a17af42220a2d  0.0s
+ => [build 1/8] FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:525bad260e88b16bc32adf5ea4e392e883a7a038163758e0a70664083f7bb3  0.0s
+ => [internal] load build context                                                                                            0.1s
+ => => transferring context: 9.24kB                                                                                          0.0s
+ => CACHED [build 2/8] WORKDIR /src                                                                                          0.0s
+ => CACHED [build 3/8] COPY [TaskBoard.WebApp/TaskBoard.WebApp.csproj, TaskBoard.WebApp/]                                    0.0s
+ => CACHED [build 4/8] COPY [TaskBoard.Data/TaskBoard.Data.csproj, TaskBoard.Data/]                                          0.0s
+ => CACHED [build 5/8] RUN dotnet restore "TaskBoard.WebApp/TaskBoard.WebApp.csproj"                                         0.0s
+ => [build 6/8] COPY . .                                                                                                     0.4s
+ => [build 7/8] WORKDIR /src/TaskBoard.WebApp                                                                                0.2s
+ => [build 8/8] RUN dotnet build "TaskBoard.WebApp.csproj" -c Release -o /app/build                                         16.5s
+ => [publish 1/1] RUN dotnet publish "TaskBoard.WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false               13.6s
+ => CACHED [base 2/2] WORKDIR /app                                                                                           0.0s
+ => CACHED [final 1/2] WORKDIR /app                                                                                          0.0s
+ => CACHED [final 2/2] COPY --from=publish /app/publish .                                                                    0.0s
+ => exporting to image                                                                                                       0.0s
+ => => exporting layers                                                                                                      0.0s
+ => => writing image sha256:401f306b3ee693ab5e9e41effc029b68968ccb3bcfda093e69c8237499530048                                 0.0s
+ => => naming to taskboardcrangel.azurecr.io/taskboard-image                                                                 0.0s
+[+] Running 9/9heva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker-compose push
+ ✔ sqlserver Skipped                                                                                                         0.0s
+ ✔ Pushing web-app: 589ac7fbd7ce Pushed                                                                                     37.0s
+ ✔ Pushing web-app: 5f70bf18a086 Pushed                                                                                      2.2s
+ ✔ Pushing web-app: fc5f00c6b5b5 Pushed                                                                                      2.4s
+ ✔ Pushing web-app: 87edbcd48e4d Pushed                                                                                     18.8s
+ ✔ Pushing web-app: 4cf15d404e20 Pushed                                                                                      3.0s
+ ✔ Pushing web-app: 847d60aa4ab2 Pushed                                                                                     89.9s
+ ✔ Pushing web-app: b681f1ff1a0f Pushed                                                                                     70.7s
+ ✔ Pushing web-app: 8cbe4b54fa88 Pushed                                                                                     96.2s
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker context create aci taskboardcontext
+Using only available subscription : Azure for Students (f2389761-fd4e-49ed-bdea-bd44e2c10539)
+? Select a resource group taskBoardResourceGroup (westeurope)
+Successfully created aci context "taskboardcontext"
+PS C:\users\tasheva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker context use taskboardcontext
+taskboardcontext
+Current context is now "taskboardcontext"
+[+] Running 0/1heva\Lesson5\Resources-Deployment\06.TaskBoard-ASP.NET-App> docker-compose up
