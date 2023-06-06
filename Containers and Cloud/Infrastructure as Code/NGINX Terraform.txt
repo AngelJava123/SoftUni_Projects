@@ -1,0 +1,386 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> terraform -help
+Usage: terraform [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+The primary workflow commands are given first, followed by
+less common or more advanced commands.
+
+Main commands:
+  init          Prepare your working directory for other commands
+  validate      Check whether the configuration is valid
+  plan          Show changes required by the current configuration
+  apply         Create or update infrastructure
+  destroy       Destroy previously-created infrastructure
+
+All other commands:
+  console       Try Terraform expressions at an interactive command prompt
+  fmt           Reformat your configuration in the standard style
+  force-unlock  Release a stuck lock on the current workspace
+  get           Install or upgrade remote Terraform modules
+  graph         Generate a Graphviz graph of the steps in an operation
+  import        Associate existing infrastructure with a Terraform resource
+  login         Obtain and save credentials for a remote host
+  logout        Remove locally-stored credentials for a remote host
+  metadata      Metadata related commands
+  output        Show output values from your root module
+  providers     Show the providers required for this configuration
+  refresh       Update the state to match remote systems
+  show          Show the current state or a saved plan
+  state         Advanced state management
+  taint         Mark a resource instance as not fully functional
+  test          Experimental support for module integration testing
+  untaint       Remove the 'tainted' state from a resource instance
+  version       Show the current Terraform version
+  workspace     Workspace management
+
+Global options (use these before the subcommand, if any):
+  -chdir=DIR    Switch to a different working directory before executing the
+                given subcommand.
+  -help         Show this help output, or the help for a specified subcommand.
+  -version      An alias for the "version" subcommand.
+PS C:\Users\tasheva> terraform -v
+Terraform v1.4.6
+on windows_amd64
+PS C:\Users\tasheva> docker context ls
+NAME                 TYPE                DESCRIPTION                               DOCKER ENDPOINT                             KUBERNETES ENDPOINT   ORCHESTRATOR
+default              moby                Current DOCKER_HOST based configuration   npipe:////./pipe/docker_engine       
+desktop-linux        moby                                                          npipe:////./pipe/dockerDesktopLinuxEngine
+taskboardcontext *   aci                 taskBoardResourceGroup@westeurope                                              
+PS C:\Users\tasheva> docker context rm taskboardcontext -f
+taskboardcontext
+PS C:\Users\tasheva> docker context ls
+NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT                             KUBERNETES ENDPOINT   ORCHESTRATOR
+default *           moby                Current DOCKER_HOST based configuration   npipe:////./pipe/docker_engine        
+desktop-linux       moby                                                          npipe:////./pipe/dockerDesktopLinuxEngine
+PS C:\Users\tasheva> dir
+
+
+    Directory: C:\Users\tasheva
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2022-06-14   9:09 PM                .android
+d-----        2023-06-02  12:46 AM                .azure
+d-----        2023-06-07  12:16 AM                .docker
+d-----        2023-05-25  12:35 AM                .dotnet
+d-----        2023-04-05   9:53 PM                .gradle
+d-----        2022-09-04  11:09 PM                .jdks
+d-----        2022-03-06  12:40 AM                .m2
+d-----        2022-05-09  10:22 PM                .oracle_jre_usage
+d-----        2023-05-31   7:08 PM                .ssh
+d-----        2022-09-12  10:44 PM                .vscode
+d-----        2023-05-17   6:03 PM                .vue-templates
+d-r---        2021-04-23   5:13 AM                3D Objects
+d-r---        2021-04-23   5:13 AM                Contacts
+d-----        2023-05-17   7:06 PM                data
+d-r---        2023-06-05  11:38 PM                Desktop
+d-r---        2023-05-25  10:48 PM                Documents
+d-r---        2023-06-07  12:10 AM                Downloads
+d-r---        2021-04-23   5:13 AM                Favorites
+d-----        2021-04-06   9:27 PM                hpremote
+d-----        2023-03-08  12:33 AM                IdeaProjects
+d-----        2023-06-06  11:40 PM                Lesson5
+d-r---        2021-04-23   5:13 AM                Links
+d-r---        2021-04-23   5:13 AM                Music
+d-----        2023-05-21  11:07 AM                MyWebsite
+d-r---        2023-05-24  11:54 PM                OneDrive
+dar--l        2023-06-06  10:29 PM                OneDrive - HP Inc
+d-r---        2021-05-26  10:56 AM                Pictures
+d-----        2019-03-28  12:01 PM                Roaming
+d-r---        2021-04-23   5:13 AM                Saved Games
+d-r---        2021-04-23   5:13 AM                Searches
+d-----        2023-05-25  10:50 PM                source
+d-r---        2021-04-23   5:13 AM                Videos
+-a----        2023-06-02   6:43 PM            654 .bash_history
+-a----        2023-05-31   7:00 PM             55 .gitconfig
+-a----        2022-05-09  11:18 PM          45584 .pdfbox.cache
+-a----        2022-03-10   2:20 AM     1490615528 java_error_in_idea64.hprof
+-a----        2022-07-12   3:07 PM         170402 java_error_in_idea64_22888.log
+-a----        2023-04-12   1:27 PM          59334 java_error_in_idea64_42040.log
+-a----        2022-07-12   3:00 PM         149567 java_error_in_idea64_8812.log
+
+
+PS C:\Users\tasheva> cd Lesson5
+PS C:\Users\tasheva\Lesson5> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-07  12:12 AM                Infrastructure-as-Code
+d-----        2023-05-28  12:26 AM                Resources
+d-----        2023-06-02   8:56 AM                Resources-Deployment
+
+
+PS C:\Users\tasheva\Lesson5> cd Infrastructure-as-Code
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Infrastructure-as-Code
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2023-06-07  12:12 AM              0 New Text Document.txt
+
+
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Infrastructure-as-Code
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2023-06-07  12:32 AM            413 nginx-hello.tf
+
+
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding kreuzwerker/docker versions matching "~> 3.0.1"...
+- Installing kreuzwerker/docker v3.0.2...
+- Installed kreuzwerker/docker v3.0.2 (self-signed, key ID BD080C4571C6104C)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\Infrastructure-as-Code
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-07  12:34 AM                .terraform
+-a----        2023-06-07  12:34 AM           1337 .terraform.lock.hcl
+-a----        2023-06-07  12:32 AM            413 nginx-hello.tf
+
+
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform fmt
+nginx-hello.tf
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform validate
+╷
+│ Error: Reference to undeclared resource
+│
+│   on nginx-hello.tf line 19, in resource "docker_container" "nginx":
+│   19:   image = resource.docker_image.name
+│
+│ A managed resource "docker_image" "name" has not been declared in the root module.
+╵
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform validate
+╷
+│ Error: Unsupported block type
+│
+│   on nginx-hello.tf line 22, in resource "docker_container" "nginx":
+│   22:   port {
+│
+│ Blocks of type "port" are not expected here. Did you mean "ports"?
+╵
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform validate
+Success! The configuration is valid.
+
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx will be created
+  + resource "docker_container" "nginx" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = (known after apply)
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + entrypoint                                  = (known after apply)
+      + env                                         = (known after apply)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = "nginxdemos/hello"
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + must_run                                    = true
+      + name                                        = "nginx_hello"
+      + network_data                                = (known after apply)
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "no"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + ports {
+          + external = 8080
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.nginx will be created
+  + resource "docker_image" "nginx" {
+      + id          = (known after apply)
+      + image_id    = (known after apply)
+      + name        = "nginxdemos/hello"
+      + repo_digest = (known after apply)
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+docker_image.nginx: Creating...
+docker_image.nginx: Creation complete after 10s [id=sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850nginxdemos/hello]
+docker_container.nginx: Creating...
+docker_container.nginx: Creation complete after 1s [id=8876f5198b82dd3bbca92e743f28e2c7dc033bb6b55f6caa64dbee0916ae6ecb]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+PS C:\Users\tasheva\Lesson5\Infrastructure-as-Code> terraform destroy
+docker_image.nginx: Refreshing state... [id=sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850nginxdemos/hello]
+docker_container.nginx: Refreshing state... [id=8876f5198b82dd3bbca92e743f28e2c7dc033bb6b55f6caa64dbee0916ae6ecb]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx will be destroyed
+  - resource "docker_container" "nginx" {
+      - attach                                      = false -> null
+      - command                                     = [
+          - "nginx",
+          - "-g",
+          - "daemon off;",
+        ] -> null
+      - container_read_refresh_timeout_milliseconds = 15000 -> null
+      - cpu_shares                                  = 0 -> null
+      - dns                                         = [] -> null
+      - dns_opts                                    = [] -> null
+      - dns_search                                  = [] -> null
+      - entrypoint                                  = [
+          - "/docker-entrypoint.sh",
+        ] -> null
+      - env                                         = [] -> null
+      - group_add                                   = [] -> null
+      - hostname                                    = "8876f5198b82" -> null
+      - id                                          = "8876f5198b82dd3bbca92e743f28e2c7dc033bb6b55f6caa64dbee0916ae6ecb" -> null
+      - image                                       = "sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850" -> null
+      - init                                        = false -> null
+      - ipc_mode                                    = "private" -> null
+      - log_driver                                  = "json-file" -> null
+      - log_opts                                    = {} -> null
+      - logs                                        = false -> null
+      - max_retry_count                             = 0 -> null
+      - memory                                      = 0 -> null
+      - memory_swap                                 = 0 -> null
+      - must_run                                    = true -> null
+      - name                                        = "nginx_hello" -> null
+      - network_data                                = [
+          - {
+              - gateway                   = "172.17.0.1"
+              - global_ipv6_address       = ""
+              - global_ipv6_prefix_length = 0
+              - ip_address                = "172.17.0.2"
+              - ip_prefix_length          = 16
+              - ipv6_gateway              = ""
+              - mac_address               = "02:42:ac:11:00:02"
+              - network_name              = "bridge"
+            },
+        ] -> null
+      - network_mode                                = "default" -> null
+      - privileged                                  = false -> null
+      - publish_all_ports                           = false -> null
+      - read_only                                   = false -> null
+      - remove_volumes                              = true -> null
+      - restart                                     = "no" -> null
+      - rm                                          = false -> null
+      - runtime                                     = "runc" -> null
+      - security_opts                               = [] -> null
+      - shm_size                                    = 64 -> null
+      - start                                       = true -> null
+      - stdin_open                                  = false -> null
+      - stop_signal                                 = "SIGQUIT" -> null
+      - stop_timeout                                = 0 -> null
+      - storage_opts                                = {} -> null
+      - sysctls                                     = {} -> null
+      - tmpfs                                       = {} -> null
+      - tty                                         = false -> null
+      - wait                                        = false -> null
+      - wait_timeout                                = 60 -> null
+
+      - ports {
+          - external = 8080 -> null
+          - internal = 80 -> null
+          - ip       = "0.0.0.0" -> null
+          - protocol = "tcp" -> null
+        }
+    }
+
+  # docker_image.nginx will be destroyed
+  - resource "docker_image" "nginx" {
+      - id          = "sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850nginxdemos/hello" -> null
+      - image_id    = "sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850" -> null
+      - name        = "nginxdemos/hello" -> null
+      - repo_digest = "nginxdemos/hello@sha256:3ae2fcf73c843d0655ebc7abc860d0d2f626042d6245e9eedddb8f7aaf0cfecd" -> null
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+docker_container.nginx: Destroying... [id=8876f5198b82dd3bbca92e743f28e2c7dc033bb6b55f6caa64dbee0916ae6ecb]
+docker_container.nginx: Destruction complete after 0s
+docker_image.nginx: Destroying... [id=sha256:022b2e2ffb6e5fb34c2cc5e2ec804450145e91102b9654295a5104ebeece5850nginxdemos/hello]
+docker_image.nginx: Destruction complete after 0s
+
+Destroy complete! Resources: 2 destroyed.
