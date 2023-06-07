@@ -1,0 +1,114 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tasheva> cd Lesson5
+PS C:\Users\tasheva\Lesson5> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-07  10:56 PM                App-Monitoring-Tools
+d-----        2023-06-07  12:51 AM                Infrastructure-as-Code
+d-----        2023-05-28  12:26 AM                Resources
+d-----        2023-06-02   8:56 AM                Resources-Deployment
+
+
+PS C:\Users\tasheva\Lesson5> cd App-Monitoring-Tools
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\App-Monitoring-Tools
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-07  10:56 PM                prometheus
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools> cd prometheus
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-07  10:54 PM                consoles
+d-----        2023-06-07  10:54 PM                console_libraries
+-a----        1601-08-03   4:01 PM          11357 LICENSE
+-a----        1601-08-03   4:01 PM           3773 NOTICE
+-a----        1601-08-03   4:01 PM      120696832 prometheus.exe
+-a----        1601-08-03   4:01 PM            934 prometheus.yml
+-a----        1601-08-03   4:01 PM      113468416 promtool.exe
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus> docker run -p 9115:9115 quay.io/prometheus/blackbox-exporter
+Unable to find image 'quay.io/prometheus/blackbox-exporter:latest' locally
+latest: Pulling from prometheus/blackbox-exporter
+e6b9e25f5d01: Pull complete
+0c6a06713be8: Pull complete
+b4bd2c7f1f55: Pull complete
+f1b939a4905b: Pull complete
+Digest: sha256:3af31f8bd1ad2907b4b0f7c485fde3de0a8ee0b498d42fc971f0698885c03acb
+Status: Downloaded newer image for quay.io/prometheus/blackbox-exporter:latest
+ts=2023-06-07T20:11:48.752Z caller=main.go:78 level=info msg="Starting blackbox_exporter" version="(version=0.24.0, branch=HEAD, revision=0b0467473916fd9e8526e2635c2a0b1c56011dff)"
+ts=2023-06-07T20:11:48.752Z caller=main.go:79 level=info build_context="(go=go1.20.4, platform=linux/amd64, user=root@e5bbfcc8184e, date=20230516-11:07:25, tags=netgo)"
+ts=2023-06-07T20:11:48.753Z caller=main.go:91 level=info msg="Loaded config file"
+ts=2023-06-07T20:11:48.756Z caller=tls_config.go:274 level=info msg="Listening on" address=[::]:9115
+ts=2023-06-07T20:11:48.756Z caller=tls_config.go:277 level=info msg="TLS is disabled." http2=false address=[::]:9115
+
+
+------------------------------------SECOND POWERSHELL-alertmanager start------------------------------------
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\alertmanager> .\alertmanager.exe --config.file .\alertmanager-blackbox.yml
+ts=2023-06-07T22:10:11.090Z caller=main.go:240 level=info msg="Starting Alertmanager" version="(version=0.25.0, branch=HEAD, revision=258fab7cdd551f2cf251ed0348f0ad7289aee789)"
+ts=2023-06-07T22:10:11.091Z caller=main.go:241 level=info build_context="(go=go1.19.4, user=root@0dd4f853dffb, date=20221222-14:50:08)"
+ts=2023-06-07T22:10:12.878Z caller=cluster.go:185 level=info component=cluster msg="setting advertise address explicitly" addr=192.168.0.106 port=9094
+ts=2023-06-07T22:10:12.886Z caller=cluster.go:681 level=info component=cluster msg="Waiting for gossip to settle..." interval=2s
+ts=2023-06-07T22:10:12.915Z caller=coordinator.go:113 level=info component=configuration msg="Loading configuration file" file=.\alertmanager-blackbox.yml
+ts=2023-06-07T22:10:12.916Z caller=coordinator.go:126 level=info component=configuration msg="Completed loading of configuration file" file=.\alertmanager-blackbox.yml
+ts=2023-06-07T22:10:12.920Z caller=tls_config.go:232 level=info msg="Listening on" address=[::]:9093
+ts=2023-06-07T22:10:12.921Z caller=tls_config.go:235 level=info msg="TLS is disabled." http2=false address=[::]:9093
+ts=2023-06-07T22:10:14.895Z caller=cluster.go:706 level=info component=cluster msg="gossip not settled" polls=0 before=0 now=1 elapsed=2.0092418s
+ts=2023-06-07T22:10:22.904Z caller=cluster.go:698 level=info component=cluster msg="gossip settled; proceeding" elapsed=10.0175291s
+
+
+------------------------------------THIRD POWERSHELL-prometheus start------------------------------------
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus> .\prometheus.exe --config.file prometheus-blackbox.yml
+ts=2023-06-07T22:07:58.643Z caller=main.go:534 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2023-06-07T22:07:58.643Z caller=main.go:578 level=info msg="Starting Prometheus Server" mode=server version="(version=2.45.0-rc.0, branch=HEAD, revision=bfa466d00f152aa8dd58494c171872d7f95e3d5e)"
+ts=2023-06-07T22:07:58.644Z caller=main.go:583 level=info build_context="(go=go1.20.4, platform=windows/amd64, user=root@2016a18e8799, date=20230607-10:45:54, tags=builtinassets,stringlabels)"
+ts=2023-06-07T22:07:58.644Z caller=main.go:584 level=info host_details=(windows)
+ts=2023-06-07T22:07:58.644Z caller=main.go:585 level=info fd_limits=N/A
+ts=2023-06-07T22:07:58.644Z caller=main.go:586 level=info vm_limits=N/A
+ts=2023-06-07T22:07:58.659Z caller=web.go:562 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2023-06-07T22:07:58.665Z caller=main.go:1019 level=info msg="Starting TSDB ..."
+ts=2023-06-07T22:07:58.665Z caller=tls_config.go:274 level=info component=web msg="Listening on" address=[::]:9090
+ts=2023-06-07T22:07:58.665Z caller=tls_config.go:277 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2023-06-07T22:07:58.675Z caller=head.go:595 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2023-06-07T22:07:58.675Z caller=head.go:676 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=0s
+ts=2023-06-07T22:07:58.675Z caller=head.go:684 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2023-06-07T22:07:58.696Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=5
+ts=2023-06-07T22:07:58.696Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=1 maxSegment=5
+ts=2023-06-07T22:07:58.696Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=2 maxSegment=5
+ts=2023-06-07T22:07:58.696Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=3 maxSegment=5
+ts=2023-06-07T22:07:58.706Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=4 maxSegment=5
+ts=2023-06-07T22:07:58.706Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=5 maxSegment=5
+ts=2023-06-07T22:07:58.706Z caller=head.go:792 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=10.0163ms wal_replay_duration=20.565ms wbl_replay_duration=0s total_replay_duration=30.5813ms
+ts=2023-06-07T22:07:58.716Z caller=main.go:1040 level=info fs_type=unknown
+ts=2023-06-07T22:07:58.716Z caller=main.go:1043 level=info msg="TSDB started"
+ts=2023-06-07T22:07:58.716Z caller=main.go:1224 level=info msg="Loading configuration file" filename=prometheus-blackbox.yml
+ts=2023-06-07T22:07:58.782Z caller=main.go:1261 level=info msg="Completed loading of configuration file" filename=prometheus-blackbox.yml totalDuration=66.4611ms db_storage=0s remote_storage=0s web_handler=0s query_engine=0s scrape=65.1916ms scrape_sd=0s notify=0s notify_sd=0s rules=1.2695ms tracing=0s
+ts=2023-06-07T22:07:58.783Z caller=main.go:1004 level=info msg="Server is ready to receive web requests."
+ts=2023-06-07T22:07:58.783Z caller=manager.go:995 level=info component="rule manager" msg="Starting rule manager..."
+ts=2023-06-07T22:09:18.960Z caller=notifier.go:529 level=error component=notifier alertmanager=http://localhost:9093/api/v2/alerts count=1 msg="Error sending alert" err="Post \"http://localhost:9093/api/v2/alerts\": dial tcp [::1]:9093: connectex: No connection could be made because the target machine actively refused it."
+
