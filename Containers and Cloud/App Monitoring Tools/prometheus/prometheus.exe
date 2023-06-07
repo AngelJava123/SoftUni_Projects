@@ -1,0 +1,14 @@
+prometheus.exe is an executable binary file that is part of the Prometheus monitoring system. It is the main component responsible for collecting and 
+storing time-series data, as well as evaluating rules and generating alerts based on the defined metrics and thresholds.
+
+Prometheus is designed to monitor and gather metrics from various sources, such as applications, services, operating systems,
+and network devices. It scrapes data from configured targets using various protocols (e.g., HTTP, SNMP) and stores the collected time-series data in its own storage system.
+
+The prometheus.exe binary is the executable file for running the Prometheus server. It is used to start the Prometheus process 
+and handle data collection, metrics storage, rule evaluation, and alerting.
+
+When running prometheus.exe, you typically provide a configuration file (often named prometheus.yml) that defines the targets
+to be scraped, the rules for evaluating metrics, and the alerting configurations.
+
+In summary, prometheus.exe is the executable file for running the Prometheus server, which is responsible for data collection,
+storage, rule evaluation, and alerting in the Prometheus monitoring system.
