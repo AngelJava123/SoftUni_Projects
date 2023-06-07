@@ -1,0 +1,21 @@
+promtool.exe is an executable binary file that provides a command-line interface (CLI) for various utility functions related 
+to Prometheus configuration and rule files. It is a separate utility from the Prometheus server itself.
+
+The promtool.exe binary is typically used for validating and linting Prometheus configuration files (prometheus.yml) and 
+rule files (rules.yml). It helps ensure that the configuration and rules are correctly formatted, follow the Prometheus syntax, and adhere to best practices.
+
+Some common use cases of promtool.exe include:
+
+Configuration file validation: promtool.exe can be used to validate the syntax and correctness of a Prometheus configuration 
+file (prometheus.yml). It checks for errors, such as invalid YAML formatting, missing required fields, or unsupported configuration options.
+
+Rule file validation: With promtool.exe, you can validate the syntax and structure of Prometheus rule files (rules.yml). It
+ensures that the rules are defined correctly, follow the PromQL query language, and comply with the rule format expected by Prometheus.
+
+Linting and best practices: promtool.exe can perform linting on both configuration files and rule files, checking for potential 
+issues, deprecated configuration options, or common mistakes that might affect the performance or reliability of the Prometheus setup.
+
+By running promtool.exe with the appropriate commands and options, you can verify the correctness of your Prometheus configuratio
+n and rule files before starting the Prometheus server. This helps to identify any misconfigurations or errors early on and ensures a smooth operation of the Prometheus monitoring system.
+
+Note that the specific commands and options available in promtool.exe may vary depending on the version of Prometheus you are using.
