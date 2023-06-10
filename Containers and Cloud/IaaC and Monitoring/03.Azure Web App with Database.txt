@@ -1,0 +1,703 @@
+
+---------------------------------------WRITE AND APPLY A TERRAFORM CONFIGURATION---------------------------------------
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\02> cd ..
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-09   1:55 PM                01.Azure-Resource-Group
+d-----        2023-06-09   2:56 PM                02
+d-----        2023-06-09   1:39 PM                03.Azure-Web-App-with-Database-TaskBoard
+d-----        2023-06-09   1:39 PM                05-06.ContactBook-NodeJS-App
+
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources> cd 03.Azure-Web-App-with-Database-TaskBoard
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\03.Azure-Web-App-with-Database-TaskBoard> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\03.Azure-Web-App-with-Database-TaskBoard
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-09   1:39 PM                TaskBoard.Data
+d-----        2023-06-09   1:39 PM                TaskBoard.WebApp
+-a----        2023-05-02   5:04 PM           1650 TaskBoard.sln
+
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\03.Azure-Web-App-with-Database-TaskBoard> cd ..
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources> git clone git@github.com:AngelJava123/TaskBoard.git
+Cloning into 'TaskBoard'...
+warning: You appear to have cloned an empty repository.
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources> git add .
+fatal: not a git repository (or any of the parent directories): .git
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources> cd TaskBoard
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2023-06-09   3:25 PM                TaskBoard.Data
+d-----        2023-06-09   3:25 PM                TaskBoard.WebApp
+-a----        2023-05-02   5:04 PM           1650 TaskBoard.sln
+
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> git add .
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> git commit -m "initial commit"
+[main (root-commit) c513487] initial commit
+ 92 files changed, 41878 insertions(+)
+ create mode 100644 TaskBoard.Data/ApplicationDbContext.cs
+ create mode 100644 TaskBoard.Data/Board.cs
+ create mode 100644 TaskBoard.Data/DataConstants.cs
+ create mode 100644 TaskBoard.Data/Task.cs
+ create mode 100644 TaskBoard.Data/TaskBoard.Data.csproj
+ create mode 100644 TaskBoard.Data/User.cs
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/IdentityHostingStartup.cs
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Login.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Login.cshtml.cs
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Logout.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Logout.cshtml.cs
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Register.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/Register.cshtml.cs
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/Account/_ViewImports.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/_ViewImports.cshtml
+ create mode 100644 TaskBoard.WebApp/Areas/Identity/Pages/_ViewStart.cshtml
+ create mode 100644 TaskBoard.WebApp/Controllers/BoardsController.cs
+ create mode 100644 TaskBoard.WebApp/Controllers/HomeController.cs
+ create mode 100644 TaskBoard.WebApp/Controllers/TasksController.cs
+ create mode 100644 TaskBoard.WebApp/Models/BoardViewModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/ErrorViewModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/HomeBoardModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/HomeViewModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/Task/TaskBoardModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/Task/TaskDetailsViewModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/Task/TaskFormModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/Task/TaskSearchFormModel.cs
+ create mode 100644 TaskBoard.WebApp/Models/Task/TaskViewModel.cs
+ create mode 100644 TaskBoard.WebApp/Program.cs
+ create mode 100644 TaskBoard.WebApp/Properties/launchSettings.json
+ create mode 100644 TaskBoard.WebApp/Properties/serviceDependencies.json
+ create mode 100644 TaskBoard.WebApp/Properties/serviceDependencies.local.json
+ create mode 100644 TaskBoard.WebApp/TaskBoard.WebApp.csproj
+ create mode 100644 TaskBoard.WebApp/Views/Boards/All.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Home/Error401.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Home/Error404.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Home/Index.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Shared/Error.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Shared/_Layout.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Shared/_LoginPartial.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Shared/_TaskPartial.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Shared/_ValidationScriptsPartial.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/Create.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/Delete.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/Details.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/Edit.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/Search.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/Tasks/_TaskFormPartial.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/_ViewImports.cshtml
+ create mode 100644 TaskBoard.WebApp/Views/_ViewStart.cshtml
+ create mode 100644 TaskBoard.WebApp/appsettings.Development.json
+ create mode 100644 TaskBoard.WebApp/appsettings.json
+ create mode 100644 TaskBoard.WebApp/wwwroot/css/site.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/css/style.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/favicon.ico
+ create mode 100644 TaskBoard.WebApp/wwwroot/js/addClass.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/js/site.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/LICENSE
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation/LICENSE.md
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation/dist/additional-methods.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation/dist/additional-methods.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation/dist/jquery.validate.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery/LICENSE.txt
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery/dist/jquery.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery/dist/jquery.min.js
+ create mode 100644 TaskBoard.WebApp/wwwroot/lib/jquery/dist/jquery.min.map
+ create mode 100644 TaskBoard.sln
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> git push
+Enumerating objects: 122, done.
+Counting objects: 100% (122/122), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (119/119), done.
+Writing objects: 100% (122/122), 701.97 KiB | 2.46 MiB/s, done.
+Total 122 (delta 18), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (18/18), done.
+To github.com:AngelJava123/TaskBoard.git
+ * [new branch]      main -> main
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform fmt
+main.tf
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/random...
+- Finding hashicorp/azurerm versions matching "3.59.0"...
+- Installing hashicorp/random v3.5.1...
+- Installed hashicorp/random v3.5.1 (signed by HashiCorp)
+- Installing hashicorp/azurerm v3.59.0...
+- Installed hashicorp/azurerm v3.59.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform validate
+Success! The configuration is valid.
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_app_service_source_control.git will be created
+  + resource "azurerm_app_service_source_control" "git" {
+      + app_id                 = (known after apply)
+      + branch                 = "main"
+      + id                     = (known after apply)
+      + repo_url               = "https://github.com/AngelJava123/TaskBoard"
+      + rollback_enabled       = false
+      + scm_type               = (known after apply)
+      + use_local_git          = false
+      + use_manual_integration = true
+      + use_mercurial          = false
+      + uses_github_action     = (known after apply)
+    }
+
+  # azurerm_linux_web_app.appservice will be created
+  + resource "azurerm_linux_web_app" "appservice" {
+      + client_affinity_enabled           = false
+      + client_certificate_enabled        = false
+      + client_certificate_mode           = "Required"
+      + custom_domain_verification_id     = (sensitive value)
+      + default_hostname                  = (known after apply)
+      + enabled                           = true
+      + hosting_environment_id            = (known after apply)
+      + https_only                        = false
+      + id                                = (known after apply)
+      + key_vault_reference_identity_id   = (known after apply)
+      + kind                              = (known after apply)
+      + location                          = "westeurope"
+      + name                              = (known after apply)
+      + outbound_ip_address_list          = (known after apply)
+      + outbound_ip_addresses             = (known after apply)
+      + possible_outbound_ip_address_list = (known after apply)
+      + possible_outbound_ip_addresses    = (known after apply)
+      + resource_group_name               = (known after apply)
+      + service_plan_id                   = (known after apply)
+      + site_credential                   = (sensitive value)
+      + zip_deploy_file                   = (known after apply)
+
+      + connection_string {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+
+      + site_config {
+          + always_on                               = false
+          + container_registry_use_managed_identity = false
+          + default_documents                       = (known after apply)
+          + detailed_error_logging_enabled          = (known after apply)
+          + ftps_state                              = "Disabled"
+          + health_check_eviction_time_in_min       = (known after apply)
+          + http2_enabled                           = false
+          + linux_fx_version                        = (known after apply)
+          + load_balancing_mode                     = "LeastRequests"
+          + local_mysql_enabled                     = false
+          + managed_pipeline_mode                   = "Integrated"
+          + minimum_tls_version                     = "1.2"
+          + remote_debugging_enabled                = false
+          + remote_debugging_version                = (known after apply)
+          + scm_minimum_tls_version                 = "1.2"
+          + scm_type                                = (known after apply)
+          + scm_use_main_ip_restriction             = false
+          + use_32_bit_worker                       = true
+          + vnet_route_all_enabled                  = false
+          + websockets_enabled                      = false
+          + worker_count                            = (known after apply)
+
+          + application_stack {
+              + dotnet_version = "6.0"
+            }
+        }
+    }
+
+  # azurerm_mssql_database.sql will be created
+  + resource "azurerm_mssql_database" "sql" {
+      + auto_pause_delay_in_minutes         = (known after apply)
+      + collation                           = "SQL_Latin1_General_CP1_CI_AS"
+      + create_mode                         = "Default"
+      + creation_source_database_id         = (known after apply)
+      + geo_backup_enabled                  = true
+      + id                                  = (known after apply)
+      + ledger_enabled                      = (known after apply)
+      + license_type                        = "LicenseIncluded"
+      + maintenance_configuration_name      = (known after apply)
+      + max_size_gb                         = 4
+      + min_capacity                        = (known after apply)
+      + name                                = (known after apply)
+      + read_replica_count                  = (known after apply)
+      + read_scale                          = true
+      + restore_point_in_time               = (known after apply)
+      + sample_name                         = (known after apply)
+      + server_id                           = (known after apply)
+      + sku_name                            = "S0"
+      + storage_account_type                = "Geo"
+      + transparent_data_encryption_enabled = true
+      + zone_redundant                      = true
+    }
+
+  # azurerm_mssql_firewall_rule.example will be created
+  + resource "azurerm_mssql_firewall_rule" "example" {
+      + end_ip_address   = "0.0.0.0"
+      + id               = (known after apply)
+      + name             = (known after apply)
+      + server_id        = (known after apply)
+      + start_ip_address = "0.0.0.0"
+    }
+
+  # azurerm_mssql_server.sqlserver will be created
+  + resource "azurerm_mssql_server" "sqlserver" {
+      + administrator_login                  = "4dm1n157r470r"
+      + administrator_login_password         = (sensitive value)
+      + connection_policy                    = "Default"
+      + fully_qualified_domain_name          = (known after apply)
+      + id                                   = (known after apply)
+      + location                             = "westeurope"
+      + minimum_tls_version                  = "1.2"
+      + name                                 = (known after apply)
+      + outbound_network_restriction_enabled = false
+      + primary_user_assigned_identity_id    = (known after apply)
+      + public_network_access_enabled        = true
+      + resource_group_name                  = (known after apply)
+      + restorable_dropped_database_ids      = (known after apply)
+      + version                              = "12.0"
+    }
+
+  # azurerm_resource_group.rg will be created
+  + resource "azurerm_resource_group" "rg" {
+      + id       = (known after apply)
+      + location = "westeurope"
+      + name     = (known after apply)
+    }
+
+  # azurerm_service_plan.appsp will be created
+  + resource "azurerm_service_plan" "appsp" {
+      + id                           = (known after apply)
+      + kind                         = (known after apply)
+      + location                     = "westeurope"
+      + maximum_elastic_worker_count = (known after apply)
+      + name                         = (known after apply)
+      + os_type                      = "Linux"
+      + per_site_scaling_enabled     = false
+      + reserved                     = (known after apply)
+      + resource_group_name          = (known after apply)
+      + sku_name                     = "F1"
+      + worker_count                 = (known after apply)
+    }
+
+  # random_integer.ri will be created
+  + resource "random_integer" "ri" {
+      + id     = (known after apply)
+      + max    = 99999
+      + min    = 10000
+      + result = (known after apply)
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+random_integer.ri: Creating...
+random_integer.ri: Creation complete after 0s [id=34522]
+azurerm_resource_group.rg: Creating...
+azurerm_resource_group.rg: Creation complete after 1s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522]
+azurerm_service_plan.appsp: Creating...
+azurerm_mssql_server.sqlserver: Creating...
+azurerm_service_plan.appsp: Creation complete after 7s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/serverfarms/task-board-plan-34522]
+azurerm_mssql_server.sqlserver: Still creating... [10s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [20s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [30s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [40s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [50s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m0s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m10s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m20s elapsed]
+Stopping operation...
+
+Interrupt received.
+Please wait for Terraform to exit or data loss may occur.
+Gracefully shutting down...
+
+╷
+│ Error: execution halted
+│
+│
+╵
+╷
+│ Error: execution halted
+│
+│
+╵
+╷
+│ Error: listing SQL Server task-board-sql-34522 Restorable Dropped Databases: sql.RestorableDroppedDatabasesClient#ListByServer: Failure sending request: StatusCode=0 -- Original Error: context canceled
+│
+│   with azurerm_mssql_server.sqlserver,
+│   on main.tf line 64, in resource "azurerm_mssql_server" "sqlserver":
+│   64: resource "azurerm_mssql_server" "sqlserver" {
+│
+╵
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform apply
+random_integer.ri: Refreshing state... [id=34522]
+azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522]
+azurerm_service_plan.appsp: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/serverfarms/task-board-plan-34522]
+azurerm_mssql_server.sqlserver: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # azurerm_app_service_source_control.git will be created
+  + resource "azurerm_app_service_source_control" "git" {
+      + app_id                 = (known after apply)
+      + branch                 = "main"
+      + id                     = (known after apply)
+      + repo_url               = "https://github.com/AngelJava123/TaskBoard"
+      + rollback_enabled       = false
+      + scm_type               = (known after apply)
+      + use_local_git          = false
+      + use_manual_integration = true
+      + use_mercurial          = false
+      + uses_github_action     = (known after apply)
+    }
+
+  # azurerm_linux_web_app.appservice will be created
+  + resource "azurerm_linux_web_app" "appservice" {
+      + client_affinity_enabled           = false
+      + client_certificate_enabled        = false
+      + client_certificate_mode           = "Required"
+      + custom_domain_verification_id     = (sensitive value)
+      + default_hostname                  = (known after apply)
+      + enabled                           = true
+      + hosting_environment_id            = (known after apply)
+      + https_only                        = false
+      + id                                = (known after apply)
+      + key_vault_reference_identity_id   = (known after apply)
+      + kind                              = (known after apply)
+      + location                          = "westeurope"
+      + name                              = "task-board-34522"
+      + outbound_ip_address_list          = (known after apply)
+      + outbound_ip_addresses             = (known after apply)
+      + possible_outbound_ip_address_list = (known after apply)
+      + possible_outbound_ip_addresses    = (known after apply)
+      + resource_group_name               = "TaskBoardRG34522"
+      + service_plan_id                   = "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/serverfarms/task-board-plan-34522"
+      + site_credential                   = (sensitive value)
+      + zip_deploy_file                   = (known after apply)
+
+      + connection_string {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+
+      + site_config {
+          + always_on                               = false
+          + container_registry_use_managed_identity = false
+          + default_documents                       = (known after apply)
+          + detailed_error_logging_enabled          = (known after apply)
+          + ftps_state                              = "Disabled"
+          + health_check_eviction_time_in_min       = (known after apply)
+          + http2_enabled                           = false
+          + linux_fx_version                        = (known after apply)
+          + load_balancing_mode                     = "LeastRequests"
+          + local_mysql_enabled                     = false
+          + managed_pipeline_mode                   = "Integrated"
+          + minimum_tls_version                     = "1.2"
+          + remote_debugging_enabled                = false
+          + remote_debugging_version                = (known after apply)
+          + scm_minimum_tls_version                 = "1.2"
+          + scm_type                                = (known after apply)
+          + scm_use_main_ip_restriction             = false
+          + use_32_bit_worker                       = true
+          + vnet_route_all_enabled                  = false
+          + websockets_enabled                      = false
+          + worker_count                            = (known after apply)
+
+          + application_stack {
+              + dotnet_version = "6.0"
+            }
+        }
+    }
+
+  # azurerm_mssql_database.sql will be created
+  + resource "azurerm_mssql_database" "sql" {
+      + auto_pause_delay_in_minutes         = (known after apply)
+      + collation                           = "SQL_Latin1_General_CP1_CI_AS"
+      + create_mode                         = "Default"
+      + creation_source_database_id         = (known after apply)
+      + geo_backup_enabled                  = true
+      + id                                  = (known after apply)
+      + ledger_enabled                      = (known after apply)
+      + license_type                        = "LicenseIncluded"
+      + maintenance_configuration_name      = (known after apply)
+      + max_size_gb                         = (known after apply)
+      + min_capacity                        = (known after apply)
+      + name                                = "TaskBoardDB34522"
+      + read_replica_count                  = (known after apply)
+      + read_scale                          = (known after apply)
+      + restore_point_in_time               = (known after apply)
+      + sample_name                         = (known after apply)
+      + server_id                           = (known after apply)
+      + sku_name                            = "S0"
+      + storage_account_type                = "Geo"
+      + transparent_data_encryption_enabled = true
+      + zone_redundant                      = false
+    }
+
+  # azurerm_mssql_firewall_rule.example will be created
+  + resource "azurerm_mssql_firewall_rule" "example" {
+      + end_ip_address   = "0.0.0.0"
+      + id               = (known after apply)
+      + name             = "TaskBoardFW34522"
+      + server_id        = (known after apply)
+      + start_ip_address = "0.0.0.0"
+    }
+
+  # azurerm_mssql_server.sqlserver is tainted, so must be replaced
+-/+ resource "azurerm_mssql_server" "sqlserver" {
+      ~ fully_qualified_domain_name          = "task-board-sql-34522.database.windows.net" -> (known after apply)
+      ~ id                                   = "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522" -> (known after apply)
+        name                                 = "task-board-sql-34522"
+      + primary_user_assigned_identity_id    = (known after apply)
+      ~ restorable_dropped_database_ids      = [] -> (known after apply)
+      - tags                                 = {} -> null
+        # (9 unchanged attributes hidden)
+    }
+
+Plan: 5 to add, 0 to change, 1 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+azurerm_mssql_server.sqlserver: Destroying... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522]
+azurerm_mssql_server.sqlserver: Still destroying... [id=/subscriptions/f2389761-fd4e-49ed-bdea-...osoft.Sql/servers/task-board-sql-34522, 10s elapsed]
+azurerm_mssql_server.sqlserver: Still destroying... [id=/subscriptions/f2389761-fd4e-49ed-bdea-...osoft.Sql/servers/task-board-sql-34522, 20s elapsed]
+azurerm_mssql_server.sqlserver: Still destroying... [id=/subscriptions/f2389761-fd4e-49ed-bdea-...osoft.Sql/servers/task-board-sql-34522, 30s elapsed]
+azurerm_mssql_server.sqlserver: Destruction complete after 31s
+azurerm_mssql_server.sqlserver: Creating...
+azurerm_mssql_server.sqlserver: Still creating... [10s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [20s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [30s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [40s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [50s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m0s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m10s elapsed]
+azurerm_mssql_server.sqlserver: Still creating... [1m20s elapsed]
+azurerm_mssql_server.sqlserver: Creation complete after 1m26s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522]
+azurerm_mssql_firewall_rule.example: Creating...
+azurerm_mssql_database.sql: Creating...
+azurerm_mssql_firewall_rule.example: Creation complete after 2s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFW34522]
+azurerm_mssql_database.sql: Still creating... [10s elapsed]
+azurerm_mssql_database.sql: Still creating... [20s elapsed]
+azurerm_mssql_database.sql: Still creating... [30s elapsed]
+azurerm_mssql_database.sql: Still creating... [40s elapsed]
+azurerm_mssql_database.sql: Still creating... [50s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m0s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m10s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m20s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m30s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m40s elapsed]
+azurerm_mssql_database.sql: Still creating... [1m50s elapsed]
+azurerm_mssql_database.sql: Still creating... [2m0s elapsed]
+azurerm_mssql_database.sql: Still creating... [2m10s elapsed]
+azurerm_mssql_database.sql: Still creating... [2m20s elapsed]
+azurerm_mssql_database.sql: Creation complete after 2m24s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/databases/TaskBoardDB34522]
+azurerm_linux_web_app.appservice: Creating...
+azurerm_linux_web_app.appservice: Still creating... [10s elapsed]
+azurerm_linux_web_app.appservice: Still creating... [20s elapsed]
+azurerm_linux_web_app.appservice: Still creating... [30s elapsed]
+azurerm_linux_web_app.appservice: Creation complete after 35s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+azurerm_app_service_source_control.git: Creating...
+azurerm_app_service_source_control.git: Still creating... [10s elapsed]
+azurerm_app_service_source_control.git: Creation complete after 16s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+
+Apply complete! Resources: 5 added, 0 changed, 1 destroyed.
+
+
+---------------------------------------SEPARATE CONFIGURATION TO MULTIPLE FILES---------------------------------------
+
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform apply
+var.app_service_name
+  App Service name in Azure
+
+  Enter a value: task-board
+
+var.app_service_plan_name
+  App Service Plan name in Azure
+
+  Enter a value: task-board-plan
+
+var.firewall_rule_name
+  Firewall rule name in Azure
+
+  Enter a value: TaskBoardFirewallRule
+
+var.repo_URL
+  URL of GitHub repo
+
+  Enter a value: https://github.com/AngelJava123/TaskBoard
+
+var.resource_group_location
+  resource group location in Azure
+
+  Enter a value: West Europe
+
+var.resource_group_name
+  resource group name in Azure
+
+  Enter a value: TaskBoardRG
+
+var.sql_admin_login
+  SQL Server login name in Azure
+
+  Enter a value: 4dm1n157r470r
+
+var.sql_admin_password
+  SQL Server password name in Azure
+
+  Enter a value: 4-v3ry-53cr37-p455w0rd
+
+var.sql_database_name
+  SQL Database name in Azure
+
+  Enter a value: TaskBoardDB
+
+var.sql_server_name
+  SQL Server instance name in Azure
+
+  Enter a value: task-board-sql
+
+random_integer.ri: Refreshing state... [id=34522]
+azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522]
+azurerm_service_plan.appsp: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/serverfarms/task-board-plan-34522]
+azurerm_mssql_server.sqlserver: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522]
+azurerm_mssql_firewall_rule.example: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFW34522]
+azurerm_mssql_database.sql: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/databases/TaskBoardDB34522]
+azurerm_linux_web_app.appservice: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+azurerm_app_service_source_control.git: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # azurerm_mssql_firewall_rule.example must be replaced
+-/+ resource "azurerm_mssql_firewall_rule" "example" {
+      ~ id               = "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFW34522" -> (known after apply)
+      ~ name             = "TaskBoardFW34522" -> "TaskBoardFirewallRule34522" # forces replacement
+        # (3 unchanged attributes hidden)
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  + webapp_ips = "20.238.219.159,20.238.219.235,20.31.145.63,20.238.220.98,20.238.220.123,20.238.221.15,20.103.134.51,20.31.146.226,20.31.146.232,20.31.147.160,20.103.129.44,20.31.148.85,20.105.216.35"
+  + webapp_url = "task-board-34522.azurewebsites.net"
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+azurerm_mssql_firewall_rule.example: Destroying... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFW34522]
+azurerm_mssql_firewall_rule.example: Destruction complete after 1s
+azurerm_mssql_firewall_rule.example: Creating...
+azurerm_mssql_firewall_rule.example: Creation complete after 2s [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFirewallRule34522]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+Outputs:
+
+webapp_ips = "20.238.219.159,20.238.219.235,20.31.145.63,20.238.220.98,20.238.220.123,20.238.221.15,20.103.134.51,20.31.146.226,20.31.146.232,20.31.147.160,20.103.129.44,20.31.148.85,20.105.216.35"
+webapp_url = "task-board-34522.azurewebsites.net"
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform apply -var-file="values.tfvars"
+random_integer.ri: Refreshing state... [id=34522]
+azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522]
+azurerm_service_plan.appsp: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/serverfarms/task-board-plan-34522]
+azurerm_mssql_server.sqlserver: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522]
+azurerm_mssql_firewall_rule.example: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/firewallRules/TaskBoardFirewallRule34522]
+azurerm_mssql_database.sql: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Sql/servers/task-board-sql-34522/databases/TaskBoardDB34522]
+azurerm_linux_web_app.appservice: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+azurerm_app_service_source_control.git: Refreshing state... [id=/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/TaskBoardRG34522/providers/Microsoft.Web/sites/task-board-34522]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are
+needed.
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+webapp_ips = "20.238.219.159,20.238.219.235,20.31.145.63,20.238.220.98,20.238.220.123,20.238.221.15,20.103.134.51,20.31.146.226,20.31.146.232,20.31.147.160,20.103.129.44,20.31.148.85,20.105.216.35"
+webapp_url = "task-board-34522.azurewebsites.net"
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform fmt
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\TaskBoard> terraform fmt -recursive
