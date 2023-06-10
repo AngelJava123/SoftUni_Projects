@@ -1,0 +1,215 @@
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git add .
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git commit -m "Initial commit"
+[main (root-commit) 84db461] Initial commit
+ 4 files changed, 155 insertions(+)
+ create mode 100644 main.tf
+ create mode 100644 outputs.tf
+ create mode 100644 terraform.tfvars
+ create mode 100644 variables.tf
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git push
+info: please complete authentication in your browser...
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 1.79 KiB | 367.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/AngelJava123/Terraform-Actions-Azure.git
+ * [new branch]      main -> main
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git add .
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git commit -m "Initial commit1"
+[main 446a443] Initial commit1
+ 1 file changed, 7 deletions(-)
+ delete mode 100644 outputs.tf
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git push
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 224 bytes | 224.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/AngelJava123/Terraform-Actions-Azure.git
+   84db461..446a443  main -> main
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> terraform version
+Terraform v1.4.6
+on windows_amd64
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> az ad sp create-for-rbac --name "Azure-Terraform-GitHub-Actions" --role contributor --scopes /subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539 --sdk-auth ^C
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> az login
+A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "4a06d40c-e447-42be-baef-dd0421ed10bd",
+    "id": "f2389761-fd4e-49ed-bdea-bd44e2c10539",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure for Students",
+    "state": "Enabled",
+    "tenantId": "4a06d40c-e447-42be-baef-dd0421ed10bd",
+    "user": {
+      "name": "AngelVTashev@students.softuni.bg",
+      "type": "user"
+    }
+  }
+]
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> az ad sp create-for-rbac --name "Azure-Terraform-GitHub-Actions2" --role contributor --scopes /subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539 --sdk-auth
+Option '--sdk-auth' has been deprecated and will be removed in a future release.
+Creating 'contributor' role assignment under scope '/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539'
+The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+{
+  "clientId": "0646e7f6-7629-41eb-bb46-1e10a57f436e",
+  "clientSecret": "Gsp8Q~hrPC7csnvrHbSrPPMxRy5iNZAx-B~D1dxp",
+  "subscriptionId": "f2389761-fd4e-49ed-bdea-bd44e2c10539",
+  "tenantId": "4a06d40c-e447-42be-baef-dd0421ed10bd",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> az storage account create --name taskboardstorageangel --resource-group StorageRG --location westeurope --sku Standard_LRS --kind StorageV2
+The public access to all blobs or containers in the storage account will be disallowed by default in the future, which means default value for --allow-blob-public-access is still null but will be equivalent to false.
+{
+  "accessTier": "Hot",
+  "allowBlobPublicAccess": true,
+  "allowCrossTenantReplication": null,
+  "allowSharedKeyAccess": null,
+  "allowedCopyScope": null,
+  "azureFilesIdentityBasedAuthentication": null,
+  "blobRestoreStatus": null,
+  "creationTime": "2023-06-10T20:40:53.926949+00:00",
+  "customDomain": null,
+  "defaultToOAuthAuthentication": null,
+  "dnsEndpointType": null,
+  "enableHttpsTrafficOnly": true,
+  "enableNfsV3": null,
+  "encryption": {
+    "encryptionIdentity": null,
+    "keySource": "Microsoft.Storage",
+    "keyVaultProperties": null,
+    "requireInfrastructureEncryption": null,
+    "services": {
+      "blob": {
+        "enabled": true,
+        "keyType": "Account",
+        "lastEnabledTime": "2023-06-10T20:40:54.333211+00:00"
+      },
+      "file": {
+        "enabled": true,
+        "keyType": "Account",
+        "lastEnabledTime": "2023-06-10T20:40:54.333211+00:00"
+      },
+      "queue": null,
+      "table": null
+    }
+  },
+  "extendedLocation": null,
+  "failoverInProgress": null,
+  "geoReplicationStats": null,
+  "id": "/subscriptions/f2389761-fd4e-49ed-bdea-bd44e2c10539/resourceGroups/StorageRG/providers/Microsoft.Storage/storageAccounts/taskboardstorageangel",
+  "identity": null,
+  "immutableStorageWithVersioning": null,
+  "isHnsEnabled": null,
+  "isLocalUserEnabled": null,
+  "isSftpEnabled": null,
+  "keyCreationTime": {
+    "key1": "2023-06-10T20:40:54.083207+00:00",
+    "key2": "2023-06-10T20:40:54.083207+00:00"
+  },
+  "keyPolicy": null,
+  "kind": "StorageV2",
+  "largeFileSharesState": null,
+  "lastGeoFailoverTime": null,
+  "location": "westeurope",
+  "minimumTlsVersion": "TLS1_0",
+  "name": "taskboardstorageangel",
+  "networkRuleSet": {
+    "bypass": "AzureServices",
+    "defaultAction": "Allow",
+    "ipRules": [],
+    "resourceAccessRules": null,
+    "virtualNetworkRules": []
+  },
+  "primaryEndpoints": {
+    "blob": "https://taskboardstorageangel.blob.core.windows.net/",
+    "dfs": "https://taskboardstorageangel.dfs.core.windows.net/",
+    "file": "https://taskboardstorageangel.file.core.windows.net/",
+    "internetEndpoints": null,
+    "microsoftEndpoints": null,
+    "queue": "https://taskboardstorageangel.queue.core.windows.net/",
+    "table": "https://taskboardstorageangel.table.core.windows.net/",
+    "web": "https://taskboardstorageangel.z6.web.core.windows.net/"
+  },
+  "primaryLocation": "westeurope",
+  "privateEndpointConnections": [],
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": null,
+  "resourceGroup": "StorageRG",
+  "routingPreference": null,
+  "sasPolicy": null,
+  "secondaryEndpoints": null,
+  "secondaryLocation": null,
+  "sku": {
+    "name": "Standard_LRS",
+    "tier": "Standard"
+  },
+  "statusOfPrimary": "available",
+  "statusOfSecondary": null,
+  "storageAccountSkuConversionStatus": null,
+  "tags": {},
+  "type": "Microsoft.Storage/storageAccounts"
+}
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> az storage container create -n taskboardcontainer --account-name taskboardstorageangel
+
+There are no credentials provided in your command and environment, we will query for account key for your storage account.
+It is recommended to provide --connection-string, --account-key or --sas-token in your command as credentials.
+
+You also can add `--auth-mode login` in your command to use Azure Active Directory (Azure AD) for authorization if your login account is assigned required RBAC roles.
+For more information about RBAC roles in storage, visit https://docs.microsoft.com/azure/storage/common/storage-auth-aad-rbac-cli.
+
+In addition, setting the corresponding environment variables can avoid inputting credentials in your command. Please use --help to get more information about environment variable usage.
+{
+  "created": true
+}
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> dir
+
+
+    Directory: C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2023-06-09   8:35 PM           2929 main.tf
+-a----        2023-06-09   8:49 PM            467 terraform.tfvars
+-a----        2023-06-09   8:36 PM           1094 variables.tf
+
+
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git pull
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (10/10), 2.89 KiB | 36.00 KiB/s, done.
+From https://github.com/AngelJava123/Terraform-Actions-Azure
+   446a443..9ec5544  main       -> origin/main
+Updating 446a443..9ec5544
+Fast-forward
+ .github/workflows/terraform.yml | 94 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 94 insertions(+)
+ create mode 100644 .github/workflows/terraform.yml
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git add .
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git commit -m "Adding Persistent Storage"
+[main 80dc1b6] Adding Persistent Storage
+ 1 file changed, 7 insertions(+)
+PS C:\Users\tasheva\Lesson5\IaaC_and_Monitoring\Resources\Terraform-Actions-Azure> git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 437 bytes | 218.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/AngelJava123/Terraform-Actions-Azure.git
+   9ec5544..80dc1b6  main -> main
