@@ -1,0 +1,109 @@
+
+
+------------------------------STARTING THE APP WITH PROMETHEUS ONLY------------------------------
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus> .\prometheus --config.file .\prometheus-contact-book.yaml
+ts=2023-06-12T20:12:59.107Z caller=main.go:534 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2023-06-12T20:12:59.107Z caller=main.go:578 level=info msg="Starting Prometheus Server" mode=server version="(version=2.45.0-rc.0, branch=HEAD, revision=bfa466d00f152aa8dd58494c171872d7f95e3d5e)"
+ts=2023-06-12T20:12:59.108Z caller=main.go:583 level=info build_context="(go=go1.20.4, platform=windows/amd64, user=root@2016a18e8799, date=20230607-10:45:54, tags=builtinassets,stringlabels)"
+ts=2023-06-12T20:12:59.108Z caller=main.go:584 level=info host_details=(windows)
+ts=2023-06-12T20:12:59.108Z caller=main.go:585 level=info fd_limits=N/A
+ts=2023-06-12T20:12:59.109Z caller=main.go:586 level=info vm_limits=N/A
+ts=2023-06-12T20:12:59.135Z caller=web.go:562 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2023-06-12T20:12:59.140Z caller=main.go:1019 level=info msg="Starting TSDB ..."
+ts=2023-06-12T20:12:59.143Z caller=tls_config.go:274 level=info component=web msg="Listening on" address=[::]:9090
+ts=2023-06-12T20:12:59.143Z caller=tls_config.go:277 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2023-06-12T20:12:59.143Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1686170292538 maxt=1686175200000 ulid=01H2C3K8C6J5WB2A6Q4EXMP578
+ts=2023-06-12T20:12:59.144Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1686175200000 maxt=1686182400000 ulid=01H2RKPT7QKD6B7XPPH2FR2W7Y
+ts=2023-06-12T20:12:59.198Z caller=head.go:595 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2023-06-12T20:12:59.198Z caller=head.go:676 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=0s
+ts=2023-06-12T20:12:59.202Z caller=head.go:684 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2023-06-12T20:12:59.222Z caller=head.go:720 level=info component=tsdb msg="WAL checkpoint loaded"
+ts=2023-06-12T20:12:59.227Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=6 maxSegment=9
+ts=2023-06-12T20:12:59.228Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=7 maxSegment=9
+ts=2023-06-12T20:12:59.230Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=8 maxSegment=9
+ts=2023-06-12T20:12:59.231Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=9 maxSegment=9
+ts=2023-06-12T20:12:59.231Z caller=head.go:792 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=19.5493ms wal_replay_duration=8.357ms wbl_replay_duration=0s total_replay_duration=33.4693ms
+ts=2023-06-12T20:12:59.236Z caller=main.go:1040 level=info fs_type=unknown
+ts=2023-06-12T20:12:59.236Z caller=main.go:1043 level=info msg="TSDB started"
+ts=2023-06-12T20:12:59.236Z caller=main.go:1224 level=info msg="Loading configuration file" filename=.\prometheus-contact-book.yaml
+ts=2023-06-12T20:12:59.293Z caller=main.go:1261 level=info msg="Completed loading of configuration file" filename=.\prometheus-contact-book.yaml totalDuration=56.9982ms db_storage=0s remote_storage=0s web_handler=0s query_engine=0s scrape=54.8203ms scrape_sd=0s notify=0s notify_sd=0s rules=0s tracing=0s
+ts=2023-06-12T20:12:59.293Z caller=main.go:1004 level=info msg="Server is ready to receive web requests."
+ts=2023-06-12T20:12:59.293Z caller=manager.go:995 level=info component="rule manager" msg="Starting rule manager..."
+ts=2023-06-12T20:13:08.494Z caller=compact.go:514 level=info component=tsdb msg="write block resulted in empty block" mint=1686182400000 maxt=1686189600000 duration=51.579ms
+ts=2023-06-12T20:13:08.499Z caller=head.go:1293 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.6693ms
+ts=2023-06-12T20:13:08.503Z caller=checkpoint.go:100 level=info component=tsdb msg="Creating checkpoint" from_segment=6 to_segment=7 mint=1686189600000
+ts=2023-06-12T20:13:08.550Z caller=head.go:1261 level=info component=tsdb msg="WAL checkpoint complete" first=6 last=7 duration=50.6101ms
+ts=2023-06-12T20:20:28.297Z caller=main.go:854 level=warn msg="Received SIGTERM, exiting gracefully..."
+ts=2023-06-12T20:20:28.297Z caller=main.go:878 level=info msg="Stopping scrape discovery manager..."
+ts=2023-06-12T20:20:28.299Z caller=main.go:892 level=info msg="Stopping notify discovery manager..."
+ts=2023-06-12T20:20:28.300Z caller=manager.go:1009 level=info component="rule manager" msg="Stopping rule manager..."
+ts=2023-06-12T20:20:28.300Z caller=manager.go:1019 level=info component="rule manager" msg="Rule manager stopped"
+ts=2023-06-12T20:20:28.299Z caller=main.go:874 level=info msg="Scrape discovery manager stopped"
+ts=2023-06-12T20:20:28.300Z caller=main.go:888 level=info msg="Notify discovery manager stopped"
+ts=2023-06-12T20:20:28.301Z caller=main.go:929 level=info msg="Stopping scrape manager..."
+ts=2023-06-12T20:20:28.303Z caller=main.go:921 level=info msg="Scrape manager stopped"
+ts=2023-06-12T20:20:28.313Z caller=notifier.go:603 level=info component=notifier msg="Stopping notification manager..."
+ts=2023-06-12T20:20:28.314Z caller=main.go:1150 level=info msg="Notifier manager stopped"
+ts=2023-06-12T20:20:28.315Z caller=main.go:1162 level=info msg="See you next time!"
+
+
+-------------------------STARTING THE APP WITH PROMETHEUS AND ALERTMANAGER-------------------------
+
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\alertmanager> .\alertmanager --config.file .\alertmanager-contact-book.yml
+ts=2023-06-12T21:52:14.100Z caller=main.go:240 level=info msg="Starting Alertmanager" version="(version=0.25.0, branch=HEAD, revision=258fab7cdd551f2cf251ed0348f0ad7289aee789)"
+ts=2023-06-12T21:52:14.100Z caller=main.go:241 level=info build_context="(go=go1.19.4, user=root@0dd4f853dffb, date=20221222-14:50:08)"
+ts=2023-06-12T21:52:15.362Z caller=cluster.go:185 level=info component=cluster msg="setting advertise address explicitly" addr=192.168.0.106 port=9094
+ts=2023-06-12T21:52:15.378Z caller=cluster.go:681 level=info component=cluster msg="Waiting for gossip to settle..." interval=2s
+ts=2023-06-12T21:52:15.412Z caller=coordinator.go:113 level=info component=configuration msg="Loading configuration file" file=.\alertmanager-contact-book.yml
+ts=2023-06-12T21:52:15.412Z caller=coordinator.go:126 level=info component=configuration msg="Completed loading of configuration file" file=.\alertmanager-contact-book.yml
+ts=2023-06-12T21:52:15.422Z caller=tls_config.go:232 level=info msg="Listening on" address=[::]:9093
+ts=2023-06-12T21:52:15.422Z caller=tls_config.go:235 level=info msg="TLS is disabled." http2=false address=[::]:9093
+ts=2023-06-12T21:52:17.385Z caller=cluster.go:706 level=info component=cluster msg="gossip not settled" polls=0 before=0 now=1 elapsed=2.0072068s
+
+PS C:\Users\tasheva\Lesson5\App-Monitoring-Tools\prometheus> .\prometheus --config.file .\prometheus-contact-book-alerts.yaml
+ts=2023-06-12T21:43:37.294Z caller=main.go:534 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2023-06-12T21:43:37.294Z caller=main.go:578 level=info msg="Starting Prometheus Server" mode=server version="(version=2.45.0-rc.0, branch=HEAD, revision=bfa466d00f152aa8dd58494c171872d7f95e3d5e)"
+ts=2023-06-12T21:43:37.296Z caller=main.go:583 level=info build_context="(go=go1.20.4, platform=windows/amd64, user=root@2016a18e8799, date=20230607-10:45:54, tags=builtinassets,stringlabels)"
+ts=2023-06-12T21:43:37.296Z caller=main.go:584 level=info host_details=(windows)
+ts=2023-06-12T21:43:37.296Z caller=main.go:585 level=info fd_limits=N/A
+ts=2023-06-12T21:43:37.296Z caller=main.go:586 level=info vm_limits=N/A
+ts=2023-06-12T21:43:37.306Z caller=web.go:562 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2023-06-12T21:43:37.312Z caller=main.go:1019 level=info msg="Starting TSDB ..."
+ts=2023-06-12T21:43:37.316Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1686170292538 maxt=1686175200000 ulid=01H2C3K8C6J5WB2A6Q4EXMP578
+ts=2023-06-12T21:43:37.317Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1686175200000 maxt=1686182400000 ulid=01H2RKPT7QKD6B7XPPH2FR2W7Y
+ts=2023-06-12T21:43:37.319Z caller=tls_config.go:274 level=info component=web msg="Listening on" address=[::]:9090
+ts=2023-06-12T21:43:37.319Z caller=tls_config.go:277 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2023-06-12T21:43:37.340Z caller=head.go:595 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2023-06-12T21:43:37.340Z caller=head.go:676 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=0s
+ts=2023-06-12T21:43:37.340Z caller=head.go:684 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2023-06-12T21:43:37.360Z caller=head.go:720 level=info component=tsdb msg="WAL checkpoint loaded"
+ts=2023-06-12T21:43:37.362Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=10 maxSegment=13
+ts=2023-06-12T21:43:37.364Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=11 maxSegment=13
+ts=2023-06-12T21:43:37.367Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=12 maxSegment=13
+ts=2023-06-12T21:43:37.369Z caller=head.go:755 level=info component=tsdb msg="WAL segment loaded" segment=13 maxSegment=13
+ts=2023-06-12T21:43:37.369Z caller=head.go:792 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=18.436ms wal_replay_duration=8.7101ms wbl_replay_duration=0s total_replay_duration=29.4312ms
+ts=2023-06-12T21:43:37.373Z caller=main.go:1040 level=info fs_type=unknown
+ts=2023-06-12T21:43:37.373Z caller=main.go:1043 level=info msg="TSDB started"
+ts=2023-06-12T21:43:37.374Z caller=main.go:1224 level=info msg="Loading configuration file" filename=.\prometheus-contact-book-alerts.yaml
+ts=2023-06-12T21:43:37.432Z caller=main.go:1261 level=info msg="Completed loading of configuration file" filename=.\prometheus-contact-book-alerts.yaml totalDuration=58.3023ms db_storage=22.7µs remote_storage=0s web_handler=0s query_engine=0s scrape=54.3771ms scrape_sd=545.8µs notify=0s notify_sd=0s rules=1.6468ms tracing=0s
+ts=2023-06-12T21:43:37.432Z caller=main.go:1004 level=info msg="Server is ready to receive web requests."
+ts=2023-06-12T21:43:37.433Z caller=manager.go:995 level=info component="rule manager" msg="Starting rule manager..."
+ts=2023-06-12T21:43:44.870Z caller=compact.go:514 level=info component=tsdb msg="write block resulted in empty block" mint=1686182400000 maxt=1686189600000 duration=58.7281ms
+ts=2023-06-12T21:43:44.873Z caller=head.go:1293 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.2769ms
+ts=2023-06-12T21:43:44.876Z caller=checkpoint.go:100 level=info component=tsdb msg="Creating checkpoint" from_segment=10 to_segment=11 mint=1686189600000
+ts=2023-06-12T21:43:44.924Z caller=head.go:1261 level=info component=tsdb msg="WAL checkpoint complete" first=10 last=11 duration=50.8495ms
+ts=2023-06-12T21:46:14.113Z caller=main.go:854 level=warn msg="Received SIGTERM, exiting gracefully..."
+ts=2023-06-12T21:46:14.113Z caller=main.go:878 level=info msg="Stopping scrape discovery manager..."
+ts=2023-06-12T21:46:14.115Z caller=main.go:892 level=info msg="Stopping notify discovery manager..."
+ts=2023-06-12T21:46:14.115Z caller=main.go:874 level=info msg="Scrape discovery manager stopped"
+ts=2023-06-12T21:46:14.116Z caller=manager.go:1009 level=info component="rule manager" msg="Stopping rule manager..."
+ts=2023-06-12T21:46:14.116Z caller=main.go:888 level=info msg="Notify discovery manager stopped"
+ts=2023-06-12T21:46:14.117Z caller=manager.go:1019 level=info component="rule manager" msg="Rule manager stopped"
+ts=2023-06-12T21:46:14.117Z caller=main.go:929 level=info msg="Stopping scrape manager..."
+ts=2023-06-12T21:46:14.118Z caller=main.go:921 level=info msg="Scrape manager stopped"
+ts=2023-06-12T21:46:14.125Z caller=notifier.go:603 level=info component=notifier msg="Stopping notification manager..."
+ts=2023-06-12T21:46:14.125Z caller=main.go:1150 level=info msg="Notifier manager stopped"
+ts=2023-06-12T21:46:14.126Z caller=main.go:1162 level=info msg="See you next time!"
